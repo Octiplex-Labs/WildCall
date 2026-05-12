@@ -16,16 +16,25 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
     }
 
     private func loadBlockingNumbers(into context: CXCallDirectoryExtensionContext) throws {
-        guard let url = sharedStoreURL(named: "block.bin") else { return }
-        guard FileManager.default.fileExists(atPath: url.path) else { return }
-        let reader = try BlockStoreReader(url: url, expectedMagic: BlockStoreFormat.blockMagic)
+        guard let url = sharedStoreURL(named: "block.bin"),
+              FileManager.default.fileExists(atPath: url.path)
+        else { return }
+        let reader = try BlockStoreReader(url: url)
         for number in reader.numbers {
             context.addBlockingEntry(withNextSequentialPhoneNumber: number)
         }
     }
 
     private func loadIdentificationEntries(into context: CXCallDirectoryExtensionContext) throws {
-        // ident.bin parsing arrives in Phase 1 (separate format with string table).
+        guard let url = sharedStoreURL(named: "ident.bin"),
+              FileManager.default.fileExists(atPath: url.path)
+        else { return }
+        let reader = try IdentStoreReader(url: url)
+        for index in 0..<reader.count {
+            let number = reader.numbers[index]
+            let label = try reader.label(at: index)
+            context.addIdentificationEntry(withNextSequentialPhoneNumber: number, label: label)
+        }
     }
 
     private func sharedStoreURL(named name: String) -> URL? {
@@ -36,7 +45,7 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
 }
 
 extension CallDirectoryHandler: CXCallDirectoryExtensionContextDelegate {
-    func requestFailed(for extensionContext: CXCallDirectoryExtensionContext, withError error: Error) {
-        // iOS will surface this — nothing to do here besides letting it propagate.
+    func requestFailed(for extensionContext: CXCallDirectoryExtensionContext, withError error: any Error) {
+        // iOS surfaces this through the system log; nothing actionable here.
     }
 }

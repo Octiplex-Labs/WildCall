@@ -119,6 +119,9 @@ schemes:
       config: Debug
     test:
       config: Debug
+      targets:
+        - package: WildCallCore/WildCallCoreSharedTests
+        - package: WildCallCore/WildCallCoreAppTests
     profile:
       config: Release
     analyze:
