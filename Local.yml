@@ -1,0 +1,11 @@
+# Per-developer settings — override here, don't touch project.yml.
+#
+# If you want git to ignore your local edits to this file:
+#   git update-index --skip-worktree Local.yml
+# To reverse:
+#   git update-index --no-skip-worktree Local.yml
+#
+# After editing, run:  xcodegen generate
+settings:
+  base:
+    DEVELOPMENT_TEAM: ""   # Your 10-char Apple Developer Team ID

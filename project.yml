@@ -1,4 +1,8 @@
 name: WildCall
+
+include:
+  - Local.yml
+
 options:
   bundleIdPrefix: com.octiplex
   deploymentTarget:
