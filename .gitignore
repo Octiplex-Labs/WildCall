@@ -1,0 +1,59 @@
+# Xcode
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+*.xcuserstate
+xcuserdata/
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# XcodeGen — .xcodeproj and Generated/ are regenerated from project.yml
+WildCall.xcodeproj/
+Generated/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+.swiftpm/
+
+# CocoaPods (unused, but defensive)
+Pods/
+
+# Carthage (unused, but defensive)
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets / signing
+*.cer
+*.p12
+*.mobileprovision
+*.entitlements.local
+ExportOptions.plist
+
+# Misc
+*.log
+.env
+.env.*
