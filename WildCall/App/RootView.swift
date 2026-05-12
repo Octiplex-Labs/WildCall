@@ -1,18 +1,20 @@
+import ComposableArchitecture
 import SwiftUI
+import WildCallCoreApp
 
 struct RootView: View {
+    @Bindable var store: StoreOf<AppFeature>
+
     var body: some View {
         NavigationStack {
-            List {
-                Section("Phase 0 — Scaffold") {
-                    Text("WildCall is alive.")
-                }
+            VStack(spacing: 12) {
+                OnboardingBanner(store: store)
+                RulesListView(
+                    store: store.scope(state: \.rules, action: \.rules)
+                )
             }
-            .navigationTitle("WildCall")
+            .background(Color(.systemGroupedBackground))
         }
+        .task { await store.send(.task).finish() }
     }
-}
-
-#Preview {
-    RootView()
 }
