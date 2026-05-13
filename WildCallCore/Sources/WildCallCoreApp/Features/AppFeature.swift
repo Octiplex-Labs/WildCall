@@ -6,6 +6,7 @@ public struct AppFeature: Sendable {
     @ObservableState
     public struct State: Equatable {
         public var rules: RulesFeature.State = .init()
+        public var packs: PacksFeature.State = .init()
         public var extensionStatus: ExtensionEnabledStatus = .unknown
         public var isCheckingStatus: Bool = false
 
@@ -19,6 +20,7 @@ public struct AppFeature: Sendable {
         case refreshStatusButtonTapped
         case openSettingsButtonTapped
         case rules(RulesFeature.Action)
+        case packs(PacksFeature.Action)
     }
 
     @Dependency(\.extensionReloader) var reloader
@@ -28,6 +30,9 @@ public struct AppFeature: Sendable {
     public var body: some ReducerOf<Self> {
         Scope(state: \.rules, action: \.rules) {
             RulesFeature()
+        }
+        Scope(state: \.packs, action: \.packs) {
+            PacksFeature()
         }
 
         Reduce { state, action in
@@ -57,6 +62,9 @@ public struct AppFeature: Sendable {
                 return .none
 
             case .rules:
+                return .none
+
+            case .packs:
                 return .none
             }
         }
