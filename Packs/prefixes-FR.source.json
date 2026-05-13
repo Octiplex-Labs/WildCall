@@ -1,0 +1,17 @@
+{
+  "id": "fr.arcep",
+  "version": "2026-05-13",
+  "country": "FR",
+  "kind": "prefixes",
+  "title": "Démarchage FR — plages ARCEP (sous-ensemble)",
+  "license": "public domain (régulation publique)",
+  "notes": "Sous-ensemble curaté pour Phase 3 : 6 préfixes = 6 M numéros = ~48 MB. À élargir une fois le budget réel de l'extension iOS confirmé par Phase 0bis (mesure 1M/5M/10M sur device).",
+  "prefixes": [
+    "+33162*",
+    "+33163*",
+    "+33164*",
+    "+33165*",
+    "+33568*",
+    "+33569*"
+  ]
+}
