@@ -21,6 +21,10 @@ public struct RebuildSummary: Equatable, Sendable {
     }
 }
 
+public enum OrchestratorError: Error, Equatable, Sendable {
+    case exceedsTotalQuota(expanded: Int, limit: Int)
+}
+
 public struct StoreOrchestrator: Sendable {
     public var rebuildAndReload: @Sendable () async throws -> RebuildSummary
 
@@ -34,12 +38,18 @@ extension StoreOrchestrator {
         repository: RulesRepository,
         container: SharedContainer,
         reloader: ExtensionReloader,
+        expander: WildcardExpander,
+        quotas: WildcardQuotas,
         now: @escaping @Sendable () -> Date = Date.init
     ) -> StoreOrchestrator {
         StoreOrchestrator(
             rebuildAndReload: {
                 let rules = try await repository.fetchAll()
-                let (blockNumbers, identEntries) = Self.split(rules: rules)
+                let (blockNumbers, identEntries) = try Self.split(
+                    rules: rules,
+                    expander: expander,
+                    quotas: quotas
+                )
 
                 let blockURL = try container.blockStoreURL()
                 let identURL = try container.identStoreURL()
@@ -68,21 +78,52 @@ extension StoreOrchestrator {
         )
     }
 
-    static func split(rules: [BlockRule]) -> (numbers: [Int64], entries: [IdentEntry]) {
+    static func split(
+        rules: [BlockRule],
+        expander: WildcardExpander,
+        quotas: WildcardQuotas
+    ) throws -> (numbers: [Int64], entries: [IdentEntry]) {
         var numbers: [Int64] = []
         var entries: [IdentEntry] = []
+        var userExpanded = 0
         numbers.reserveCapacity(rules.count)
+
         for rule in rules {
-            guard case .exact(let e164) = rule.kind else { continue }
-            switch rule.action {
-            case .block:
-                numbers.append(e164.value)
-            case .identify:
-                let label = rule.label ?? "WildCall"
-                entries.append(IdentEntry(number: e164.value, label: label))
+            switch rule.kind {
+            case .exact(let e164):
+                appendNumberOrEntry(value: e164.value, rule: rule, into: &numbers, entries: &entries)
+            case .prefix(let prefix):
+                let expanded = expander.expand(prefix)
+                if case .user = rule.source {
+                    userExpanded += expanded.count
+                    if userExpanded > quotas.totalUser {
+                        throw OrchestratorError.exceedsTotalQuota(
+                            expanded: userExpanded,
+                            limit: quotas.totalUser
+                        )
+                    }
+                }
+                for value in expanded {
+                    appendNumberOrEntry(value: value, rule: rule, into: &numbers, entries: &entries)
+                }
             }
         }
         return (numbers, entries)
+    }
+
+    private static func appendNumberOrEntry(
+        value: Int64,
+        rule: BlockRule,
+        into numbers: inout [Int64],
+        entries: inout [IdentEntry]
+    ) {
+        switch rule.action {
+        case .block:
+            numbers.append(value)
+        case .identify:
+            let label = rule.label ?? "WildCall"
+            entries.append(IdentEntry(number: value, label: label))
+        }
     }
 }
 
@@ -91,7 +132,15 @@ extension StoreOrchestrator: DependencyKey {
         @Dependency(\.sharedContainer) var container
         @Dependency(\.rulesRepository) var repository
         @Dependency(\.extensionReloader) var reloader
-        return .live(repository: repository, container: container, reloader: reloader)
+        @Dependency(\.wildcardExpander) var expander
+        @Dependency(\.wildcardQuotas) var quotas
+        return .live(
+            repository: repository,
+            container: container,
+            reloader: reloader,
+            expander: expander,
+            quotas: quotas
+        )
     }()
 
     public static let testValue: StoreOrchestrator = StoreOrchestrator(
