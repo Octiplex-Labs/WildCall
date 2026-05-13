@@ -36,6 +36,7 @@ public struct StoreOrchestrator: Sendable {
 extension StoreOrchestrator {
     public static func live(
         repository: RulesRepository,
+        packsRepository: PacksRepository,
         container: SharedContainer,
         reloader: ExtensionReloader,
         expander: WildcardExpander,
@@ -45,8 +46,10 @@ extension StoreOrchestrator {
         StoreOrchestrator(
             rebuildAndReload: {
                 let rules = try await repository.fetchAll()
+                let packs = try await packsRepository.fetchAll()
+                let activeRules = Self.filterByPackActivation(rules: rules, packs: packs)
                 let (blockNumbers, identEntries) = try Self.split(
-                    rules: rules,
+                    rules: activeRules,
                     expander: expander,
                     quotas: quotas
                 )
@@ -111,6 +114,20 @@ extension StoreOrchestrator {
         return (numbers, entries)
     }
 
+    static func filterByPackActivation(
+        rules: [BlockRule],
+        packs: [InstalledPack]
+    ) -> [BlockRule] {
+        let disabledIds = Set(packs.filter { !$0.enabled }.map(\.id))
+        guard !disabledIds.isEmpty else { return rules }
+        return rules.filter { rule in
+            if case .pack(let id) = rule.source {
+                return !disabledIds.contains(id)
+            }
+            return true
+        }
+    }
+
     private static func appendNumberOrEntry(
         value: Int64,
         rule: BlockRule,
@@ -131,11 +148,13 @@ extension StoreOrchestrator: DependencyKey {
     public static let liveValue: StoreOrchestrator = {
         @Dependency(\.sharedContainer) var container
         @Dependency(\.rulesRepository) var repository
+        @Dependency(\.packsRepository) var packsRepository
         @Dependency(\.extensionReloader) var reloader
         @Dependency(\.wildcardExpander) var expander
         @Dependency(\.wildcardQuotas) var quotas
         return .live(
             repository: repository,
+            packsRepository: packsRepository,
             container: container,
             reloader: reloader,
             expander: expander,

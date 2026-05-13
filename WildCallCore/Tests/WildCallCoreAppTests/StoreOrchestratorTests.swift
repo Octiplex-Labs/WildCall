@@ -79,6 +79,36 @@ import WildCallCoreShared
         #expect(numbers.count == 1 + 100)
     }
 
+    @Test func filterByPackActivationDropsDisabledPackRules() {
+        let rules: [BlockRule] = [
+            .init(kind: .exact(E164(1)!), source: .user, action: .block, countryCode: "FR"),
+            .init(kind: .exact(E164(2)!), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR"),
+            .init(kind: .exact(E164(3)!), source: .pack(packId: "fr.other"), action: .block, countryCode: "FR"),
+        ]
+        let packs: [InstalledPack] = [
+            InstalledPack(id: "fr.arcep", version: "v1", country: "FR", enabled: true, installedAt: Date()),
+            InstalledPack(id: "fr.other", version: "v1", country: "FR", enabled: false, installedAt: Date()),
+        ]
+        let kept = StoreOrchestrator.filterByPackActivation(rules: rules, packs: packs)
+        let keptIds = kept.map { rule -> Int64 in
+            if case .exact(let e164) = rule.kind { return e164.value }
+            return 0
+        }
+        #expect(keptIds == [1, 2])  // fr.other dropped, user + fr.arcep kept
+    }
+
+    @Test func filterByPackActivationKeepsAllWhenNoneDisabled() {
+        let rules: [BlockRule] = [
+            .init(kind: .exact(E164(1)!), source: .user, action: .block, countryCode: "FR"),
+            .init(kind: .exact(E164(2)!), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR"),
+        ]
+        let packs: [InstalledPack] = [
+            InstalledPack(id: "fr.arcep", version: "v1", country: "FR", enabled: true, installedAt: Date()),
+        ]
+        let kept = StoreOrchestrator.filterByPackActivation(rules: rules, packs: packs)
+        #expect(kept.count == 2)
+    }
+
     @Test func mixesExactAndPrefixRules() throws {
         let rules: [BlockRule] = [
             .init(kind: .exact(E164(42)!), source: .user, action: .block, countryCode: "FR"),
@@ -120,6 +150,7 @@ import WildCallCoreShared
 
         let orchestrator = StoreOrchestrator.live(
             repository: repository,
+            packsRepository: .inMemory,
             container: container,
             reloader: reloader,
             expander: .live,

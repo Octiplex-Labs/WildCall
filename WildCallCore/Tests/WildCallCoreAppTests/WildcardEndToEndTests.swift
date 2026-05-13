@@ -48,6 +48,7 @@ import WildCallCoreShared
 
         let orchestrator = StoreOrchestrator.live(
             repository: repository,
+            packsRepository: .inMemory,
             container: container,
             reloader: reloader,
             expander: .live,
