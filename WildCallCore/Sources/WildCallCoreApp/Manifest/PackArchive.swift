@@ -65,6 +65,19 @@ public struct PackArchive: Sendable {
         return Contents(manifest: manifestData, signature: signatureData, payload: payloadData)
     }
 
+    /// Decode the manifest JSON without verifying the signature. Use for TOFU
+    /// previews where the caller wants to display the publisher's claimed
+    /// public key fingerprint before deciding whether to trust it. Callers
+    /// MUST still verify the signature before installing.
+    public func peekManifest(_ data: Data) throws -> PackManifest {
+        let contents = try read(data)
+        do {
+            return try JSONDecoder().decode(PackManifest.self, from: contents.manifest)
+        } catch {
+            throw ArchiveError.tarParseFailed("manifest decode: \(error)")
+        }
+    }
+
     public func write(_ contents: Contents) throws -> Data {
         var entries: [TarEntry] = []
         entries.append(makeEntry(name: Self.manifestName, data: contents.manifest))

@@ -24,6 +24,62 @@ import CustomDump
         #expect(manifest.title == nil)
     }
 
+    @Test func decodesManifestWithPublisherKey() throws {
+        let json = """
+        {
+          "id": "fr.thirdparty",
+          "version": "v1",
+          "country": "FR",
+          "kind": "prefixes",
+          "publisherKey": "cb7974ed754089790a97afb61d3aa8d7a68373d89a5313615a358f453f993ae4",
+          "prefixes": []
+        }
+        """.data(using: .utf8)!
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: json)
+        #expect(manifest.publisherKey != nil)
+        let bytes = manifest.publisherKeyBytes()
+        #expect(bytes?.count == 32)
+        #expect(bytes?.first == 0xcb)
+    }
+
+    @Test func rejectsMalformedPublisherKeyHex() throws {
+        let json = """
+        {
+          "id": "x", "version": "v1", "country": "FR", "kind": "prefixes",
+          "publisherKey": "notvalidhex",
+          "prefixes": []
+        }
+        """.data(using: .utf8)!
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: json)
+        #expect(manifest.publisherKey == "notvalidhex")
+        #expect(manifest.publisherKeyBytes() == nil)  // helper guards length & validity
+    }
+
+    @Test func rejectsShortPublisherKey() throws {
+        let json = """
+        {
+          "id": "x", "version": "v1", "country": "FR", "kind": "prefixes",
+          "publisherKey": "abcd",
+          "prefixes": []
+        }
+        """.data(using: .utf8)!
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: json)
+        #expect(manifest.publisherKeyBytes() == nil)
+    }
+
+    @Test func peekManifestReadsArchiveWithoutVerifying() throws {
+        let archive = PackArchive()
+        let manifestJSON = Data("{\"id\":\"x\",\"version\":\"v1\",\"country\":\"FR\",\"kind\":\"prefixes\",\"prefixes\":[]}".utf8)
+        let bytes = try archive.write(.init(
+            manifest: manifestJSON,
+            signature: Data(repeating: 0, count: 64),  // garbage signature
+            payload: nil
+        ))
+        // peekManifest should still decode (no signature check)
+        let manifest = try archive.peekManifest(bytes)
+        #expect(manifest.id == "x")
+    }
+
     @Test func decodesRichManifest() throws {
         let json = """
         {
