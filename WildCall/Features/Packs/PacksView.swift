@@ -55,6 +55,16 @@ struct PacksView: View {
                     }
                     .disabled(store.isSyncing)
 
+                    Button {
+                        store.send(.addByURLTapped)
+                    } label: {
+                        HStack {
+                            Image(systemName: "link.badge.plus")
+                            Text("Ajouter un pack par URL…")
+                            Spacer()
+                        }
+                    }
+
                     if let lastSync = store.lastSync {
                         HStack {
                             Text("Dernière synchronisation")
@@ -72,6 +82,9 @@ struct PacksView: View {
             }
             .navigationTitle("Réglages")
             .task { await store.send(.task).finish() }
+            .sheet(item: $store.scope(state: \.urlImportPresentation, action: \.urlImportPresentation)) { urlStore in
+                PackURLImportSheet(store: urlStore)
+            }
         }
     }
 

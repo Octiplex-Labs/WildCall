@@ -14,6 +14,7 @@ public struct PacksFeature: Sendable {
         public var lastSync: Date? = nil
         public var lastSyncSummary: SyncSummary? = nil
         public var lastSyncError: EquatableError? = nil
+        @Presents public var urlImportPresentation: PackURLImportFeature.State?
 
         public init(packs: IdentifiedArrayOf<InstalledPack> = []) {
             self.packs = packs
@@ -30,6 +31,8 @@ public struct PacksFeature: Sendable {
         case syncButtonTapped
         case syncCompleted(SyncSummary, Date)
         case syncFailed(EquatableError)
+        case addByURLTapped
+        case urlImportPresentation(PresentationAction<PackURLImportFeature.Action>)
     }
 
     @Dependency(\.packsRepository) var packsRepository
@@ -115,7 +118,21 @@ public struct PacksFeature: Sendable {
                 state.isSyncing = false
                 state.lastSyncError = error
                 return .none
+
+            case .addByURLTapped:
+                state.urlImportPresentation = PackURLImportFeature.State()
+                return .none
+
+            case .urlImportPresentation(.presented(.delegate(.finished))):
+                state.urlImportPresentation = nil
+                return .send(.task)  // refresh after URL import
+
+            case .urlImportPresentation:
+                return .none
             }
+        }
+        .ifLet(\.$urlImportPresentation, action: \.urlImportPresentation) {
+            PackURLImportFeature()
         }
     }
 }

@@ -14,7 +14,7 @@ struct WildCallApp: App {
     init() {
         let container: ModelContainer
         do {
-            container = try ModelContainer(for: BlockRuleRecord.self, PackRecord.self)
+            container = try ModelContainer(for: BlockRuleRecord.self, PackRecord.self, TrustedKeyRecord.self)
         } catch {
             fatalError("Failed to create persistent ModelContainer: \(error)")
         }
@@ -23,6 +23,7 @@ struct WildCallApp: App {
         self.store = withDependencies {
             $0.rulesRepository = .live(container: container)
             $0.packsRepository = .live(container: container)
+            $0.trustedKeyStore = .live(container: container)
         } operation: {
             Store(initialState: AppFeature.State()) {
                 AppFeature()
