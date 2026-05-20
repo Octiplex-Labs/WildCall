@@ -1,3 +1,4 @@
+import CryptoKit
 import Dependencies
 import Foundation
 import Testing
@@ -56,6 +57,106 @@ import IssueReporting
             }
             #expect(rules.count == 2)
             #expect(rules.allSatisfy { $0.source == .pack(packId: "fr.broken") })
+        }
+    }
+
+    // MARK: - loadFromArchive
+
+    @Test func loadFromArchiveHappyPath() {
+        let signerKey = Curve25519.Signing.PrivateKey()
+        let manifestJSON = """
+        {
+          "id": "test.signed",
+          "version": "v1",
+          "country": "FR",
+          "kind": "prefixes",
+          "prefixes": ["+33162*"]
+        }
+        """
+        let manifestData = Data(manifestJSON.utf8)
+        let signature = try! signerKey.signature(for: manifestData)
+        let archive = try! PackArchive().write(.init(
+            manifest: manifestData,
+            signature: signature,
+            payload: nil
+        ))
+
+        let result = withDependencies {
+            $0.uuid = .incrementing
+            $0.wildcardParser = .live
+        } operation: {
+            loader.loadFromArchive(archive, signerKey.publicKey.rawRepresentation, now)
+        }
+
+        switch result {
+        case .success(let loaded):
+            #expect(loaded.manifest.id == "test.signed")
+            #expect(loaded.rules.count == 1)
+            #expect(loaded.rules.first?.source == .pack(packId: "test.signed"))
+        case .failure(let error):
+            Issue.record("expected success, got \(error)")
+        }
+    }
+
+    @Test func loadFromArchiveRejectsBadSignature() {
+        let signerKey = Curve25519.Signing.PrivateKey()
+        let otherKey = Curve25519.Signing.PrivateKey()
+        let manifestData = Data("{\"id\":\"x\",\"version\":\"v1\",\"country\":\"FR\",\"kind\":\"prefixes\",\"prefixes\":[]}".utf8)
+        let signature = try! signerKey.signature(for: manifestData)
+        let archive = try! PackArchive().write(.init(
+            manifest: manifestData,
+            signature: signature,
+            payload: nil
+        ))
+
+        // Verify with a different public key — should fail.
+        let result = loader.loadFromArchive(archive, otherKey.publicKey.rawRepresentation, now)
+        #expect(result == .failure(.signatureInvalid))
+    }
+
+    @Test func loadFromArchiveRejectsTamperedManifest() {
+        let signerKey = Curve25519.Signing.PrivateKey()
+        let original = Data("{\"id\":\"trusted\",\"version\":\"v1\",\"country\":\"FR\",\"kind\":\"prefixes\",\"prefixes\":[]}".utf8)
+        let signature = try! signerKey.signature(for: original)
+
+        // Build archive with a DIFFERENT manifest than the one the signature
+        // covers — verification must fail.
+        let tampered = Data("{\"id\":\"evil\",\"version\":\"v1\",\"country\":\"FR\",\"kind\":\"prefixes\",\"prefixes\":[]}".utf8)
+        let archive = try! PackArchive().write(.init(
+            manifest: tampered,
+            signature: signature,
+            payload: nil
+        ))
+
+        let result = loader.loadFromArchive(archive, signerKey.publicKey.rawRepresentation, now)
+        #expect(result == .failure(.signatureInvalid))
+    }
+
+    @Test func loadFromArchiveRejectsCorruptedGzip() {
+        let garbage = Data([0xFF, 0x00, 0x01, 0x02, 0x03])
+        let result = loader.loadFromArchive(garbage, Data(repeating: 0, count: 32), now)
+        if case .failure(.archiveRead(.decompressionFailed)) = result {
+            // expected
+        } else {
+            Issue.record("expected .archiveRead(.decompressionFailed), got \(result)")
+        }
+    }
+
+    @Test func loadFromArchiveRejectsMalformedManifestJSON() {
+        let signerKey = Curve25519.Signing.PrivateKey()
+        let manifestData = Data("not json at all".utf8)
+        let signature = try! signerKey.signature(for: manifestData)
+        let archive = try! PackArchive().write(.init(
+            manifest: manifestData,
+            signature: signature,
+            payload: nil
+        ))
+
+        let result = loader.loadFromArchive(archive, signerKey.publicKey.rawRepresentation, now)
+        if case .failure(.manifestDecode) = result {
+            // expected
+        } else {
+            Issue.record("expected .manifestDecode, got \(result)")
         }
     }
 
