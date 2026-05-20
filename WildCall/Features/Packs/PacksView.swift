@@ -79,6 +79,8 @@ struct PacksView: View {
                 } footer: {
                     syncFooterView
                 }
+
+                AboutSection()
             }
             .navigationTitle("Réglages")
             .task { await store.send(.task).finish() }
