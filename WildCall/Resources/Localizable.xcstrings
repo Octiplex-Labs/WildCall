@@ -2,25 +2,409 @@
   "sourceLanguage" : "fr",
   "version" : "1.0",
   "strings" : {
-    "_languages_seeded" : {
-      "comment" : "Internal placeholder so Xcode knows which target languages to compile. Real translations will be filled in by translators directly via Xcode's String Catalog editor.",
-      "extractionState" : "manual",
+    "%@ · version %@" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : { "state" : "translated", "value" : "" }
-        },
-        "es" : {
-          "stringUnit" : { "state" : "translated", "value" : "" }
-        },
-        "fr" : {
-          "stringUnit" : { "state" : "translated", "value" : "" }
-        },
-        "it" : {
-          "stringUnit" : { "state" : "translated", "value" : "" }
-        },
-        "pt" : {
-          "stringUnit" : { "state" : "translated", "value" : "" }
-        }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · version %2$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versión %2$@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · version %2$@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versione %2$@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versão %2$@" } }
+      }
+    },
+    "%@ pack(s) en erreur — voir les logs." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) failed — see logs." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ paquete(s) con error — ver registros." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) en erreur — voir les logs." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack in errore — vedi i log." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) com erro — ver os logs." } }
+      }
+    },
+    "+%@ suivi de %@ chiffre%@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ followed by %2$@ digit%3$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguido de %2$@ dígito%3$@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ suivi de %2$@ chiffre%3$@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguito da %2$@ cifra%3$@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguido de %2$@ dígito%3$@" } }
+      }
+    },
+    "Ajouter un pack par URL…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a pack from URL…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añadir un paquete por URL…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajouter un pack par URL…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un pack da URL…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicionar um pack por URL…" } }
+      }
+    },
+    "Ajoutez un numéro à bloquer ou identifier." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a number to block or identify." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añade un número para bloquear o identificar." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajoutez un numéro à bloquer ou identifier." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un numero da bloccare o identificare." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicione um número para bloquear ou identificar." } }
+      }
+    },
+    "Bloquer" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bloquear" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bloquer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Blocca" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bloquear" } }
+      }
+    },
+    "Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This pack is not signed by Octiplex. Before installing, verify that this fingerprint matches the one published out-of-band by the publisher:" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Este paquete no está firmado por Octiplex. Antes de instalar, verifica que esta huella coincida con la publicada fuera de banda por el editor:" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Questo pack non è firmato da Octiplex. Prima di installare, verifica che questa impronta corrisponda a quella pubblicata fuori canale dall'editore:" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Este pack não foi assinado pela Octiplex. Antes de instalar, verifique que esta impressão digital corresponde à publicada fora de banda pelo editor:" } }
+      }
+    },
+    "Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This fingerprint must match the one published on the project page. If it doesn't match, your build has been tampered with." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Esta huella debe coincidir con la publicada en la página del proyecto. Si no coincide, tu compilación ha sido alterada." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Questa impronta deve corrispondere a quella pubblicata sulla pagina del progetto. Se non corrisponde, la tua build è stata alterata." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Esta impressão digital deve corresponder à publicada na página do projeto. Se não corresponder, sua build foi alterada." } }
+      }
+    },
+    "Chargement des packs…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading packs…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cargando paquetes…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Chargement des packs…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Caricamento pack…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Carregando packs…" } }
+      }
+    },
+    "Chargement…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cargando…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Chargement…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Caricamento…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Carregando…" } }
+      }
+    },
+    "Composants tiers" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Third-party components" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Componentes de terceros" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Composants tiers" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Componenti di terze parti" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Componentes de terceiros" } }
+      }
+    },
+    "Dernière synchronisation" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last sync" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Última sincronización" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Dernière synchronisation" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ultima sincronizzazione" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Última sincronização" } }
+      }
+    },
+    "Données" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Data" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Dati" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Dados" } }
+      }
+    },
+    "Échec de l'import" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import failed" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Importación fallida" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Échec de l'import" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Importazione fallita" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Falha na importação" } }
+      }
+    },
+    "Exporter mes règles…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export my rules…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Exportar mis reglas…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Exporter mes règles…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Esporta le mie regole…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Exportar minhas regras…" } }
+      }
+    },
+    "Faire confiance et installer" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Trust and install" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Confiar e instalar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Faire confiance et installer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Fidati e installa" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Confiar e instalar" } }
+      }
+    },
+    "Identifier" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Identify" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Identificar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Identifier" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Identifica" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Identificar" } }
+      }
+    },
+    "Identité" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Identity" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Identidad" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Identité" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Identità" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Identidade" } }
+      }
+    },
+    "Impossible d'importer ce pack." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn't import this pack." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "No se pudo importar este paquete." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Impossible d'importer ce pack." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Impossibile importare questo pack." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Não foi possível importar este pack." } }
+      }
+    },
+    "Installation…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installing…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Instalando…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Installation…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Installazione…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Instalando…" } }
+      }
+    },
+    "Installer" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Install" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Instalar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Installer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Installa" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Instalar" } }
+      }
+    },
+    "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The export only contains rules you added yourself. Octiplex packs are not included — they reinstall automatically at sync." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "La exportación solo contiene las reglas que añadiste tú. Los paquetes de Octiplex no se incluyen — se reinstalan automáticamente al sincronizar." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "L'esportazione contiene solo le regole che hai aggiunto tu. I pack Octiplex non sono inclusi — vengono reinstallati automaticamente durante la sincronizzazione." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "A exportação contém apenas as regras que você mesmo adicionou. Os packs Octiplex não estão incluídos — eles são reinstalados automaticamente na sincronização." } }
+      }
+    },
+    "La synchronisation récupère les nouveaux packs et les mises à jour depuis Octiplex." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync fetches new packs and updates from Octiplex." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "La sincronización descarga nuevos paquetes y actualizaciones desde Octiplex." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "La synchronisation récupère les nouveaux packs et les mises à jour depuis Octiplex." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "La sincronizzazione recupera nuovi pack e aggiornamenti da Octiplex." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "A sincronização busca novos packs e atualizações da Octiplex." } }
+      }
+    },
+    "Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The pack must be signed. You'll see the publisher's fingerprint before accepting." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "El paquete debe estar firmado. Verás la huella del editor antes de aceptar." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il pack deve essere firmato. Vedrai l'impronta dell'editore prima di accettare." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O pack precisa estar assinado. Você verá a impressão digital do editor antes de aceitar." } }
+      }
+    },
+    "Lecture du pack…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reading pack…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Leyendo paquete…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Lecture du pack…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Lettura del pack…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Lendo pack…" } }
+      }
+    },
+    "Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Disabled packs no longer contribute to the block list. Rules you added yourself are unaffected." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Los paquetes desactivados ya no contribuyen a la lista de bloqueo. Las reglas que añadiste tú no se ven afectadas." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "I pack disattivati non contribuiscono più alla lista di blocco. Le regole che hai aggiunto tu non sono interessate." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Os packs desativados não contribuem mais para a lista de bloqueio. As regras que você adicionou continuam intactas." } }
+      }
+    },
+    "Les pourboires apparaîtront ici une fois la configuration App Store finalisée." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tips will appear here once App Store setup is complete." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Las propinas aparecerán aquí cuando la configuración de App Store esté lista." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les pourboires apparaîtront ici une fois la configuration App Store finalisée." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Le mance appariranno qui una volta completata la configurazione su App Store." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "As gorjetas aparecerão aqui assim que a configuração na App Store estiver finalizada." } }
+      }
+    },
+    "Liens" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Links" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enlaces" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Liens" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Link" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Links" } }
+      }
+    },
+    "Mises à jour" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Updates" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Actualizaciones" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Mises à jour" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiornamenti" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Atualizações" } }
+      }
+    },
+    "Numéro ou motif" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Number or pattern" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Número o patrón" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Numéro ou motif" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Numero o motivo" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Número ou padrão" } }
+      }
+    },
+    "Pack installé." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pack installed." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquete instalado." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pack installé." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack installato." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Pack instalado." } }
+      }
+    },
+    "Packs installés" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installed packs" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquetes instalados" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Packs installés" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack installati" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Packs instalados" } }
+      }
+    },
+    "Partager le fichier JSON" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share the JSON file" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Compartir el archivo JSON" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partager le fichier JSON" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Condividi il file JSON" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Compartilhar o arquivo JSON" } }
+      }
+    },
+    "Préparation…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Preparing…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Preparando…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Préparation…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Preparazione…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Preparando…" } }
+      }
+    },
+    "Soutenir WildCall" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Support WildCall" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Apoyar WildCall" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Soutenir WildCall" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sostieni WildCall" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Apoiar WildCall" } }
+      }
+    },
+    "Synchronisation…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Syncing…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizando…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchronisation…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizzazione…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizando…" } }
+      }
+    },
+    "Synchroniser maintenant" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync now" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar ahora" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchroniser maintenant" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizza adesso" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar agora" } }
+      }
+    },
+    "Synchronisez pour récupérer les packs communautaires." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync to fetch community packs." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincroniza para obtener los paquetes comunitarios." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchronisez pour récupérer les packs communautaires." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizza per ottenere i pack della community." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronize para obter os packs comunitários." } }
+      }
+    },
+    "Téléchargement…" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Downloading…" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Descargando…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Téléchargement…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Download in corso…" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Baixando…" } }
+      }
+    },
+    "Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`)." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "End with `*` to block a family of numbers (e.g. `+33162999*`)." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` para bloquear una familia de números (p. ej. `+33162999*`)." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`)." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` per bloccare una famiglia di numeri (es. `+33162999*`)." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Termine com `*` para bloquear uma família de números (ex. `+33162999*`)." } }
+      }
+    },
+    "Tout est à jour." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Everything is up to date." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Todo está actualizado." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tout est à jour." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tutto è aggiornato." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tudo está atualizado." } }
+      }
+    },
+    "URL du pack" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pack URL" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "URL del paquete" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "URL du pack" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "URL del pack" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "URL do pack" } }
+      }
+    },
+    "Vérifier le pack" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Verify the pack" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Verificar el paquete" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vérifier le pack" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Verifica il pack" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Verificar o pack" } }
+      }
+    },
+    "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall is free and ad-free. If the app is useful to you, you can leave a tip — it's entirely optional." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall es gratis y sin anuncios. Si la app te resulta útil, puedes dejar una propina — es completamente opcional." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall è gratuita e senza pubblicità. Se l'app ti è utile, puoi lasciare una mancia — è del tutto facoltativo." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall é gratuito e sem anúncios. Se o app for útil, você pode deixar uma gorjeta — é totalmente opcional." } }
+      }
+    },
+    "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall collects no usage data. All rules, packs, and signatures are processed locally on your device; the only network call is pack syncing from the Octiplex catalogue." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall no recopila datos de uso. Todas las reglas, paquetes y firmas se procesan localmente en tu dispositivo; la única llamada de red es la sincronización de paquetes desde el catálogo de Octiplex." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall non raccoglie alcun dato d'uso. Tutte le regole, i pack e le firme vengono elaborati localmente sul tuo dispositivo; l'unica chiamata di rete è la sincronizzazione dei pack dal catalogo Octiplex." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex." } }
       }
     }
   }
