@@ -80,6 +80,47 @@ struct PacksView: View {
                     syncFooterView
                 }
 
+                Section {
+                    Button {
+                        store.send(.exportButtonTapped)
+                    } label: {
+                        HStack {
+                            if store.isExporting {
+                                ProgressView()
+                                Text("Préparation…")
+                            } else {
+                                Image(systemName: "square.and.arrow.up")
+                                Text("Exporter mes règles…")
+                            }
+                            Spacer()
+                        }
+                    }
+                    .disabled(store.isExporting)
+
+                    if let url = store.exportFile {
+                        ShareLink(item: url) {
+                            HStack {
+                                Image(systemName: "paperplane.fill")
+                                    .foregroundStyle(.indigo)
+                                Text("Partager le fichier JSON")
+                                Spacer()
+                            }
+                        }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // Clear the file slot after the user picks a target;
+                            // they can regenerate by tapping Export again.
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                store.send(.exportFileConsumed)
+                            }
+                        })
+                    }
+                } header: {
+                    Text("Données")
+                } footer: {
+                    Text("L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation.")
+                        .font(.caption)
+                }
+
                 AboutSection()
             }
             .navigationTitle("Réglages")

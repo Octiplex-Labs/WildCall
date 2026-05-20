@@ -14,6 +14,8 @@ public struct PacksFeature: Sendable {
         public var lastSync: Date? = nil
         public var lastSyncSummary: SyncSummary? = nil
         public var lastSyncError: EquatableError? = nil
+        public var exportFile: URL? = nil
+        public var isExporting: Bool = false
         @Presents public var urlImportPresentation: PackURLImportFeature.State?
 
         public init(packs: IdentifiedArrayOf<InstalledPack> = []) {
@@ -33,9 +35,14 @@ public struct PacksFeature: Sendable {
         case syncFailed(EquatableError)
         case addByURLTapped
         case urlImportPresentation(PresentationAction<PackURLImportFeature.Action>)
+        case exportButtonTapped
+        case exportPrepared(URL)
+        case exportFailed(EquatableError)
+        case exportFileConsumed
     }
 
     @Dependency(\.packsRepository) var packsRepository
+    @Dependency(\.rulesRepository) var rulesRepository
     @Dependency(\.storeOrchestrator) var orchestrator
     @Dependency(\.packSyncCoordinator) var syncCoordinator
     @Dependency(\.date.now) var now
@@ -128,6 +135,36 @@ public struct PacksFeature: Sendable {
                 return .send(.task)  // refresh after URL import
 
             case .urlImportPresentation:
+                return .none
+
+            case .exportButtonTapped:
+                guard !state.isExporting else { return .none }
+                state.isExporting = true
+                return .run { [rulesRepository = rulesRepository, now = now] send in
+                    do {
+                        let rules = try await rulesRepository.fetchAll()
+                        let export = RulesExport.build(from: rules, at: now)
+                        let data = try export.encoded()
+                        let url = URL(filePath: NSTemporaryDirectory())
+                            .appendingPathComponent("WildCall-rules.json")
+                        try data.write(to: url)
+                        await send(.exportPrepared(url))
+                    } catch {
+                        await send(.exportFailed(EquatableError(error)))
+                    }
+                }
+
+            case .exportPrepared(let url):
+                state.isExporting = false
+                state.exportFile = url
+                return .none
+
+            case .exportFailed:
+                state.isExporting = false
+                return .none
+
+            case .exportFileConsumed:
+                state.exportFile = nil
                 return .none
             }
         }
