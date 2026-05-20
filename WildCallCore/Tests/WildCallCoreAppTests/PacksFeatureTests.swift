@@ -81,4 +81,54 @@ import Testing
         #expect(setCalls.value.map { $0.1 } == [false])
         #expect(rebuildCalls.value == 1)
     }
+
+    @Test func syncButtonTriggersCoordinatorAndStoresSummary() async {
+        let now = Date(timeIntervalSince1970: 1_700_000_000)
+        let summary = SyncSummary(added: ["fr.arcep"], upgraded: [], unchanged: [], failed: [])
+
+        let store = TestStore(initialState: PacksFeature.State()) {
+            PacksFeature()
+        } withDependencies: {
+            $0.packsRepository = PacksRepository(
+                fetchAll: { [self.arcep] },
+                fetch: { _ in nil },
+                insert: { _ in },
+                setEnabled: { _, _ in },
+                delete: { _ in }
+            )
+            $0.packSyncCoordinator = PackSyncCoordinator { summary }
+            $0.storeOrchestrator = .testValue
+            $0.date = .constant(now)
+        }
+        store.exhaustivity = .off
+
+        await store.send(.syncButtonTapped) { $0.isSyncing = true }
+        await store.receive(\.syncCompleted) {
+            $0.isSyncing = false
+            $0.lastSync = now
+            $0.lastSyncSummary = summary
+        }
+        await store.receive(\.task)
+        await store.receive(\.packsLoaded)
+    }
+
+    @Test func syncFailureStoresError() async {
+        let store = TestStore(initialState: PacksFeature.State()) {
+            PacksFeature()
+        } withDependencies: {
+            $0.packsRepository = .testValue
+            $0.packSyncCoordinator = PackSyncCoordinator {
+                throw SyncError.indexFetchFailed("offline")
+            }
+            $0.storeOrchestrator = .testValue
+            $0.date = .constant(Date())
+        }
+        store.exhaustivity = .off
+
+        await store.send(.syncButtonTapped) { $0.isSyncing = true }
+        await store.receive(\.syncFailed) {
+            $0.isSyncing = false
+            $0.lastSyncError = EquatableError(SyncError.indexFetchFailed("offline"))
+        }
+    }
 }

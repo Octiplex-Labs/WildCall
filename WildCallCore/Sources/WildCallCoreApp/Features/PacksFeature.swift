@@ -10,6 +10,10 @@ public struct PacksFeature: Sendable {
         public var packs: IdentifiedArrayOf<InstalledPack> = []
         public var togglingId: String? = nil
         public var isLoading: Bool = false
+        public var isSyncing: Bool = false
+        public var lastSync: Date? = nil
+        public var lastSyncSummary: SyncSummary? = nil
+        public var lastSyncError: EquatableError? = nil
 
         public init(packs: IdentifiedArrayOf<InstalledPack> = []) {
             self.packs = packs
@@ -23,10 +27,15 @@ public struct PacksFeature: Sendable {
         case toggleCompleted(id: String)
         case toggleFailed(id: String, EquatableError)
         case loadFailed(EquatableError)
+        case syncButtonTapped
+        case syncCompleted(SyncSummary, Date)
+        case syncFailed(EquatableError)
     }
 
     @Dependency(\.packsRepository) var packsRepository
     @Dependency(\.storeOrchestrator) var orchestrator
+    @Dependency(\.packSyncCoordinator) var syncCoordinator
+    @Dependency(\.date.now) var now
 
     public init() {}
 
@@ -81,6 +90,31 @@ public struct PacksFeature: Sendable {
                 if state.togglingId == id { state.togglingId = nil }
                 // Reload from source of truth on failure.
                 return .send(.task)
+
+            case .syncButtonTapped:
+                guard !state.isSyncing else { return .none }
+                state.isSyncing = true
+                state.lastSyncError = nil
+                return .run { [syncCoordinator = syncCoordinator, now = now] send in
+                    do {
+                        let summary = try await syncCoordinator.sync()
+                        await send(.syncCompleted(summary, now))
+                    } catch {
+                        await send(.syncFailed(EquatableError(error)))
+                    }
+                }
+
+            case .syncCompleted(let summary, let date):
+                state.isSyncing = false
+                state.lastSync = date
+                state.lastSyncSummary = summary
+                // Reload packs in case the sync added/upgraded entries.
+                return .send(.task)
+
+            case .syncFailed(let error):
+                state.isSyncing = false
+                state.lastSyncError = error
+                return .none
             }
         }
     }
