@@ -47,17 +47,32 @@ struct WildCallApp: App {
 
     @Sendable
     private func runBootstrap() async {
-        guard let url = Bundle.main.url(forResource: "prefixes-FR.source", withExtension: "json") else {
-            reportIssue("Embedded ARCEP manifest not found in bundle")
+        // Discover every embedded *.source.json under the Packs/ bundle
+        // folder. Adding a new country is as simple as dropping a new
+        // `<id>.source.json` in `Packs/` and rebuilding — no code change.
+        let urls = (Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) ?? [])
+            .filter { $0.lastPathComponent.hasSuffix(".source.json") }
+
+        guard !urls.isEmpty else {
+            reportIssue("No embedded *.source.json packs found in bundle")
             return
         }
+
+        var manifests: [PackManifest] = []
+        for url in urls {
+            do {
+                manifests.append(try PackManifest.load(from: url))
+            } catch {
+                reportIssue("Embedded pack \(url.lastPathComponent) failed to decode: \(error)")
+            }
+        }
+
         do {
-            let manifest = try PackManifest.load(from: url)
             _ = try await withDependencies {
                 $0.rulesRepository = .live(container: modelContainer)
                 $0.packsRepository = .live(container: modelContainer)
             } operation: {
-                try await PackBootstrap.live.run([manifest])
+                try await PackBootstrap.live.run(manifests)
             }
         } catch {
             reportIssue("PackBootstrap failed: \(error)")

@@ -1,0 +1,13 @@
+{
+  "id": "us.tollfree-spam",
+  "version": "2026-05-20",
+  "country": "US",
+  "kind": "prefixes",
+  "title": "US — Spam numéros gratuits (sous-ensemble démonstratif)",
+  "license": "public domain",
+  "notes": "Placeholder Phase 5 — quelques préfixes 1-800 connus pour démarchage. À élargir avec des données curatées (FTC Do Not Call ranges, etc.) une fois le budget extension iOS confirmé sur device. US national length = 10, donc un préfixe de 6 chiffres fixes = 10⁴ par pattern.",
+  "prefixes": [
+    "+1800555*",
+    "+1888555*"
+  ]
+}
