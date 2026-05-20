@@ -18,6 +18,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0"),
         .package(url: "https://github.com/pointfreeco/swift-sharing", from: "2.0.0"),
         .package(url: "https://github.com/pointfreeco/swift-identified-collections", from: "1.1.0"),
+        .package(url: "https://github.com/tsolomko/SWCompression", from: "4.8.6"),
     ],
     targets: [
         // Shared between app and Call Directory Extension.
@@ -39,6 +40,7 @@ let package = Package(
                 .product(name: "IssueReporting", package: "xctest-dynamic-overlay"),
                 .product(name: "Sharing", package: "swift-sharing"),
                 .product(name: "IdentifiedCollections", package: "swift-identified-collections"),
+                .product(name: "SWCompression", package: "SWCompression"),
             ]
         ),
         .testTarget(
