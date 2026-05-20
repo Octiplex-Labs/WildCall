@@ -36,6 +36,12 @@ struct WildCallApp: App {
             RootView(store: store)
                 .modelContainer(modelContainer)
                 .task { await runBootstrap() }
+                .task {
+                    // Register the BGAppRefreshTask handler once per process
+                    // and submit a request for the next opportunity.
+                    PackRefreshScheduler.live.register()
+                    PackRefreshScheduler.live.schedule()
+                }
         }
     }
 

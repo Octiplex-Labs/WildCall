@@ -56,6 +56,10 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         LSSupportsOpeningDocumentsInPlace: true
+        UIBackgroundModes:
+          - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.octiplex.wildcall.refresh
         CFBundleDocumentTypes:
           - CFBundleTypeName: WildCall Pack
             LSHandlerRank: Owner
