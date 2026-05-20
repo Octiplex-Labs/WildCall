@@ -7,17 +7,19 @@ struct AddRuleSheet: View {
     @Bindable var store: StoreOf<AddRuleFeature>
     @FocusState private var numberFieldFocused: Bool
 
-    private static let countries: [(code: String, label: String)] = [
-        ("FR", "🇫🇷 France"),
-        ("BE", "🇧🇪 Belgique"),
-        ("CH", "🇨🇭 Suisse"),
-        ("CA", "🇨🇦 Canada"),
-        ("US", "🇺🇸 États-Unis"),
-        ("GB", "🇬🇧 Royaume-Uni"),
-        ("DE", "🇩🇪 Allemagne"),
-        ("ES", "🇪🇸 Espagne"),
-        ("IT", "🇮🇹 Italie"),
-    ]
+    private static var countries: [(code: String, label: String)] {
+        [
+            ("FR", String(localized: "🇫🇷 France")),
+            ("BE", String(localized: "🇧🇪 Belgique")),
+            ("CH", String(localized: "🇨🇭 Suisse")),
+            ("CA", String(localized: "🇨🇦 Canada")),
+            ("US", String(localized: "🇺🇸 États-Unis")),
+            ("GB", String(localized: "🇬🇧 Royaume-Uni")),
+            ("DE", String(localized: "🇩🇪 Allemagne")),
+            ("ES", String(localized: "🇪🇸 Espagne")),
+            ("IT", String(localized: "🇮🇹 Italie")),
+        ]
+    }
 
     var body: some View {
         NavigationStack {
@@ -109,21 +111,21 @@ struct AddRuleSheet: View {
     private static func message(for error: ParseError) -> String {
         switch error {
         case .empty:
-            return "Saisissez un motif."
+            return String(localized: "Saisissez un motif.")
         case .missingWildcard:
-            return "Ajoutez `*` à la fin pour un motif."
+            return String(localized: "Ajoutez `*` à la fin pour un motif.")
         case .wildcardNotTrailing:
-            return "Le `*` doit être en dernière position, et un seul."
+            return String(localized: "Le `*` doit être en dernière position, et un seul.")
         case .unparseable:
-            return "Motif illisible."
+            return String(localized: "Motif illisible.")
         case .unknownNationalLength(let country):
-            return "Longueur nationale inconnue pour \(country)."
+            return String(localized: "Longueur nationale inconnue pour \(country).")
         case .fixedTooShort(let minimum):
-            return "Au moins \(minimum) chiffres fixes après l'indicatif pays."
+            return String(localized: "Au moins \(minimum) chiffres fixes après l'indicatif pays.")
         case .fixedTooLong(let maximum):
-            return "Trop de chiffres : maximum \(maximum) pour ce pays."
+            return String(localized: "Trop de chiffres : maximum \(maximum) pour ce pays.")
         case .exceedsPerPatternQuota(let expanded, let limit):
-            return "Ce motif couvrirait \(formatted(expanded)) numéros (max \(formatted(limit)))."
+            return String(localized: "Ce motif couvrirait \(formatted(expanded)) numéros (max \(formatted(limit))).")
         }
     }
 

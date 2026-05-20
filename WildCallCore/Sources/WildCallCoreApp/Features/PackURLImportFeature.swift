@@ -71,7 +71,7 @@ public struct PackURLImportFeature: Sendable {
                 guard let url = URL(string: trimmed),
                       url.scheme?.lowercased() == "https"
                 else {
-                    state.phase = .failed(EquatableError(message: "URL invalide (HTTPS requis)"))
+                    state.phase = .failed(EquatableError(message: String(localized: "URL invalide (HTTPS requis)")))
                     return .none
                 }
                 state.phase = .downloading
@@ -100,11 +100,11 @@ public struct PackURLImportFeature: Sendable {
                     return .none
                 }
                 guard let publisherKey = manifest.publisherKeyBytes() else {
-                    state.phase = .failed(EquatableError(message: "Le manifeste ne déclare pas de clé publique (champ publisherKey)."))
+                    state.phase = .failed(EquatableError(message: String(localized: "Le manifeste ne déclare pas de clé publique (champ publisherKey).")))
                     return .none
                 }
                 guard PackSignatureVerifier.live.verify(contents.manifest, contents.signature, publisherKey) else {
-                    state.phase = .failed(EquatableError(message: "Signature invalide pour la clé publique déclarée."))
+                    state.phase = .failed(EquatableError(message: String(localized: "Signature invalide pour la clé publique déclarée.")))
                     return .none
                 }
                 let fingerprint = OctiplexTrust.fingerprint(of: publisherKey)
@@ -126,7 +126,7 @@ public struct PackURLImportFeature: Sendable {
                         let pinned = try await trustedKeyStore.fetch(packId)
                         if let pinned, pinned.publicKey != publisherKey {
                             await send(.installResult(.failure(
-                                EquatableError(message: "La clé du publisher diffère du pin existant (\(pinned.fingerprint)). Refus pour raison de sécurité.")
+                                EquatableError(message: String(localized: "La clé du publisher diffère du pin existant (\(pinned.fingerprint)). Refus pour raison de sécurité."))
                             )))
                             return
                         }
@@ -152,7 +152,7 @@ public struct PackURLImportFeature: Sendable {
             case .trustAcceptTapped:
                 guard case .awaitingTrust(let manifest, let fingerprint, let data) = state.phase else { return .none }
                 guard let publisherKey = manifest.publisherKeyBytes() else {
-                    state.phase = .failed(EquatableError(message: "Clé publique disparue du manifeste."))
+                    state.phase = .failed(EquatableError(message: String(localized: "Clé publique disparue du manifeste.")))
                     return .none
                 }
                 state.phase = .installing

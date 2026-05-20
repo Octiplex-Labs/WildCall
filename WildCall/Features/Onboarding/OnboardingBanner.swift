@@ -51,20 +51,20 @@ struct OnboardingBanner: View {
 
     private var title: String {
         switch store.extensionStatus {
-        case .enabled: "Extension activée"
-        case .disabled: "Activez WildCall dans Réglages"
-        case .unknown: "Statut de l'extension inconnu"
+        case .enabled: String(localized: "Extension activée")
+        case .disabled: String(localized: "Activez WildCall dans Réglages")
+        case .unknown: String(localized: "Statut de l'extension inconnu")
         }
     }
 
     private var detail: String {
         switch store.extensionStatus {
         case .enabled:
-            "WildCall filtre les appels."
+            String(localized: "WildCall filtre les appels.")
         case .disabled:
-            "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall."
+            String(localized: "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall.")
         case .unknown:
-            "Lancez la vérification pour interroger le système."
+            String(localized: "Lancez la vérification pour interroger le système.")
         }
     }
 

@@ -64,19 +64,26 @@ struct PackImportSheet: View {
 
             Divider()
 
-            row(label: "Pays", value: loaded.manifest.country)
-            row(label: "Version", value: loaded.manifest.version)
-            row(label: "Type", value: loaded.manifest.kind == .prefixes ? "Préfixes" : "Liste pré-expansée")
-            row(label: "Règles", value: "\(loaded.rules.count)")
+            row(label: String(localized: "Pays"), value: loaded.manifest.country)
+            row(label: String(localized: "Version"), value: loaded.manifest.version)
+            row(
+                label: String(localized: "Type"),
+                value: loaded.manifest.kind == .prefixes
+                    ? String(localized: "Préfixes")
+                    : String(localized: "Liste pré-expansée")
+            )
+            row(label: String(localized: "Règles"), value: "\(loaded.rules.count)")
 
             if let license = loaded.manifest.license {
-                row(label: "Licence", value: license)
+                row(label: String(localized: "Licence"), value: license)
             }
 
             Divider()
 
-            Label("Signé par Octiplex (fingerprint \(OctiplexTrust.fingerprint(of: OctiplexTrust.publicKey)))",
-                  systemImage: "checkmark.seal.fill")
+            Label(
+                String(localized: "Signé par Octiplex (fingerprint \(OctiplexTrust.fingerprint(of: OctiplexTrust.publicKey)))"),
+                systemImage: "checkmark.seal.fill"
+            )
                 .font(.caption)
                 .foregroundStyle(.indigo)
 
@@ -98,7 +105,7 @@ struct PackImportSheet: View {
         HStack {
             Text(label).foregroundStyle(.secondary)
             Spacer()
-            Text(value).font(.callout.monospaced())
+            Text(verbatim: value).font(.callout.monospaced())
         }
     }
 
