@@ -9,6 +9,7 @@ public struct AppFeature: Sendable {
         public var packs: PacksFeature.State = .init()
         public var extensionStatus: ExtensionEnabledStatus = .unknown
         public var isCheckingStatus: Bool = false
+        @Presents public var importPresentation: PackImportFeature.State?
 
         public init() {}
     }
@@ -19,8 +20,10 @@ public struct AppFeature: Sendable {
         case statusCheckFailed(EquatableError)
         case refreshStatusButtonTapped
         case openSettingsButtonTapped
+        case onOpenURL(URL)
         case rules(RulesFeature.Action)
         case packs(PacksFeature.Action)
+        case importPresentation(PresentationAction<PackImportFeature.Action>)
     }
 
     @Dependency(\.extensionReloader) var reloader
@@ -34,6 +37,14 @@ public struct AppFeature: Sendable {
         Scope(state: \.packs, action: \.packs) {
             PacksFeature()
         }
+        mainReducer
+            .ifLet(\.$importPresentation, action: \.importPresentation) {
+                PackImportFeature()
+            }
+    }
+
+    @ReducerBuilder<State, Action>
+    var mainReducer: some ReducerOf<Self> {
 
         Reduce { state, action in
             switch action {
@@ -59,6 +70,18 @@ public struct AppFeature: Sendable {
 
             case .openSettingsButtonTapped:
                 // Side effect handled in the view layer via UIApplication.shared.open.
+                return .none
+
+            case .onOpenURL(let url):
+                guard url.pathExtension.lowercased() == "wildcallpack" else { return .none }
+                state.importPresentation = PackImportFeature.State(fileURL: url)
+                return .none
+
+            case .importPresentation(.presented(.delegate(.finished))):
+                state.importPresentation = nil
+                return .send(.packs(.task))  // refresh packs list after import
+
+            case .importPresentation:
                 return .none
 
             case .rules:

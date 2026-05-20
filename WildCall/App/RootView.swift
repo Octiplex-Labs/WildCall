@@ -27,5 +27,11 @@ struct RootView: View {
         }
         .tint(.indigo)
         .task { await store.send(.task).finish() }
+        .onOpenURL { url in
+            store.send(.onOpenURL(url))
+        }
+        .sheet(item: $store.scope(state: \.importPresentation, action: \.importPresentation)) { importStore in
+            PackImportSheet(store: importStore)
+        }
     }
 }
