@@ -56,8 +56,16 @@ import Testing
         #expect(fp1.count == 23)
     }
 
-    @Test func octiplexTrustIsUnconfiguredByDefault() {
-        // Placeholder remains all zeros until Phase 4a C4 embeds the real key.
-        #expect(OctiplexTrust.isConfigured == false)
+    @Test func octiplexTrustIsConfigured() {
+        #expect(OctiplexTrust.isConfigured == true)
+        #expect(OctiplexTrust.publicKey.count == 32)
+    }
+
+    @Test func octiplexTrustFingerprintMatchesGeneratedKey() {
+        // If the embedded hex is mistyped, this test catches it: we recompute
+        // the SHA-256 fingerprint of the embedded bytes and compare to the
+        // value reported by generate-key.swift at generation time (2026-05-20).
+        let actual = OctiplexTrust.fingerprint(of: OctiplexTrust.publicKey)
+        #expect(actual == "F0:75:1B:D4:92:C1:ED:2A")
     }
 }
