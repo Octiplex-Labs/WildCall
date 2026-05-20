@@ -2,10 +2,11 @@ import Dependencies
 import Foundation
 
 /// URL used for the Octiplex remote pack index. Packs are co-hosted with the
-/// app in `Octiplex-Labs/WildCall/packs/`; this points to the index JSON
-/// served via GitHub raw. The `packs/` folder must exist on `main` and
-/// contain `index.json` (shape: `PackIndex`).
-public let octiplexPackIndexURL = URL(string: "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/packs/index.json")!
+/// app in `Octiplex-Labs/WildCall/dist/packs/` (separate from the
+/// capital-`Packs/` folder which holds the *embedded* manifest sources);
+/// this points to the index JSON served via GitHub raw. The `dist/packs/`
+/// folder must exist on `main` and contain `index.json` (shape: `PackIndex`).
+public let octiplexPackIndexURL = URL(string: "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/index.json")!
 
 public struct PackIndexFetcher: Sendable {
     public var fetch: @Sendable () async throws -> PackIndex
