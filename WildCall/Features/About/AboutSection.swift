@@ -5,6 +5,12 @@ struct AboutSection: View {
     var body: some View {
         Section {
             NavigationLink {
+                TipJarView()
+            } label: {
+                Label("Soutenir WildCall", systemImage: "heart.fill")
+                    .foregroundStyle(.indigo)
+            }
+            NavigationLink {
                 AboutView()
             } label: {
                 Label("À propos", systemImage: "info.circle")
