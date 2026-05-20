@@ -1,0 +1,27 @@
+{
+  "sourceLanguage" : "fr",
+  "version" : "1.0",
+  "strings" : {
+    "_languages_seeded" : {
+      "comment" : "Internal placeholder so Xcode knows which target languages to compile. Real translations will be filled in by translators directly via Xcode's String Catalog editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "" }
+        },
+        "fr" : {
+          "stringUnit" : { "state" : "translated", "value" : "" }
+        },
+        "it" : {
+          "stringUnit" : { "state" : "translated", "value" : "" }
+        },
+        "pt" : {
+          "stringUnit" : { "state" : "translated", "value" : "" }
+        }
+      }
+    }
+  }
+}

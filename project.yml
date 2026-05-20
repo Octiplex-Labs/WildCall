@@ -60,6 +60,13 @@ targets:
           - fetch
         BGTaskSchedulerPermittedIdentifiers:
           - com.octiplex.wildcall.refresh
+        CFBundleLocalizations:
+          - fr
+          - en
+          - it
+          - es
+          - pt
+        CFBundleDevelopmentRegion: fr
         CFBundleDocumentTypes:
           - CFBundleTypeName: WildCall Pack
             LSHandlerRank: Owner
