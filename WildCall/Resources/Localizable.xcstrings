@@ -1,987 +1,3965 @@
 {
   "sourceLanguage" : "fr",
-  "version" : "1.0",
   "strings" : {
     "%@ · version %@" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · version %2$@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versión %2$@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · version %2$@" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versione %2$@" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · versão %2$@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · version %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · versión %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · version %2$@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · versione %2$@"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · versão %2$@"
+          }
+        }
       }
     },
     "%@ pack(s) en erreur — voir les logs." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) failed — see logs." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ paquete(s) con error — ver registros." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) en erreur — voir les logs." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack in errore — vedi i log." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ pack(s) com erro — ver os logs." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pack(s) failed — see logs."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ paquete(s) con error — ver registros."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pack(s) en erreur — voir les logs."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pack in errore — vedi i log."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pack(s) com erro — ver os logs."
+          }
+        }
       }
     },
     "+%@ suivi de %@ chiffre%@" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ followed by %2$@ digit%3$@" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguido de %2$@ dígito%3$@" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ suivi de %2$@ chiffre%3$@" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguito da %2$@ cifra%3$@" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "+%1$@ seguido de %2$@ dígito%3$@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$@ followed by %2$@ digit%3$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$@ seguido de %2$@ dígito%3$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$@ suivi de %2$@ chiffre%3$@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$@ seguito da %2$@ cifra%3$@"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$@ seguido de %2$@ dígito%3$@"
+          }
+        }
+      }
+    },
+    "🇧🇪 Belgique" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇧🇪 Belgium"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇧🇪 Bélgica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇧🇪 Belgique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇧🇪 Belgio"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇧🇪 Bélgica"
+          }
+        }
+      }
+    },
+    "🇨🇦 Canada" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇦 Canada"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇦 Canadá"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇦 Canada"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇦 Canada"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇦 Canadá"
+          }
+        }
+      }
+    },
+    "🇨🇭 Suisse" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇭 Switzerland"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇭 Suiza"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇭 Suisse"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇭 Svizzera"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇨🇭 Suíça"
+          }
+        }
+      }
+    },
+    "🇩🇪 Allemagne" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇩🇪 Germany"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇩🇪 Alemania"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇩🇪 Allemagne"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇩🇪 Germania"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇩🇪 Alemanha"
+          }
+        }
+      }
+    },
+    "🇪🇸 Espagne" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇪🇸 Spain"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇪🇸 España"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇪🇸 Espagne"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇪🇸 Spagna"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇪🇸 Espanha"
+          }
+        }
+      }
+    },
+    "🇫🇷 France" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇫🇷 France"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇫🇷 Francia"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇫🇷 France"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇫🇷 Francia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇫🇷 França"
+          }
+        }
+      }
+    },
+    "🇬🇧 Royaume-Uni" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇬🇧 United Kingdom"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇬🇧 Reino Unido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇬🇧 Royaume-Uni"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇬🇧 Regno Unito"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇬🇧 Reino Unido"
+          }
+        }
+      }
+    },
+    "🇮🇹 Italie" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇮🇹 Italy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇮🇹 Italia"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇮🇹 Italie"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇮🇹 Italia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇮🇹 Itália"
+          }
+        }
+      }
+    },
+    "🇺🇸 États-Unis" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇺🇸 United States"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇺🇸 Estados Unidos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇺🇸 États-Unis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇺🇸 Stati Uniti"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🇺🇸 Estados Unidos"
+          }
+        }
       }
     },
     "À propos" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Acerca de" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "À propos" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Informazioni" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sobre" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acerca de"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informazioni"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobre"
+          }
+        }
       }
     },
     "Action" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Action" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Acción" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Action" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Azione" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ação" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acción"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Action"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azione"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ação"
+          }
+        }
       }
     },
     "Activez WildCall dans Réglages" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable WildCall in Settings" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Activa WildCall en Ajustes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Activez WildCall dans Réglages" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Attiva WildCall nelle Impostazioni" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ative o WildCall em Ajustes" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable WildCall in Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activa WildCall en Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez WildCall dans Réglages"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva WildCall nelle Impostazioni"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ative o WildCall em Ajustes"
+          }
+        }
       }
     },
     "Ajouter" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añadir" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajouter" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicionar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar"
+          }
+        }
       }
     },
     "Ajouter un pack" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a pack" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añadir un paquete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajouter un pack" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un pack" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicionar um pack" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a pack"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir un paquete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un pack"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi un pack"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar um pack"
+          }
+        }
       }
     },
     "Ajouter un pack par URL…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a pack from URL…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añadir un paquete por URL…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajouter un pack par URL…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un pack da URL…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicionar um pack por URL…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a pack from URL…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir un paquete por URL…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un pack par URL…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi un pack da URL…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionar um pack por URL…"
+          }
+        }
       }
     },
     "Ajoutez `*` à la fin pour un motif." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "End with `*` to define a pattern." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` para definir un patrón." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajoutez `*` à la fin pour un motif." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` per definire un motivo." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Termine com `*` para definir um padrão." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End with `*` to define a pattern."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina con `*` para definir un patrón."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez `*` à la fin pour un motif."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina con `*` per definire un motivo."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termine com `*` para definir um padrão."
+          }
+        }
       }
     },
     "Ajoutez un numéro à bloquer ou identifier." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a number to block or identify." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añade un número para bloquear o identificar." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajoutez un numéro à bloquer ou identifier." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un numero da bloccare o identificare." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicione um número para bloquear ou identificar." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a number to block or identify."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade un número para bloquear o identificar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez un numéro à bloquer ou identifier."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi un numero da bloccare o identificare."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione um número para bloquear ou identificar."
+          }
+        }
       }
     },
     "Annuler" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Annuler" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Annulla" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annulla"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
       }
     },
     "Au moins %@ chiffres fixes après l'indicatif pays." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "At least %@ fixed digits after the country code." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Al menos %@ dígitos fijos después del código de país." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Au moins %@ chiffres fixes après l'indicatif pays." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Almeno %@ cifre fisse dopo il prefisso paese." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Pelo menos %@ dígitos fixos após o código do país." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At least %@ fixed digits after the country code."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al menos %@ dígitos fijos después del código de país."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au moins %@ chiffres fixes après l'indicatif pays."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almeno %@ cifre fisse dopo il prefisso paese."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelo menos %@ dígitos fixos após o código do país."
+          }
+        }
       }
     },
     "Aucun pack installé" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No packs installed" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ningún paquete instalado" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun pack installé" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Nessun pack installato" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Nenhum pack instalado" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No packs installed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ningún paquete instalado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun pack installé"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun pack installato"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum pack instalado"
+          }
+        }
       }
     },
     "Aucune règle" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No rules" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sin reglas" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucune règle" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Nessuna regola" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sem regras" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rules"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin reglas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune règle"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessuna regola"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem regras"
+          }
+        }
       }
     },
     "Bloquer" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bloquear" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bloquer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Blocca" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bloquear" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bloquear"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bloquer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blocca"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bloquear"
+          }
+        }
       }
     },
     "Catalogue de packs" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pack catalogue" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Catálogo de paquetes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Catalogue de packs" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Catalogo dei pack" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Catálogo de packs" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack catalogue"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catálogo de paquetes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalogue de packs"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catalogo dei pack"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catálogo de packs"
+          }
+        }
       }
     },
     "Ce motif couvrirait %@ numéros (max %@)." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This pattern would cover %1$@ numbers (max %2$@)." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Este patrón cubriría %1$@ números (máx %2$@)." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ce motif couvrirait %1$@ numéros (max %2$@)." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Questo motivo coprirebbe %1$@ numeri (max %2$@)." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Este padrão cobriria %1$@ números (máx %2$@)." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This pattern would cover %1$@ numbers (max %2$@)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este patrón cubriría %1$@ números (máx %2$@)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce motif couvrirait %1$@ numéros (max %2$@)."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo motivo coprirebbe %1$@ numeri (max %2$@)."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este padrão cobriria %1$@ números (máx %2$@)."
+          }
+        }
       }
     },
     "Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This pack is not signed by Octiplex. Before installing, verify that this fingerprint matches the one published out-of-band by the publisher:" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Este paquete no está firmado por Octiplex. Antes de instalar, verifica que esta huella coincida con la publicada fuera de banda por el editor:" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Questo pack non è firmato da Octiplex. Prima di installare, verifica che questa impronta corrisponda a quella pubblicata fuori canale dall'editore:" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Este pack não foi assinado pela Octiplex. Antes de instalar, verifique que esta impressão digital corresponde à publicada fora de banda pelo editor:" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This pack is not signed by Octiplex. Before installing, verify that this fingerprint matches the one published out-of-band by the publisher:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este paquete no está firmado por Octiplex. Antes de instalar, verifica que esta huella coincida con la publicada fuera de banda por el editor:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo pack non è firmato da Octiplex. Prima di installare, verifica che questa impronta corrisponda a quella pubblicata fuori canale dall'editore:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este pack não foi assinado pela Octiplex. Antes de instalar, verifique que esta impressão digital corresponde à publicada fora de banda pelo editor:"
+          }
+        }
       }
     },
     "Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This fingerprint must match the one published on the project page. If it doesn't match, your build has been tampered with." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Esta huella debe coincidir con la publicada en la página del proyecto. Si no coincide, tu compilación ha sido alterada." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Questa impronta deve corrispondere a quella pubblicata sulla pagina del progetto. Se non corrisponde, la tua build è stata alterata." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Esta impressão digital deve corresponder à publicada na página do projeto. Se não corresponder, sua build foi alterada." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This fingerprint must match the one published on the project page. If it doesn't match, your build has been tampered with."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta huella debe coincidir con la publicada en la página del proyecto. Si no coincide, tu compilación ha sido alterada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa impronta deve corrispondere a quella pubblicata sulla pagina del progetto. Se non corrisponde, la tua build è stata alterata."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta impressão digital deve corresponder à publicada na página do projeto. Se não corresponder, sua build foi alterada."
+          }
+        }
       }
     },
     "Chargement des packs…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading packs…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cargando paquetes…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Chargement des packs…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Caricamento pack…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Carregando packs…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading packs…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando paquetes…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement des packs…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caricamento pack…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando packs…"
+          }
+        }
       }
     },
     "Chargement…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cargando…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Chargement…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Caricamento…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Carregando…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caricamento…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando…"
+          }
+        }
       }
     },
     "Clé publique disparue du manifeste." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Public key missing from the manifest." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Falta la clave pública en el manifiesto." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Clé publique disparue du manifeste." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Chiave pubblica assente dal manifesto." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Chave pública ausente do manifesto." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public key missing from the manifest."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta la clave pública en el manifiesto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé publique disparue du manifeste."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiave pubblica assente dal manifesto."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave pública ausente do manifesto."
+          }
+        }
       }
     },
     "Clé publisher Octiplex" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Octiplex publisher key" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Clave del editor Octiplex" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Clé publisher Octiplex" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Chiave editore Octiplex" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Chave do editor Octiplex" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Octiplex publisher key"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clave del editor Octiplex"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé publisher Octiplex"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiave editore Octiplex"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chave do editor Octiplex"
+          }
+        }
       }
     },
     "Code source" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Source code" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Código fuente" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Code source" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Codice sorgente" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Código-fonte" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source code"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código fuente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code source"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codice sorgente"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código-fonte"
+          }
+        }
       }
     },
     "Composants tiers" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Third-party components" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Componentes de terceros" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Composants tiers" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Componenti di terze parti" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Componentes de terceiros" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Third-party components"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Componentes de terceros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Composants tiers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Componenti di terze parti"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Componentes de terceiros"
+          }
+        }
       }
     },
     "Couvre %@ numéros" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Covers %@ numbers" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cubre %@ números" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Couvre %@ numéros" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Copre %@ numeri" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Cobre %@ números" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Covers %@ numbers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cubre %@ números"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couvre %@ numéros"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copre %@ numeri"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cobre %@ números"
+          }
+        }
       }
     },
     "Dernière synchronisation" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last sync" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Última sincronización" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Dernière synchronisation" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ultima sincronizzazione" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Última sincronização" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last sync"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última sincronización"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière synchronisation"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultima sincronizzazione"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última sincronização"
+          }
+        }
       }
     },
     "Données" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Data" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Datos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Données" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Dati" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Dados" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Données"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dati"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dados"
+          }
+        }
       }
     },
     "Échec de l'import" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import failed" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Importación fallida" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Échec de l'import" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Importazione fallita" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Falha na importação" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import failed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importación fallida"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de l'import"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importazione fallita"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falha na importação"
+          }
+        }
       }
     },
     "Enregistrer" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Guardar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Enregistrer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Salva" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Salvar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salva"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar"
+          }
+        }
       }
     },
     "Étiquette affichée à l'appel" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Label shown on incoming call" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Etiqueta mostrada en la llamada" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Étiquette affichée à l'appel" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Etichetta mostrata alla chiamata" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Rótulo mostrado na chamada" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Label shown on incoming call"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etiqueta mostrada en la llamada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étiquette affichée à l'appel"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etichetta mostrata alla chiamata"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rótulo mostrado na chamada"
+          }
+        }
       }
     },
     "Exporter mes règles…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export my rules…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Exportar mis reglas…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Exporter mes règles…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Esporta le mie regole…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Exportar minhas regras…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export my rules…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar mis reglas…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter mes règles…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esporta le mie regole…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportar minhas regras…"
+          }
+        }
       }
     },
     "Extension activée" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Extension enabled" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Extensión activada" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Extension activée" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Estensione attiva" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Extensão ativada" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extension enabled"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensión activada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extension activée"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estensione attiva"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensão ativada"
+          }
+        }
       }
     },
     "Faire confiance et installer" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Trust and install" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Confiar e instalar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Faire confiance et installer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Fidati e installa" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Confiar e instalar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trust and install"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiar e instalar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faire confiance et installer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fidati e installa"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confiar e instalar"
+          }
+        }
       }
     },
     "Fermer" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cerrar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Fermer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Chiudi" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Fechar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiudi"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fechar"
+          }
+        }
       }
     },
     "Filtres" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Filters" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Filtros" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Filtres" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Filtri" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Filtros" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filters"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtres"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtri"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtros"
+          }
+        }
       }
     },
     "Identifier" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Identify" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Identificar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Identifier" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Identifica" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Identificar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identificar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identifier"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identifica"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identificar"
+          }
+        }
       }
     },
     "Identité" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Identity" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Identidad" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Identité" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Identità" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Identidade" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identity"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identità"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identidade"
+          }
+        }
       }
     },
     "Importer un pack" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import a pack" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Importar un paquete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer un pack" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Importa un pack" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Importar um pack" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import a pack"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar un paquete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer un pack"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa un pack"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar um pack"
+          }
+        }
       }
     },
     "Impossible d'importer ce pack." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn't import this pack." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "No se pudo importar este paquete." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Impossible d'importer ce pack." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Impossibile importare questo pack." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Não foi possível importar este pack." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't import this pack."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo importar este paquete."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d'importer ce pack."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile importare questo pack."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível importar este pack."
+          }
+        }
       }
     },
     "Installation…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installing…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Instalando…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Installation…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Installazione…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Instalando…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installing…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installation…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installazione…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalando…"
+          }
+        }
       }
     },
     "Installer" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Install" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Instalar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Installer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Installa" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Instalar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installa"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalar"
+          }
+        }
       }
     },
     "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The export only contains rules you added yourself. Octiplex packs are not included — they reinstall automatically at sync." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "La exportación solo contiene las reglas que añadiste tú. Los paquetes de Octiplex no se incluyen — se reinstalan automáticamente al sincronizar." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "L'esportazione contiene solo le regole che hai aggiunto tu. I pack Octiplex non sono inclusi — vengono reinstallati automaticamente durante la sincronizzazione." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "A exportação contém apenas as regras que você mesmo adicionou. Os packs Octiplex não estão incluídos — eles são reinstalados automaticamente na sincronização." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The export only contains rules you added yourself. Octiplex packs are not included — they reinstall automatically at sync."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La exportación solo contiene las reglas que añadiste tú. Los paquetes de Octiplex no se incluyen — se reinstalan automáticamente al sincronizar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'esportazione contiene solo le regole che hai aggiunto tu. I pack Octiplex non sono inclusi — vengono reinstallati automaticamente durante la sincronizzazione."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A exportação contém apenas as regras que você mesmo adicionou. Os packs Octiplex não estão incluídos — eles são reinstalados automaticamente na sincronização."
+          }
+        }
       }
     },
     "La clé du publisher diffère du pin existant (%@). Refus pour raison de sécurité." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Publisher key differs from existing pin (%@). Refused for security." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "La clave del editor difiere del pin existente (%@). Rechazado por seguridad." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "La clé du publisher diffère du pin existant (%@). Refus pour raison de sécurité." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "La chiave dell'editore differisce dal pin esistente (%@). Rifiutato per sicurezza." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "A chave do editor difere do pin existente (%@). Recusado por segurança." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Publisher key differs from existing pin (%@). Refused for security."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clave del editor difiere del pin existente (%@). Rechazado por seguridad."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La clé du publisher diffère du pin existant (%@). Refus pour raison de sécurité."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La chiave dell'editore differisce dal pin esistente (%@). Rifiutato per sicurezza."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chave do editor difere do pin existente (%@). Recusado por segurança."
+          }
+        }
       }
     },
     "La synchronisation récupère les nouveaux packs et les mises à jour depuis Octiplex." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync fetches new packs and updates from Octiplex." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "La sincronización descarga nuevos paquetes y actualizaciones desde Octiplex." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "La synchronisation récupère les nouveaux packs et les mises à jour depuis Octiplex." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "La sincronizzazione recupera nuovi pack e aggiornamenti da Octiplex." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "A sincronização busca novos packs e atualizações da Octiplex." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync fetches new packs and updates from Octiplex."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La sincronización descarga nuevos paquetes y actualizaciones desde Octiplex."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La synchronisation récupère les nouveaux packs et les mises à jour depuis Octiplex."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La sincronizzazione recupera nuovi pack e aggiornamenti da Octiplex."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A sincronização busca novos packs e atualizações da Octiplex."
+          }
+        }
       }
     },
     "Lancez la vérification pour interroger le système." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Run a check to query the system." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ejecuta la verificación para consultar el sistema." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Lancez la vérification pour interroger le système." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Avvia la verifica per interrogare il sistema." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Inicie a verificação para consultar o sistema." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run a check to query the system."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejecuta la verificación para consultar el sistema."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lancez la vérification pour interroger le système."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avvia la verifica per interrogare il sistema."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicie a verificação para consultar o sistema."
+          }
+        }
       }
     },
     "Le `*` doit être en dernière position, et un seul." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "`*` must be the last character, and only one." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "`*` debe estar al final, y solo uno." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le `*` doit être en dernière position, et un seul." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il `*` deve essere in ultima posizione, e uno solo." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O `*` deve estar na última posição, e apenas um." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`*` must be the last character, and only one."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`*` debe estar al final, y solo uno."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le `*` doit être en dernière position, et un seul."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il `*` deve essere in ultima posizione, e uno solo."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O `*` deve estar na última posição, e apenas um."
+          }
+        }
       }
     },
     "Le manifeste ne déclare pas de clé publique (champ publisherKey)." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The manifest does not declare a public key (publisherKey field)." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "El manifiesto no declara una clave pública (campo publisherKey)." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le manifeste ne déclare pas de clé publique (champ publisherKey)." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il manifesto non dichiara una chiave pubblica (campo publisherKey)." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O manifesto não declara uma chave pública (campo publisherKey)." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The manifest does not declare a public key (publisherKey field)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El manifiesto no declara una clave pública (campo publisherKey)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le manifeste ne déclare pas de clé publique (champ publisherKey)."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il manifesto non dichiara una chiave pubblica (campo publisherKey)."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O manifesto não declara uma chave pública (campo publisherKey)."
+          }
+        }
       }
     },
     "Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The pack must be signed. You'll see the publisher's fingerprint before accepting." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "El paquete debe estar firmado. Verás la huella del editor antes de aceptar." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il pack deve essere firmato. Vedrai l'impronta dell'editore prima di accettare." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O pack precisa estar assinado. Você verá a impressão digital do editor antes de aceitar." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pack must be signed. You'll see the publisher's fingerprint before accepting."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El paquete debe estar firmado. Verás la huella del editor antes de aceptar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il pack deve essere firmato. Vedrai l'impronta dell'editore prima di accettare."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O pack precisa estar assinado. Você verá a impressão digital do editor antes de aceitar."
+          }
+        }
       }
     },
     "Lecture du pack…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reading pack…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Leyendo paquete…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Lecture du pack…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Lettura del pack…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Lendo pack…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading pack…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leyendo paquete…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lecture du pack…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lettura del pack…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lendo pack…"
+          }
+        }
       }
     },
     "Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Disabled packs no longer contribute to the block list. Rules you added yourself are unaffected." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Los paquetes desactivados ya no contribuyen a la lista de bloqueo. Las reglas que añadiste tú no se ven afectadas." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "I pack disattivati non contribuiscono più alla lista di blocco. Le regole che hai aggiunto tu non sono interessate." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Os packs desativados não contribuem mais para a lista de bloqueio. As regras que você adicionou continuam intactas." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disabled packs no longer contribute to the block list. Rules you added yourself are unaffected."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los paquetes desactivados ya no contribuyen a la lista de bloqueo. Las reglas que añadiste tú no se ven afectadas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I pack disattivati non contribuiscono più alla lista di blocco. Le regole che hai aggiunto tu non sono interessate."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os packs desativados não contribuem mais para a lista de bloqueio. As regras que você adicionou continuam intactas."
+          }
+        }
       }
     },
     "Les pourboires apparaîtront ici une fois la configuration App Store finalisée." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tips will appear here once App Store setup is complete." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Las propinas aparecerán aquí cuando la configuración de App Store esté lista." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les pourboires apparaîtront ici une fois la configuration App Store finalisée." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Le mance appariranno qui una volta completata la configurazione su App Store." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "As gorjetas aparecerão aqui assim que a configuração na App Store estiver finalizada." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips will appear here once App Store setup is complete."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las propinas aparecerán aquí cuando la configuración de App Store esté lista."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les pourboires apparaîtront ici une fois la configuration App Store finalisée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le mance appariranno qui una volta completata la configurazione su App Store."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As gorjetas aparecerão aqui assim que a configuração na App Store estiver finalizada."
+          }
+        }
+      }
+    },
+    "Licence" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "License"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licenza"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licença"
+          }
+        }
       }
     },
     "Liens" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Links" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enlaces" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Liens" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Link" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Links" } }
-      }
-    },
-    "Licence" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "License" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Licencia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Licence" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Licenza" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Licença" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Links"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlaces"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liens"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Links"
+          }
+        }
       }
     },
     "Liste pré-expansée" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pre-expanded list" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Lista pre-expandida" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Liste pré-expansée" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Lista pre-espansa" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Lista pré-expandida" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pre-expanded list"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista pre-expandida"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liste pré-expansée"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista pre-espansa"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista pré-expandida"
+          }
+        }
       }
     },
     "Longueur nationale inconnue pour %@." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unknown national length for %@." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Longitud nacional desconocida para %@." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Longueur nationale inconnue pour %@." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Lunghezza nazionale sconosciuta per %@." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Comprimento nacional desconhecido para %@." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown national length for %@."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitud nacional desconocida para %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longueur nationale inconnue pour %@."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunghezza nazionale sconosciuta per %@."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comprimento nacional desconhecido para %@."
+          }
+        }
       }
     },
     "Merci 💜" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Thanks 💜" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Gracias 💜" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Merci 💜" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Grazie 💜" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Obrigado 💜" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks 💜"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gracias 💜"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci 💜"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grazie 💜"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrigado 💜"
+          }
+        }
       }
     },
     "Mises à jour" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Updates" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Actualizaciones" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Mises à jour" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiornamenti" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Atualizações" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizaciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mises à jour"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiornamenti"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atualizações"
+          }
+        }
       }
     },
     "Motif illisible." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unreadable pattern." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Patrón ilegible." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Motif illisible." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Motivo illeggibile." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Padrão ilegível." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unreadable pattern."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patrón ilegible."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motif illisible."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motivo illeggibile."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão ilegível."
+          }
+        }
       }
     },
     "Nouvelle règle" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New rule" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nueva regla" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nouvelle règle" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Nuova regola" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Nova regra" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New rule"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva regla"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelle règle"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuova regola"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova regra"
+          }
+        }
       }
     },
     "Numéro invalide pour ce pays." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid number for this country." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Número no válido para este país." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Numéro invalide pour ce pays." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Numero non valido per questo paese." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Número inválido para este país." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid number for this country."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número no válido para este país."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéro invalide pour ce pays."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numero non valido per questo paese."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número inválido para este país."
+          }
+        }
       }
     },
     "Numéro ou motif" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Number or pattern" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Número o patrón" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Numéro ou motif" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Numero o motivo" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Número ou padrão" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number or pattern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número o patrón"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéro ou motif"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numero o motivo"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número ou padrão"
+          }
+        }
       }
     },
     "Ouvrir Réglages" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Abrir Ajustes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ouvrir Réglages" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Apri Impostazioni" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Abrir Ajustes" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Réglages"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri Impostazioni"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Ajustes"
+          }
+        }
       }
     },
     "Pack installé." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pack installed." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquete instalado." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pack installé." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack installato." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Pack instalado." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack installed."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paquete instalado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack installé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack installato."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack instalado."
+          }
+        }
       }
     },
     "Packs installés" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installed packs" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquetes instalados" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Packs installés" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack installati" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Packs instalados" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installed packs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paquetes instalados"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packs installés"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack installati"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packs instalados"
+          }
+        }
       }
     },
     "Partager le fichier JSON" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share the JSON file" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Compartir el archivo JSON" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partager le fichier JSON" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Condividi il file JSON" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Compartilhar o arquivo JSON" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share the JSON file"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir el archivo JSON"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager le fichier JSON"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condividi il file JSON"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartilhar o arquivo JSON"
+          }
+        }
       }
     },
     "Pays" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Country" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "País" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pays" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Paese" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "País" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Country"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "País"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pays"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paese"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "País"
+          }
+        }
       }
     },
     "Pourboire" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tip" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Propina" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pourboire" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Mancia" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Gorjeta" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tip"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propina"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pourboire"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mancia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gorjeta"
+          }
+        }
       }
     },
     "Préfixes" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Prefixes" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Prefijos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Préfixes" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Prefissi" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Prefixos" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefixes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefijos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préfixes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefissi"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefixos"
+          }
+        }
       }
     },
     "Préparation…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Preparing…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Preparando…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Préparation…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Preparazione…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Preparando…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préparation…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparazione…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparando…"
+          }
+        }
       }
     },
     "Publisher non reconnu" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unknown publisher" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Editor desconocido" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Publisher non reconnu" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Editore sconosciuto" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Editor desconhecido" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown publisher"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor desconocido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Publisher non reconnu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editore sconosciuto"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor desconhecido"
+          }
+        }
       }
     },
     "Refuser" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Refuse" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rechazar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Refuser" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Rifiuta" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Recusar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refuse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechazar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refuser"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rifiuta"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recusar"
+          }
+        }
       }
     },
     "Réglages" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ajustes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Réglages" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Impostazioni" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ajustes" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impostazioni"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
       }
     },
     "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings → Apps → Phone → Call Blocking & Identification → enable WildCall." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → activar WildCall." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Impostazioni → App → Telefono → Blocco e identificazione chiamate → abilitare WildCall." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ajustes → Apps → Telefone → Bloqueio e identificação de chamadas → ativar WildCall." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings → Apps → Phone → Call Blocking & Identification → enable WildCall."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → activar WildCall."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impostazioni → App → Telefono → Blocco e identificazione chiamate → abilitare WildCall."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes → Apps → Telefone → Bloqueio e identificação de chamadas → ativar WildCall."
+          }
+        }
       }
     },
     "Règles" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rules" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Reglas" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Règles" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Regole" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Regras" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rules"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regole"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regras"
+          }
+        }
       }
     },
     "Règles déclarées" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Declared rules" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Reglas declaradas" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Règles déclarées" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Regole dichiarate" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Regras declaradas" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Declared rules"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reglas declaradas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles déclarées"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regole dichiarate"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regras declaradas"
+          }
+        }
       }
     },
     "Saisissez un motif." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter a pattern." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Introduce un patrón." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Saisissez un motif." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Inserisci un motivo." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Insira um padrão." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a pattern."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce un patrón."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisissez un motif."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci un motivo."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insira um padrão."
+          }
+        }
       }
     },
     "Signature invalide pour la clé publique déclarée." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid signature for the declared public key." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Firma no válida para la clave pública declarada." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Signature invalide pour la clé publique déclarée." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Firma non valida per la chiave pubblica dichiarata." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Assinatura inválida para a chave pública declarada." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid signature for the declared public key."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firma no válida para la clave pública declarada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signature invalide pour la clé publique déclarée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firma non valida per la chiave pubblica dichiarata."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assinatura inválida para a chave pública declarada."
+          }
+        }
       }
     },
     "Signé par Octiplex (fingerprint %@)" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Signed by Octiplex (fingerprint %@)" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Firmado por Octiplex (huella %@)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Signé par Octiplex (fingerprint %@)" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Firmato da Octiplex (impronta %@)" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Assinado pela Octiplex (impressão digital %@)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signed by Octiplex (fingerprint %@)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmado por Octiplex (huella %@)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signé par Octiplex (fingerprint %@)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmato da Octiplex (impronta %@)"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assinado pela Octiplex (impressão digital %@)"
+          }
+        }
       }
     },
     "Soutenir WildCall" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Support WildCall" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Apoyar WildCall" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Soutenir WildCall" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sostieni WildCall" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Apoiar WildCall" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support WildCall"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoyar WildCall"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soutenir WildCall"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sostieni WildCall"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoiar WildCall"
+          }
+        }
       }
     },
     "Soutiens indisponibles" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tips unavailable" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Propinas no disponibles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Soutiens indisponibles" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Mance non disponibili" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Gorjetas indisponíveis" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tips unavailable"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propinas no disponibles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soutiens indisponibles"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mance non disponibili"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gorjetas indisponíveis"
+          }
+        }
       }
     },
     "Statut de l'extension inconnu" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Extension status unknown" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Estado de la extensión desconocido" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Statut de l'extension inconnu" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Stato dell'estensione sconosciuto" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Status da extensão desconhecido" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extension status unknown"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado de la extensión desconocido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statut de l'extension inconnu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stato dell'estensione sconosciuto"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status da extensão desconhecido"
+          }
+        }
       }
     },
     "Supprimer" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Eliminar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Elimina" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Excluir" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir"
+          }
+        }
       }
     },
     "Synchronisation…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Syncing…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizando…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchronisation…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizzazione…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizando…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syncing…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisation…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizzazione…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizando…"
+          }
+        }
       }
     },
     "Synchroniser maintenant" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync now" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar ahora" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchroniser maintenant" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizza adesso" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar agora" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync now"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizar ahora"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchroniser maintenant"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizza adesso"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizar agora"
+          }
+        }
       }
     },
     "Synchronisez pour récupérer les packs communautaires." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync to fetch community packs." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincroniza para obtener los paquetes comunitarios." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchronisez pour récupérer les packs communautaires." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizza per ottenere i pack della community." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronize para obter os packs comunitários." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync to fetch community packs."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincroniza para obtener los paquetes comunitarios."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisez pour récupérer les packs communautaires."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizza per ottenere i pack della community."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronize para obter os packs comunitários."
+          }
+        }
       }
     },
     "Téléchargement…" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Downloading…" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Descargando…" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Téléchargement…" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Download in corso…" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Baixando…" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téléchargement…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download in corso…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baixando…"
+          }
+        }
       }
     },
     "Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`)." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "End with `*` to block a family of numbers (e.g. `+33162999*`)." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` para bloquear una familia de números (p. ej. `+33162999*`)." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`)." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Termina con `*` per bloccare una famiglia di numeri (es. `+33162999*`)." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Termine com `*` para bloquear uma família de números (ex. `+33162999*`)." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End with `*` to block a family of numbers (e.g. `+33162999*`)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina con `*` para bloquear una familia de números (p. ej. `+33162999*`)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`)."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termina con `*` per bloccare una famiglia di numeri (es. `+33162999*`)."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termine com `*` para bloquear uma família de números (ex. `+33162999*`)."
+          }
+        }
       }
     },
     "Tout est à jour." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Everything is up to date." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Todo está actualizado." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tout est à jour." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tutto è aggiornato." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tudo está atualizado." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything is up to date."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo está actualizado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est à jour."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutto è aggiornato."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tudo está atualizado."
+          }
+        }
       }
     },
     "Trop de chiffres : maximum %@ pour ce pays." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Too many digits: maximum %@ for this country." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Demasiados dígitos: máximo %@ para este país." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Trop de chiffres : maximum %@ pour ce pays." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Troppe cifre: massimo %@ per questo paese." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Dígitos em excesso: máximo %@ para este país." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too many digits: maximum %@ for this country."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demasiados dígitos: máximo %@ para este país."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trop de chiffres : maximum %@ pour ce pays."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troppe cifre: massimo %@ per questo paese."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dígitos em excesso: máximo %@ para este país."
+          }
+        }
       }
     },
     "Type" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Type" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Tipo" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Type" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tipo" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tipo" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        }
       }
     },
     "URL du pack" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pack URL" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "URL del paquete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "URL du pack" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "URL del pack" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "URL do pack" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack URL"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL del paquete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL du pack"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL del pack"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL do pack"
+          }
+        }
       }
     },
     "URL invalide (HTTPS requis)" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Invalid URL (HTTPS required)" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "URL no válida (HTTPS requerido)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "URL invalide (HTTPS requis)" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "URL non valido (richiesto HTTPS)" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "URL inválida (HTTPS requerido)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid URL (HTTPS required)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL no válida (HTTPS requerido)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL invalide (HTTPS requis)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL non valido (richiesto HTTPS)"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL inválida (HTTPS requerido)"
+          }
+        }
       }
     },
     "Vérifier" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Check" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Verificar" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vérifier" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Verifica" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Verificar" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verificar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifier"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verifica"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verificar"
+          }
+        }
       }
     },
     "Vérifier le pack" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Verify the pack" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Verificar el paquete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vérifier le pack" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Verifica il pack" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Verificar o pack" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify the pack"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verificar el paquete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vérifier le pack"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verifica il pack"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verificar o pack"
+          }
+        }
       }
     },
     "Version" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Versión" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Versione" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Versão" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versione"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versão"
+          }
+        }
       }
     },
     "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall is free and ad-free. If the app is useful to you, you can leave a tip — it's entirely optional." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall es gratis y sin anuncios. Si la app te resulta útil, puedes dejar una propina — es completamente opcional." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall è gratuita e senza pubblicità. Se l'app ti è utile, puoi lasciare una mancia — è del tutto facoltativo." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall é gratuito e sem anúncios. Se o app for útil, você pode deixar uma gorjeta — é totalmente opcional." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall is free and ad-free. If the app is useful to you, you can leave a tip — it's entirely optional."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall es gratis y sin anuncios. Si la app te resulta útil, puedes dejar una propina — es completamente opcional."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall è gratuita e senza pubblicità. Se l'app ti è utile, puoi lasciare una mancia — è del tutto facoltativo."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O WildCall é gratuito e sem anúncios. Se o app for útil, você pode deixar uma gorjeta — é totalmente opcional."
+          }
+        }
       }
     },
     "WildCall filtre les appels." : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall is filtering calls." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall está filtrando las llamadas." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall filtre les appels." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall sta filtrando le chiamate." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall está filtrando chamadas." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall is filtering calls."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall está filtrando las llamadas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall filtre les appels."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall sta filtrando le chiamate."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O WildCall está filtrando chamadas."
+          }
+        }
       }
     },
     "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall collects no usage data. All rules, packs, and signatures are processed locally on your device; the only network call is pack syncing from the Octiplex catalogue." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall no recopila datos de uso. Todas las reglas, paquetes y firmas se procesan localmente en tu dispositivo; la única llamada de red es la sincronización de paquetes desde el catálogo de Octiplex." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall non raccoglie alcun dato d'uso. Tutte le regole, i pack e le firme vengono elaborati localmente sul tuo dispositivo; l'unica chiamata di rete è la sincronizzazione dei pack dal catalogo Octiplex." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall collects no usage data. All rules, packs, and signatures are processed locally on your device; the only network call is pack syncing from the Octiplex catalogue."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall no recopila datos de uso. Todas las reglas, paquetes y firmas se procesan localmente en tu dispositivo; la única llamada de red es la sincronización de paquetes desde el catálogo de Octiplex."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall non raccoglie alcun dato d'uso. Tutte le regole, i pack e le firme vengono elaborati localmente sul tuo dispositivo; l'unica chiamata di rete è la sincronizzazione dei pack dal catalogo Octiplex."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex."
+          }
+        }
       }
     },
-    "🇧🇪 Belgique" : {
+    "≈ 1 000 000 numéros démarchage Paris" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇧🇪 Belgium" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇧🇪 Bélgica" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇧🇪 Belgique" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇧🇪 Belgio" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇧🇪 Bélgica" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1,000,000 Paris telemarketing numbers" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 de números de telemarketing de París" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1 000 000 numéros démarchage Paris" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 di numeri di telemarketing di Parigi" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 de números de telemarketing de Paris" } }
       }
     },
-    "🇨🇦 Canada" : {
+    "≈ 10 000 numéros gratuits US" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇦 Canada" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇦 Canadá" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇦 Canada" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇦 Canada" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇦 Canadá" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10,000 US toll-free numbers" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 números gratuitos de EE. UU." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10 000 numéros gratuits US" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 numeri verdi US" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 números gratuitos dos EUA" } }
       }
     },
-    "🇨🇭 Suisse" : {
+    "0843, 0844 démarchage" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇭 Switzerland" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇭 Suiza" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇭 Suisse" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇭 Svizzera" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇨🇭 Suíça" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 démarchage" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } }
       }
     },
-    "🇩🇪 Allemagne" : {
+    "Activer dans Réglages" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇩🇪 Germany" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇩🇪 Alemania" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇩🇪 Allemagne" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇩🇪 Germania" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇩🇪 Alemanha" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable in Settings" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Activar en Ajustes" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Activer dans Réglages" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Attiva nelle Impostazioni" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ativar em Ajustes" } }
       }
     },
-    "🇪🇸 Espagne" : {
+    "Activer WildCall" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇪🇸 Spain" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇪🇸 España" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇪🇸 Espagne" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇪🇸 Spagna" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇪🇸 Espanha" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable WildCall" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Activar WildCall" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Activer WildCall" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Attiva WildCall" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ativar o WildCall" } }
       }
     },
-    "🇫🇷 France" : {
+    "Aucune donnée n'est collectée. Tout reste sur votre iPhone." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇫🇷 France" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇫🇷 Francia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇫🇷 France" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇫🇷 Francia" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇫🇷 França" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No data is collected. Everything stays on your iPhone." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "No se recopila ningún dato. Todo permanece en tu iPhone." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucune donnée n'est collectée. Tout reste sur votre iPhone." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Nessun dato viene raccolto. Tutto rimane sul tuo iPhone." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Nenhum dado é coletado. Tudo permanece no seu iPhone." } }
       }
     },
-    "🇬🇧 Royaume-Uni" : {
+    "Bienvenue dans WildCall" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇬🇧 United Kingdom" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇬🇧 Reino Unido" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇬🇧 Royaume-Uni" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇬🇧 Regno Unito" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇬🇧 Reino Unido" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to WildCall" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bienvenido a WildCall" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bienvenue dans WildCall" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Benvenuto in WildCall" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bem-vindo ao WildCall" } }
       }
     },
-    "🇮🇹 Italie" : {
+    "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros — silencieusement filtrés." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇮🇹 Italy" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇮🇹 Italia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇮🇹 Italie" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇮🇹 Italia" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇮🇹 Itália" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block unwanted calls before they even ring. Telemarketing, spam, fake numbers — silently filtered." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bloquea las llamadas no deseadas antes incluso de que suenen. Telemarketing, spam, números falsos — filtrados en silencio." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros — silencieusement filtrés." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Blocca le chiamate indesiderate prima ancora che squillino. Telemarketing, spam, numeri falsi — filtrati silenziosamente." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bloqueie chamadas indesejadas antes mesmo de tocarem. Telemarketing, spam, números falsos — filtrados silenciosamente." } }
       }
     },
-    "🇺🇸 États-Unis" : {
+    "Démarchage FR" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "🇺🇸 United States" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "🇺🇸 Estados Unidos" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "🇺🇸 États-Unis" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "🇺🇸 Stati Uniti" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "🇺🇸 Estados Unidos" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "FR telemarketing" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Démarchage FR" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } }
+      }
+    },
+    "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "iOS asks for your permission so the app can filter calls. It takes 10 seconds in Settings." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "iOS pide tu permiso para que la app pueda filtrar las llamadas. Lleva 10 segundos en Ajustes." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "iOS richiede la tua autorizzazione perché l'app possa filtrare le chiamate. Bastano 10 secondi nelle Impostazioni." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O iOS pede sua permissão para que o app possa filtrar chamadas. Leva 10 segundos em Ajustes." } }
+      }
+    },
+    "Numéros gratuits 1-800-555-*" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Toll-free 1-800-555-*" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Gratuitos 1-800-555-*" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Numéros gratuits 1-800-555-*" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Numeri verdi 1-800-555-*" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Gratuitos 1-800-555-*" } }
+      }
+    },
+    "Packs communautaires" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Community packs" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquetes comunitarios" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Packs communautaires" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack della community" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Packs comunitários" } }
+      }
+    },
+    "Passer" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Skip" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Omitir" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Passer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Salta" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Pular" } }
+      }
+    },
+    "Plages ARCEP 0162-0165, 0568-0569" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "ARCEP ranges 0162-0165, 0568-0569" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rangos ARCEP 0162-0165, 0568-0569" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Plages ARCEP 0162-0165, 0568-0569" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Intervalli ARCEP 0162-0165, 0568-0569" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Faixas ARCEP 0162-0165, 0568-0569" } }
+      }
+    },
+    "Plus tard" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Later" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Más tarde" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Plus tard" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Più tardi" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Mais tarde" } }
+      }
+    },
+    "Premium-rate UK" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "UK premium-rate" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tarifa premium do UK" } }
+      }
+    },
+    "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Type a pattern like `+33162*` to block a whole family of numbers in a single rule. No need to add each number manually." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Escribe un patrón como `+33162*` para bloquear toda una familia de números en una sola regla. No hace falta añadir cada número manualmente." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Inserisci un motivo come `+33162*` per bloccare un'intera famiglia di numeri con una sola regola. Non serve aggiungere ogni numero manualmente." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Digite um padrão como `+33162*` para bloquear uma família inteira de números em uma única regra. Sem precisar adicionar cada número manualmente." } }
+      }
+    },
+    "Spam US" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "US spam" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Spam de EE. UU." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Spam US" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Spam US" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Spam dos EUA" } }
+      }
+    },
+    "Suivant" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Siguiente" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Suivant" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Avanti" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Próximo" } }
+      }
+    },
+    "Une règle, des milliers de numéros" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "One rule, thousands of numbers" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Una regla, miles de números" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Une règle, des milliers de numéros" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Una regola, migliaia di numeri" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Uma regra, milhares de números" } }
+      }
+    },
+    "WildCall maintient des listes de préfixes connus — ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall maintains lists of known prefixes — ARCEP in France, US toll-free, UK premium-rate. Daily background sync." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall mantiene listas de prefijos conocidos — ARCEP en Francia, gratuitos de EE. UU., premium-rate del Reino Unido. Sincronización diaria en segundo plano." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall maintient des listes de préfixes connus — ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall mantiene elenchi di prefissi noti — ARCEP in Francia, numeri verdi US, premium-rate UK. Sincronizzazione quotidiana in background." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall mantém listas de prefixos conhecidos — ARCEP na França, gratuitos dos EUA, premium-rate do Reino Unido. Sincronização diária em segundo plano." } }
       }
     }
-  }
+  },
+  "version" : "1.0"
 }

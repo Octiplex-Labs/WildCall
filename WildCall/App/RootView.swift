@@ -4,6 +4,8 @@ import WildCallCoreApp
 
 struct RootView: View {
     @Bindable var store: StoreOf<AppFeature>
+    @AppStorage("wildcall.has_seen_onboarding") private var hasSeenOnboarding: Bool = false
+    @State private var isShowingOnboarding: Bool = false
 
     var body: some View {
         TabView {
@@ -27,11 +29,21 @@ struct RootView: View {
         }
         .tint(.indigo)
         .task { await store.send(.task).finish() }
+        .onAppear {
+            if !hasSeenOnboarding {
+                isShowingOnboarding = true
+            }
+        }
         .onOpenURL { url in
             store.send(.onOpenURL(url))
         }
         .sheet(item: $store.scope(state: \.importPresentation, action: \.importPresentation)) { importStore in
             PackImportSheet(store: importStore)
+        }
+        .fullScreenCover(isPresented: $isShowingOnboarding, onDismiss: {
+            hasSeenOnboarding = true
+        }) {
+            OnboardingFlowView(isPresented: $isShowingOnboarding)
         }
     }
 }
