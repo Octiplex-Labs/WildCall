@@ -3367,6 +3367,15 @@
         }
       }
     },
+    "Revoir l'introduction" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Replay the intro" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Volver a ver la introducción" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Revoir l'introduction" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Rivedi l'introduzione" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Rever a introdução" } }
+      }
+    },
     "Réglages" : {
       "extractionState" : "stale",
       "localizations" : {

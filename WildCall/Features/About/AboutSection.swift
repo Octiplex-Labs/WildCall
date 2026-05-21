@@ -2,6 +2,8 @@ import SwiftUI
 import WildCallCoreApp
 
 struct AboutSection: View {
+    @AppStorage("wildcall.has_seen_onboarding") private var hasSeenOnboarding: Bool = false
+
     var body: some View {
         Section {
             NavigationLink {
@@ -9,6 +11,11 @@ struct AboutSection: View {
             } label: {
                 Label("Soutenir WildCall", systemImage: "heart.fill")
                     .foregroundStyle(.indigo)
+            }
+            Button {
+                hasSeenOnboarding = false
+            } label: {
+                Label("Revoir l'introduction", systemImage: "play.rectangle.fill")
             }
             NavigationLink {
                 AboutView()

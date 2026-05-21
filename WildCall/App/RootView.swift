@@ -34,6 +34,12 @@ struct RootView: View {
                 isShowingOnboarding = true
             }
         }
+        .onChange(of: hasSeenOnboarding) { _, newValue in
+            // Watch for the user tapping 'Revoir l'introduction' in Réglages.
+            if !newValue {
+                isShowingOnboarding = true
+            }
+        }
         .onOpenURL { url in
             store.send(.onOpenURL(url))
         }
