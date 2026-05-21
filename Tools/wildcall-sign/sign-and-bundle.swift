@@ -86,7 +86,16 @@ let workdir = manifestURL.deletingLastPathComponent()
 let manifestBasename = manifestURL.lastPathComponent
 let sigBasename = "manifest.sig"
 let payloadBasename = "payload.bin"
-let outputBasename = manifestURL.deletingPathExtension().lastPathComponent + ".wildcallpack"
+
+// Strip the conventional ".source" qualifier from the input filename when
+// naming the outputs : "fr.arcep-extra.source.json" becomes
+// "fr.arcep-extra.wildcallpack" + "fr.arcep-extra.sig", not the redundant
+// ".source.wildcallpack" / ".source.sig".
+let rawBaseName = manifestURL.deletingPathExtension().lastPathComponent
+let outputBaseName = rawBaseName.hasSuffix(".source")
+    ? String(rawBaseName.dropLast(".source".count))
+    : rawBaseName
+let outputBasename = outputBaseName + ".wildcallpack"
 
 // Stage the files in a temp dir so the tarball entries are flat (no leading
 // path) and we don't pollute the workdir with renamed intermediates.
@@ -140,7 +149,8 @@ print("signature bytes: \(signature.count)")
 print("members: \(memberList)")
 
 // Also persist manifest.sig alongside the manifest for inspection / re-bundling.
-let persistedSig = manifestURL.deletingPathExtension().appendingPathExtension("sig")
+// Uses the same ".source"-stripped basename as the .wildcallpack output.
+let persistedSig = workdir.appendingPathComponent("\(outputBaseName).sig")
 try? FileManager.default.removeItem(at: persistedSig)
 try signature.write(to: persistedSig)
 print("sig file: \(persistedSig.path)")
