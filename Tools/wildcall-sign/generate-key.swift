@@ -11,7 +11,7 @@
 //   public  (paste into OctiplexTrust.publicKey, 64 hex chars / 32 bytes)
 //   fingerprint (8 hex pairs, for human verification)
 //
-// Store the private key out-of-band — never commit it. Recommended:
+// Store the private key out-of-band : never commit it. Recommended:
 // 1Password item "Octiplex pack signing key" or an env file outside the repo.
 //
 // Run once per publisher identity. If the key is lost, packs already signed

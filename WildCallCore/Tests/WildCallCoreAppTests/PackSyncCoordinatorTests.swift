@@ -43,7 +43,7 @@ import Testing
 
     /// Reusable dependency overrides for sync tests. We override OctiplexTrust
     /// indirectly by injecting a test key as the signer and ensuring the
-    /// coordinator uses OctiplexTrust.publicKey to verify — which means the
+    /// coordinator uses OctiplexTrust.publicKey to verify : which means the
     /// test must sign with the *real* embedded Octiplex private key. Since we
     /// don't have that private key in tests, we override the loader instead
     /// to short-circuit verification with our test public key.

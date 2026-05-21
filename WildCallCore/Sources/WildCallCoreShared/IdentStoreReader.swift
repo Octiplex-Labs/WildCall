@@ -62,7 +62,7 @@ public struct IdentStoreReader {
         let offset = stringTableStart + Int(labelOffsets[index])
         guard offset + 4 <= data.count else { throw Error.malformedLabel }
         // String-table entries are variable-length, so the u32 length prefix
-        // can land on any byte offset — use the unaligned load.
+        // can land on any byte offset : use the unaligned load.
         let length: UInt32 = data.withUnsafeBytes {
             $0.loadUnaligned(fromByteOffset: offset, as: UInt32.self)
         }

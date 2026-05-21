@@ -68,10 +68,10 @@ import WildCallCoreShared
     @Test func packPrefixRulesAreExpandedButNotCountedInUserTotal() throws {
         let tight = WildcardQuotas(perPattern: 10_000, totalUser: 5, minFixedDigits: 6)
         let rules: [BlockRule] = [
-            // User contributes 4 expanded numbers — under the 5 limit.
+            // User contributes 4 expanded numbers : under the 5 limit.
             .init(kind: .prefix(.init(fixedDigits: "33162999", wildcardLength: 0)),
                   source: .user, action: .block, countryCode: "FR"),
-            // Pack contributes 100 expanded numbers — must NOT count against the user total.
+            // Pack contributes 100 expanded numbers : must NOT count against the user total.
             .init(kind: .prefix(.init(fixedDigits: "44712345", wildcardLength: 2)),
                   source: .pack(packId: "uk.test"), action: .block, countryCode: "GB"),
         ]

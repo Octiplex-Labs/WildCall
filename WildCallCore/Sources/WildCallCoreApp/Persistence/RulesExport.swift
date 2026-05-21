@@ -2,7 +2,7 @@ import Foundation
 import WildCallCoreShared
 
 /// Versioned wire format for user-rule backup/restore. Pack-sourced rules
-/// are excluded — those are recreated by syncing the catalogue, not by
+/// are excluded : those are recreated by syncing the catalogue, not by
 /// importing a backup.
 public struct RulesExport: Codable, Equatable, Sendable {
     public let format: String  // "wildcall-rules-v1"

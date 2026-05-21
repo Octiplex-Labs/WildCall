@@ -101,7 +101,7 @@ import CustomDump
     }
 
     @Test func loadsEmbeddedArcepManifestFromBundle() throws {
-        // The embedded ARCEP pack must always parse — it ships with the .app.
+        // The embedded ARCEP pack must always parse : it ships with the .app.
         let url = Bundle.main.url(forResource: "prefixes-FR.source", withExtension: "json")
         // In test runners the resource may live under a different bundle; skip if not present.
         guard let url else { return }

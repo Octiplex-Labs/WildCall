@@ -5,7 +5,7 @@ import SwiftData
 /// pack is first imported via URL, the user is shown the publisher's key
 /// fingerprint and confirms trust; the public key bytes are then pinned to
 /// the pack id here. Subsequent imports/updates of the same pack id MUST
-/// match this key — a mismatch is reported as a security failure.
+/// match this key : a mismatch is reported as a security failure.
 @Model
 public final class TrustedKeyRecord {
     @Attribute(.unique) public var packId: String

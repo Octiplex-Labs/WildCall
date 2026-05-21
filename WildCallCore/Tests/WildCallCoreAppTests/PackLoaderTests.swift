@@ -109,7 +109,7 @@ import IssueReporting
             payload: nil
         ))
 
-        // Verify with a different public key — should fail.
+        // Verify with a different public key : should fail.
         let result = loader.loadFromArchive(archive, otherKey.publicKey.rawRepresentation, now)
         #expect(result == .failure(.signatureInvalid))
     }
@@ -120,7 +120,7 @@ import IssueReporting
         let signature = try! signerKey.signature(for: original)
 
         // Build archive with a DIFFERENT manifest than the one the signature
-        // covers — verification must fail.
+        // covers : verification must fail.
         let tampered = Data("{\"id\":\"evil\",\"version\":\"v1\",\"country\":\"FR\",\"kind\":\"prefixes\",\"prefixes\":[]}".utf8)
         let archive = try! PackArchive().write(.init(
             manifest: tampered,
@@ -161,7 +161,7 @@ import IssueReporting
     }
 
     @Test func bypassesPerPatternQuotaThatWouldRejectUserInput() {
-        // +33162* expands to 10⁶ entries — way above the default 10⁴ per-pattern
+        // +33162* expands to 10⁶ entries : way above the default 10⁴ per-pattern
         // quota. The loader must override the quota internally and accept it.
         let manifest = PackManifest(
             id: "fr.demo",

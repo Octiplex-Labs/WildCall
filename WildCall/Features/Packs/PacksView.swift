@@ -117,7 +117,7 @@ struct PacksView: View {
                 } header: {
                     Text("Données")
                 } footer: {
-                    Text("L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation.")
+                    Text("L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus : ils se réinstallent automatiquement à la synchronisation.")
                         .font(.caption)
                 }
 
@@ -146,7 +146,7 @@ struct PacksView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else if !summary.failed.isEmpty {
-                Text("\(summary.failed.count) pack(s) en erreur — voir les logs.")
+                Text("\(summary.failed.count) pack(s) en erreur, voir les logs.")
                     .font(.caption)
                     .foregroundStyle(.orange)
             } else {

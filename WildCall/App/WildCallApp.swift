@@ -49,7 +49,7 @@ struct WildCallApp: App {
     private func runBootstrap() async {
         // Discover every embedded *.source.json under the Packs/ bundle
         // folder. Adding a new country is as simple as dropping a new
-        // `<id>.source.json` in `Packs/` and rebuilding — no code change.
+        // `<id>.source.json` in `Packs/` and rebuilding : no code change.
         let urls = (Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) ?? [])
             .filter { $0.lastPathComponent.hasSuffix(".source.json") }
 

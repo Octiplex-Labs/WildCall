@@ -4,9 +4,9 @@ import SWCompression
 /// In-memory read/write of `.wildcallpack` files (tarball gzip).
 ///
 /// Layout inside the tarball:
-///   `manifest.json` — UTF-8 JSON, the canonical bytes signed by the publisher.
-///   `manifest.sig`  — raw 64-byte Ed25519 signature over the manifest bytes.
-///   `payload.bin`   — optional binary payload (Int64 LE, sorted) for
+///   `manifest.json` : UTF-8 JSON, the canonical bytes signed by the publisher.
+///   `manifest.sig`  : raw 64-byte Ed25519 signature over the manifest bytes.
+///   `payload.bin`   : optional binary payload (Int64 LE, sorted) for
 ///                     kind=preExpanded packs. Absent for kind=prefixes.
 public struct PackArchive: Sendable {
     public struct Contents: Equatable, Sendable {

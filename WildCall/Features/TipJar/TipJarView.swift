@@ -48,7 +48,7 @@ struct TipJarView: View {
             } header: {
                 Text("Soutenir WildCall")
             } footer: {
-                Text("WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel.")
+                Text("WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire : c'est totalement optionnel.")
                     .font(.caption)
             }
 

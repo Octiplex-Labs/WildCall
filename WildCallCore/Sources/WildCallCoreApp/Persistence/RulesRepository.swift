@@ -61,7 +61,7 @@ public actor RulesActor {
             predicate: #Predicate { $0.id == ruleID }
         )
         guard let existing = try modelContext.fetch(descriptor).first else {
-            // Insert if not found — keeps API forgiving and idempotent.
+            // Insert if not found : keeps API forgiving and idempotent.
             modelContext.insert(BlockRuleRecord.from(rule))
             try modelContext.save()
             return

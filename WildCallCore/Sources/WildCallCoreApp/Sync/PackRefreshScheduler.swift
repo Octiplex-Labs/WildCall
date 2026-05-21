@@ -4,7 +4,7 @@ import Foundation
 import IssueReporting
 
 /// Schedules and handles the BGAppRefreshTask that drives daily pack sync.
-/// iOS decides when to actually run the task — we just declare the earliest
+/// iOS decides when to actually run the task : we just declare the earliest
 /// acceptable time (~24h from each scheduling).
 public struct PackRefreshScheduler: Sendable {
     public static let taskIdentifier = "com.octiplex.wildcall.refresh"

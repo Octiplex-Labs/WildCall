@@ -65,9 +65,16 @@ private struct WelcomePanel: View {
             icon: "shield.lefthalf.filled",
             iconTint: .indigo,
             title: Text("Bienvenue dans WildCall"),
-            body: Text("Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros — silencieusement filtrés."),
+            body: Text("Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés."),
             footnote: Text("Aucune donnée n'est collectée. Tout reste sur votre iPhone.")
-        )
+        ) {
+            Text("WildCall est gratuit. Les pourboires sont optionnels mais appréciés.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
+        }
     }
 }
 
@@ -76,7 +83,7 @@ private struct WildcardsPanel: View {
         OnboardingPanelLayout(
             icon: "asterisk.circle.fill",
             iconTint: .indigo,
-            title: Text("Une règle, des milliers de numéros"),
+            title: Text("Une règle : des milliers de numéros"),
             body: Text("Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement.")
         ) {
             VStack(alignment: .leading, spacing: 8) {
@@ -111,7 +118,7 @@ private struct PacksPanel: View {
             icon: "shippingbox.fill",
             iconTint: .indigo,
             title: Text("Packs communautaires"),
-            body: Text("WildCall maintient des listes de préfixes connus — ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan.")
+            body: Text("WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan.")
         ) {
             VStack(alignment: .leading, spacing: 10) {
                 packBullet("🇫🇷", title: Text("Démarchage FR"), subtitle: Text("Plages ARCEP 0162-0165, 0568-0569"))

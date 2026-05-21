@@ -105,7 +105,7 @@ import Testing
         let signerKey = Curve25519.Signing.PrivateKey()
         let url = try writeFixture(signerKey: signerKey)
         defer { try? FileManager.default.removeItem(at: url) }
-        // Verify with a DIFFERENT key — should fail.
+        // Verify with a DIFFERENT key : should fail.
         let otherKey = Curve25519.Signing.PrivateKey()
 
         let store = TestStore(initialState: PackImportFeature.State(fileURL: url)) {

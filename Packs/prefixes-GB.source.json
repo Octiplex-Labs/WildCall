@@ -3,9 +3,9 @@
   "version": "2026-05-20",
   "country": "GB",
   "kind": "prefixes",
-  "title": "UK — Premium-rate démarchage (sous-ensemble démonstratif)",
+  "title": "UK : Premium-rate démarchage (sous-ensemble démonstratif)",
   "license": "public domain",
-  "notes": "Placeholder Phase 5 — préfixes 0843/0844 (premium-rate UK fréquemment liés au démarchage). À élargir avec OFCOM frequent-spam ranges une fois validé sur device. UK national length = 10, donc un préfixe de 6 chiffres fixes = 10⁴ par pattern.",
+  "notes": "Placeholder Phase 5 : préfixes 0843/0844 (premium-rate UK fréquemment liés au démarchage). À élargir avec OFCOM frequent-spam ranges une fois validé sur device. UK national length = 10, donc un préfixe de 6 chiffres fixes = 10⁴ par pattern.",
   "prefixes": [
     "+44843555*",
     "+44844555*"

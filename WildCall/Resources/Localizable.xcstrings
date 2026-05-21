@@ -35,36 +35,36 @@
         }
       }
     },
-    "%@ pack(s) en erreur — voir les logs." : {
+    "%@ pack(s) en erreur, voir les logs." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pack(s) failed — see logs."
+            "value" : "%@ pack(s) failed, see logs."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ paquete(s) con error — ver registros."
+            "value" : "%@ paquete(s) con error, ver registros."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pack(s) en erreur — voir les logs."
+            "value" : "%@ pack(s) en erreur, voir les logs."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pack in errore — vedi i log."
+            "value" : "%@ pack in errore, vedi i log."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pack(s) com erro — ver os logs."
+            "value" : "%@ pack(s) com erro, ver os logs."
           }
         }
       }
@@ -99,6 +99,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "+%1$@ seguido de %2$@ dígito%3$@"
+          }
+        }
+      }
+    },
+    "≈ 1 000 000 numéros démarchage Paris" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 1,000,000 Paris telemarketing numbers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 1.000.000 de números de telemarketing de París"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 1 000 000 numéros démarchage Paris"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 1.000.000 di numeri di telemarketing di Parigi"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 1.000.000 de números de telemarketing de Paris"
+          }
+        }
+      }
+    },
+    "≈ 10 000 numéros gratuits US" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 10,000 US toll-free numbers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 10.000 números gratuitos de EE. UU."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 10 000 numéros gratuits US"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 10.000 numeri verdi US"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≈ 10.000 números gratuitos dos EUA"
           }
         }
       }
@@ -418,6 +486,40 @@
         }
       }
     },
+    "0843, 0844 démarchage" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0843, 0844 telemarketing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0843, 0844 telemarketing"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0843, 0844 démarchage"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0843, 0844 telemarketing"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0843, 0844 telemarketing"
+          }
+        }
+      }
+    },
     "À propos" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -484,6 +586,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ação"
+          }
+        }
+      }
+    },
+    "Activer dans Réglages" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable in Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar en Ajustes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer dans Réglages"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva nelle Impostazioni"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ativar em Ajustes"
+          }
+        }
+      }
+    },
+    "Activer WildCall" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable WildCall"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activar WildCall"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer WildCall"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva WildCall"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ativar o WildCall"
           }
         }
       }
@@ -801,6 +971,40 @@
         }
       }
     },
+    "Aucune donnée n'est collectée. Tout reste sur votre iPhone." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data is collected. Everything stays on your iPhone."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se recopila ningún dato. Todo permanece en tu iPhone."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune donnée n'est collectée. Tout reste sur votre iPhone."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun dato viene raccolto. Tutto rimane sul tuo iPhone."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum dado é coletado. Tudo permanece no seu iPhone."
+          }
+        }
+      }
+    },
     "Aucune règle" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -832,6 +1036,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sem regras"
+          }
+        }
+      }
+    },
+    "Bienvenue dans WildCall" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to WildCall"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenido a WildCall"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue dans WildCall"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benvenuto in WildCall"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo ao WildCall"
           }
         }
       }
@@ -868,6 +1106,24 @@
             "value" : "Bloquear"
           }
         }
+      }
+    },
+    "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block unwanted calls before they even ring. Telemarketing, spam, fake numbers, AI calls… silently filtered." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bloquea las llamadas no deseadas antes incluso de que suenen. Telemarketing, spam, números falsos, llamadas con IA… filtradas en silencio." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Blocca le chiamate indesiderate prima ancora che squillino. Telemarketing, spam, numeri falsi, chiamate con IA… filtrati silenziosamente." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bloqueie chamadas indesejadas antes mesmo de tocarem. Telemarketing, spam, números falsos, chamadas com IA… filtrados silenciosamente." } }
+      }
+    },
+    "WildCall est gratuit. Les pourboires sont optionnels mais appréciés." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall is free. Tips are optional but appreciated." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall es gratis. Las propinas son opcionales pero se agradecen." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall est gratuit. Les pourboires sont optionnels mais appréciés." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall è gratuita. Le mance sono facoltative ma apprezzate." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall é gratuito. As gorjetas são opcionais mas apreciadas." } }
       }
     },
     "Catalogue de packs" : {
@@ -1246,6 +1502,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cobre %@ números"
+          }
+        }
+      }
+    },
+    "Démarchage FR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FR telemarketing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telemarketing FR"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarchage FR"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telemarketing FR"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telemarketing FR"
           }
         }
       }
@@ -1800,36 +2090,70 @@
         }
       }
     },
-    "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation." : {
+    "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The export only contains rules you added yourself. Octiplex packs are not included — they reinstall automatically at sync."
+            "value" : "iOS asks for your permission so the app can filter calls. It takes 10 seconds in Settings."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La exportación solo contiene las reglas que añadiste tú. Los paquetes de Octiplex no se incluyen — se reinstalan automáticamente al sincronizar."
+            "value" : "iOS pide tu permiso para que la app pueda filtrar las llamadas. Lleva 10 segundos en Ajustes."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus — ils se réinstallent automatiquement à la synchronisation."
+            "value" : "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'esportazione contiene solo le regole che hai aggiunto tu. I pack Octiplex non sono inclusi — vengono reinstallati automaticamente durante la sincronizzazione."
+            "value" : "iOS richiede la tua autorizzazione perché l'app possa filtrare le chiamate. Bastano 10 secondi nelle Impostazioni."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A exportação contém apenas as regras que você mesmo adicionou. Os packs Octiplex não estão incluídos — eles são reinstalados automaticamente na sincronização."
+            "value" : "O iOS pede sua permissão para que o app possa filtrar chamadas. Leva 10 segundos em Ajustes."
+          }
+        }
+      }
+    },
+    "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus : ils se réinstallent automatiquement à la synchronisation." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The export only contains rules you added yourself. Octiplex packs are not included : they reinstall automatically at sync."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La exportación solo contiene las reglas que añadiste tú. Los paquetes de Octiplex no se incluyen : se reinstalan automáticamente al sincronizar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'export ne contient que les règles que vous avez ajoutées vous-même. Les packs Octiplex ne sont pas inclus : ils se réinstallent automatiquement à la synchronisation."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'esportazione contiene solo le regole che hai aggiunto tu. I pack Octiplex non sono inclusi : vengono reinstallati automaticamente durante la sincronizzazione."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A exportação contém apenas as regras que você mesmo adicionou. Os packs Octiplex não estão incluídos : eles são reinstalados automaticamente na sincronização."
           }
         }
       }
@@ -2491,6 +2815,40 @@
         }
       }
     },
+    "Numéros gratuits 1-800-555-*" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toll-free 1-800-555-*"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratuitos 1-800-555-*"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéros gratuits 1-800-555-*"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numeri verdi 1-800-555-*"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratuitos 1-800-555-*"
+          }
+        }
+      }
+    },
     "Ouvrir Réglages" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2556,6 +2914,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pack instalado."
+          }
+        }
+      }
+    },
+    "Packs communautaires" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community packs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paquetes comunitarios"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packs communautaires"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pack della community"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packs comunitários"
           }
         }
       }
@@ -2628,6 +3020,41 @@
         }
       }
     },
+    "Passer" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omitir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salta"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pular"
+          }
+        }
+      }
+    },
     "Pays" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2659,6 +3086,75 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "País"
+          }
+        }
+      }
+    },
+    "Plages ARCEP 0162-0165, 0568-0569" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ARCEP ranges 0162-0165, 0568-0569"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rangos ARCEP 0162-0165, 0568-0569"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plages ARCEP 0162-0165, 0568-0569"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalli ARCEP 0162-0165, 0568-0569"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faixas ARCEP 0162-0165, 0568-0569"
+          }
+        }
+      }
+    },
+    "Plus tard" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más tarde"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Più tardi"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais tarde"
           }
         }
       }
@@ -2729,6 +3225,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prefixos"
+          }
+        }
+      }
+    },
+    "Premium-rate UK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UK premium-rate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium-rate UK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium-rate UK"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium-rate UK"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarifa premium do UK"
           }
         }
       }
@@ -2977,6 +3507,40 @@
         }
       }
     },
+    "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type a pattern like `+33162*` to block a whole family of numbers in a single rule. No need to add each number manually."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe un patrón como `+33162*` para bloquear toda una familia de números en una sola regla. No hace falta añadir cada número manualmente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci un motivo come `+33162*` per bloccare un'intera famiglia di numeri con una sola regola. Non serve aggiungere ogni numero manualmente."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite um padrão como `+33162*` para bloquear uma família inteira de números em uma única regra. Sem precisar adicionar cada número manualmente."
+          }
+        }
+      }
+    },
     "Saisissez un motif." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3151,6 +3715,40 @@
         }
       }
     },
+    "Spam US" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "US spam"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spam de EE. UU."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spam US"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spam US"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spam dos EUA"
+          }
+        }
+      }
+    },
     "Statut de l'extension inconnu" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3182,6 +3780,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Status da extensão desconhecido"
+          }
+        }
+      }
+    },
+    "Suivant" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suivant"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avanti"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Próximo"
           }
         }
       }
@@ -3495,6 +4127,15 @@
         }
       }
     },
+    "Une règle : des milliers de numéros" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "One rule: thousands of numbers" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Una regla: miles de números" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Une règle : des milliers de numéros" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Una regola: migliaia di numeri" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Uma regra: milhares de números" } }
+      }
+    },
     "URL du pack" : {
       "localizations" : {
         "en" : {
@@ -3668,36 +4309,36 @@
         }
       }
     },
-    "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel." : {
+    "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire : c'est totalement optionnel." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WildCall is free and ad-free. If the app is useful to you, you can leave a tip — it's entirely optional."
+            "value" : "WildCall is free and ad-free. If the app is useful to you, you can leave a tip : it's entirely optional."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WildCall es gratis y sin anuncios. Si la app te resulta útil, puedes dejar una propina — es completamente opcional."
+            "value" : "WildCall es gratis y sin anuncios. Si la app te resulta útil, puedes dejar una propina : es completamente opcional."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire — c'est totalement optionnel."
+            "value" : "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire : c'est totalement optionnel."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WildCall è gratuita e senza pubblicità. Se l'app ti è utile, puoi lasciare una mancia — è del tutto facoltativo."
+            "value" : "WildCall è gratuita e senza pubblicità. Se l'app ti è utile, puoi lasciare una mancia : è del tutto facoltativo."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O WildCall é gratuito e sem anúncios. Se o app for útil, você pode deixar uma gorjeta — é totalmente opcional."
+            "value" : "O WildCall é gratuito e sem anúncios. Se o app for útil, você pode deixar uma gorjeta : é totalmente opcional."
           }
         }
       }
@@ -3737,6 +4378,40 @@
         }
       }
     },
+    "WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall maintains lists of known prefixes : ARCEP in France, US toll-free, UK premium-rate. Daily background sync."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall mantiene listas de prefijos conocidos : ARCEP en Francia, gratuitos de EE. UU., premium-rate del Reino Unido. Sincronización diaria en segundo plano."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WildCall mantiene elenchi di prefissi noti : ARCEP in Francia, numeri verdi US, premium-rate UK. Sincronizzazione quotidiana in background."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O WildCall mantém listas de prefixos conhecidos : ARCEP na França, gratuitos dos EUA, premium-rate do Reino Unido. Sincronização diária em segundo plano."
+          }
+        }
+      }
+    },
     "WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex." : {
       "localizations" : {
         "en" : {
@@ -3769,195 +4444,6 @@
             "value" : "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex."
           }
         }
-      }
-    },
-    "≈ 1 000 000 numéros démarchage Paris" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1,000,000 Paris telemarketing numbers" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 de números de telemarketing de París" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1 000 000 numéros démarchage Paris" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 di numeri di telemarketing di Parigi" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "≈ 1.000.000 de números de telemarketing de Paris" } }
-      }
-    },
-    "≈ 10 000 numéros gratuits US" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10,000 US toll-free numbers" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 números gratuitos de EE. UU." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10 000 numéros gratuits US" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 numeri verdi US" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "≈ 10.000 números gratuitos dos EUA" } }
-      }
-    },
-    "0843, 0844 démarchage" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 démarchage" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "0843, 0844 telemarketing" } }
-      }
-    },
-    "Activer dans Réglages" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable in Settings" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Activar en Ajustes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Activer dans Réglages" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Attiva nelle Impostazioni" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ativar em Ajustes" } }
-      }
-    },
-    "Activer WildCall" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable WildCall" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Activar WildCall" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Activer WildCall" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Attiva WildCall" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ativar o WildCall" } }
-      }
-    },
-    "Aucune donnée n'est collectée. Tout reste sur votre iPhone." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No data is collected. Everything stays on your iPhone." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "No se recopila ningún dato. Todo permanece en tu iPhone." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucune donnée n'est collectée. Tout reste sur votre iPhone." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Nessun dato viene raccolto. Tutto rimane sul tuo iPhone." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Nenhum dado é coletado. Tudo permanece no seu iPhone." } }
-      }
-    },
-    "Bienvenue dans WildCall" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Welcome to WildCall" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bienvenido a WildCall" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bienvenue dans WildCall" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Benvenuto in WildCall" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bem-vindo ao WildCall" } }
-      }
-    },
-    "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros — silencieusement filtrés." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Block unwanted calls before they even ring. Telemarketing, spam, fake numbers — silently filtered." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Bloquea las llamadas no deseadas antes incluso de que suenen. Telemarketing, spam, números falsos — filtrados en silencio." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros — silencieusement filtrés." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Blocca le chiamate indesiderate prima ancora che squillino. Telemarketing, spam, numeri falsi — filtrati silenziosamente." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Bloqueie chamadas indesejadas antes mesmo de tocarem. Telemarketing, spam, números falsos — filtrados silenciosamente." } }
-      }
-    },
-    "Démarchage FR" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "FR telemarketing" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Démarchage FR" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Telemarketing FR" } }
-      }
-    },
-    "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "iOS asks for your permission so the app can filter calls. It takes 10 seconds in Settings." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "iOS pide tu permiso para que la app pueda filtrar las llamadas. Lleva 10 segundos en Ajustes." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "iOS richiede la tua autorizzazione perché l'app possa filtrare le chiamate. Bastano 10 secondi nelle Impostazioni." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O iOS pede sua permissão para que o app possa filtrar chamadas. Leva 10 segundos em Ajustes." } }
-      }
-    },
-    "Numéros gratuits 1-800-555-*" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Toll-free 1-800-555-*" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Gratuitos 1-800-555-*" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Numéros gratuits 1-800-555-*" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Numeri verdi 1-800-555-*" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Gratuitos 1-800-555-*" } }
-      }
-    },
-    "Packs communautaires" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Community packs" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Paquetes comunitarios" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Packs communautaires" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pack della community" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Packs comunitários" } }
-      }
-    },
-    "Passer" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Skip" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Omitir" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Passer" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Salta" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Pular" } }
-      }
-    },
-    "Plages ARCEP 0162-0165, 0568-0569" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "ARCEP ranges 0162-0165, 0568-0569" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Rangos ARCEP 0162-0165, 0568-0569" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Plages ARCEP 0162-0165, 0568-0569" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Intervalli ARCEP 0162-0165, 0568-0569" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Faixas ARCEP 0162-0165, 0568-0569" } }
-      }
-    },
-    "Plus tard" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Later" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Más tarde" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Plus tard" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Più tardi" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Mais tarde" } }
-      }
-    },
-    "Premium-rate UK" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "UK premium-rate" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Premium-rate UK" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tarifa premium do UK" } }
-      }
-    },
-    "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Type a pattern like `+33162*` to block a whole family of numbers in a single rule. No need to add each number manually." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Escribe un patrón como `+33162*` para bloquear toda una familia de números en una sola regla. No hace falta añadir cada número manualmente." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Inserisci un motivo come `+33162*` per bloccare un'intera famiglia di numeri con una sola regola. Non serve aggiungere ogni numero manualmente." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Digite um padrão como `+33162*` para bloquear uma família inteira de números em uma única regra. Sem precisar adicionar cada número manualmente." } }
-      }
-    },
-    "Spam US" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "US spam" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Spam de EE. UU." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Spam US" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Spam US" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Spam dos EUA" } }
-      }
-    },
-    "Suivant" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Siguiente" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Suivant" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Avanti" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Próximo" } }
-      }
-    },
-    "Une règle, des milliers de numéros" : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "One rule, thousands of numbers" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Una regla, miles de números" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Une règle, des milliers de numéros" } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "Una regola, migliaia di numeri" } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Uma regra, milhares de números" } }
-      }
-    },
-    "WildCall maintient des listes de préfixes connus — ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan." : {
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "WildCall maintains lists of known prefixes — ARCEP in France, US toll-free, UK premium-rate. Daily background sync." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "WildCall mantiene listas de prefijos conocidos — ARCEP en Francia, gratuitos de EE. UU., premium-rate del Reino Unido. Sincronización diaria en segundo plano." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WildCall maintient des listes de préfixes connus — ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan." } },
-        "it" : { "stringUnit" : { "state" : "translated", "value" : "WildCall mantiene elenchi di prefissi noti — ARCEP in Francia, numeri verdi US, premium-rate UK. Sincronizzazione quotidiana in background." } },
-        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O WildCall mantém listas de prefixos conhecidos — ARCEP na França, gratuitos dos EUA, premium-rate do Reino Unido. Sincronização diária em segundo plano." } }
       }
     }
   },

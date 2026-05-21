@@ -13,7 +13,7 @@ public struct PackManifest: Codable, Hashable, Sendable {
     public let notes: String?
     /// 64-hex (32-byte) Ed25519 public key the publisher claims to own.
     /// Required for third-party packs (TOFU pinning anchor). Octiplex packs
-    /// omit this — trust is rooted in OctiplexTrust.publicKey embedded in
+    /// omit this : trust is rooted in OctiplexTrust.publicKey embedded in
     /// the app.
     public let publisherKey: String?
     public let prefixes: [String]
