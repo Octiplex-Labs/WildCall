@@ -57,3 +57,6 @@ ExportOptions.plist
 *.log
 .env
 .env.*
+
+# Local planning artifacts (PHASE-X.md), kept on disk but not tracked.
+PHASE-*.md
