@@ -84,6 +84,18 @@ public struct AppFeature: Sendable {
             case .importPresentation:
                 return .none
 
+            case .rules(.delegate(.syncRequested)):
+                // Empty-state shortcut in the Filtres tab: forward to the
+                // Réglages tab's sync coordinator so the user can pull packs
+                // without leaving the rules screen.
+                return .send(.packs(.syncButtonTapped))
+
+            case .packs(.syncCompleted):
+                // After a successful sync the rules list needs to refresh
+                // even when the user is on the Filtres tab (sync may have
+                // added or upgraded a pack contributing new rules).
+                return .send(.rules(.task))
+
             case .rules:
                 return .none
 

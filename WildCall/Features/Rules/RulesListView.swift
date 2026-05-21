@@ -9,11 +9,38 @@ struct RulesListView: View {
     var body: some View {
         Group {
             if store.rules.isEmpty && !store.isLoading {
-                ContentUnavailableView(
-                    "Aucune règle",
-                    systemImage: "phone.down.circle",
-                    description: Text("Ajoutez un numéro à bloquer ou identifier.")
-                )
+                ContentUnavailableView {
+                    Label("Aucune règle", systemImage: "shield.lefthalf.filled")
+                        .foregroundStyle(.indigo)
+                } description: {
+                    Text("Ajoutez un motif avec des jokers pour bloquer toute une famille de numéros indésirables en une fois.")
+                } actions: {
+                    VStack(spacing: 14) {
+                        Button {
+                            store.send(.addButtonTapped)
+                        } label: {
+                            Label("Nouvelle règle", systemImage: "plus")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.indigo)
+                        .controlSize(.large)
+
+                        Button {
+                            store.send(.syncFromEmptyStateTapped)
+                        } label: {
+                            VStack(spacing: 2) {
+                                Text("Synchroniser les packs")
+                                    .font(.subheadline.weight(.medium))
+                                Text("Récupère les listes Octiplex de numéros connus.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .foregroundStyle(.indigo)
+                    }
+                    .padding(.horizontal, 24)
+                }
             } else {
                 List {
                     ForEach(store.rules) { rule in

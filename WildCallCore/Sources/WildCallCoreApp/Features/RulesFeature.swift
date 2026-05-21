@@ -23,6 +23,13 @@ public struct RulesFeature: Sendable {
         case toggleActionRequested(id: BlockRule.ID)
         case mutationCompleted
         case mutationFailed(EquatableError)
+        case syncFromEmptyStateTapped
+        case delegate(Delegate)
+
+        @CasePathable
+        public enum Delegate: Equatable, Sendable {
+            case syncRequested
+        }
     }
 
     @Dependency(\.rulesRepository) var repository
@@ -103,6 +110,12 @@ public struct RulesFeature: Sendable {
                 }
 
             case .mutationCompleted, .mutationFailed:
+                return .none
+
+            case .syncFromEmptyStateTapped:
+                return .send(.delegate(.syncRequested))
+
+            case .delegate:
                 return .none
             }
         }

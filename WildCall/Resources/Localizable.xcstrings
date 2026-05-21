@@ -832,7 +832,35 @@
         }
       }
     },
+    "Ajoutez un motif avec des jokers pour bloquer toute une famille de numéros indésirables en une fois." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a wildcard pattern to block a whole family of unwanted numbers at once." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Añade un patrón con comodines para bloquear toda una familia de números no deseados de una sola vez." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ajoutez un motif avec des jokers pour bloquer toute une famille de numéros indésirables en une fois." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Aggiungi un motivo con jolly per bloccare un'intera famiglia di numeri indesiderati in una sola volta." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Adicione um padrão com curingas para bloquear uma família inteira de números indesejados de uma só vez." } }
+      }
+    },
+    "Synchroniser les packs" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sync packs" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar paquetes" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Synchroniser les packs" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizza i pack" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Sincronizar packs" } }
+      }
+    },
+    "Récupère les listes Octiplex de numéros connus." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Fetches the Octiplex lists of known numbers." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Descarga las listas de Octiplex de números conocidos." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Récupère les listes Octiplex de numéros connus." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Recupera gli elenchi Octiplex di numeri noti." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Busca as listas Octiplex de números conhecidos." } }
+      }
+    },
     "Ajoutez un numéro à bloquer ou identifier." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

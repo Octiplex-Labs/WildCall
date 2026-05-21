@@ -1,0 +1,15 @@
+{
+  "id": "fr.arcep-extra",
+  "version": "2026-05-21",
+  "country": "FR",
+  "kind": "prefixes",
+  "title": "Démarchage FR : plages 0270-0273 (région Auvergne-Rhône-Alpes)",
+  "license": "public domain (régulation publique)",
+  "notes": "Pack additionnel : 4 préfixes ARCEP réservés au démarchage téléphonique pour la zone 7 (Auvergne-Rhône-Alpes, Bourgogne-Franche-Comté). Distribué uniquement via sync (non embarqué dans le bundle). 4 × 10^6 = ~4M numéros = ~32 MB. À élargir/réduire selon le budget réel de l'extension iOS mesuré sur device.",
+  "prefixes": [
+    "+33270*",
+    "+33271*",
+    "+33272*",
+    "+33273*"
+  ]
+}
