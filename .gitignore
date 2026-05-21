@@ -58,5 +58,7 @@ ExportOptions.plist
 .env
 .env.*
 
-# Local planning artifacts (PHASE-X.md), kept on disk but not tracked.
-PHASE-*.md
+# All Markdown files are kept local until we ship a proper README.md.
+# Once a curated README is ready, it can be force-added via `git add -f README.md`,
+# or the rule below can be flipped to `*.md\n!README.md`.
+*.md
