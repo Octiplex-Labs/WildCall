@@ -143,29 +143,54 @@ import CustomDump
         #expect(manifest.supersedes == ["fr.arcep-extra"])
     }
 
-    @Test func embeddedFrenchPackParsesEveryArcepPrefix() throws {
-        // The bundled pack is the one users get by default : make sure every
-        // prefix is accepted by the parser and covers exactly 10^6 numbers.
-        let url = URL(filePath: #filePath)
+    @Test func embeddedFrenchPacksFitUnderTheExtensionCeiling() throws {
+        // The bundled packs are what users get by default : every pattern
+        // must parse, and each pack must stay under what iOS accepts.
+        let packsFolder = URL(filePath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent()
-            .appendingPathComponent("Packs/prefixes-FR.source.json")
-        let manifest = try PackManifest.load(from: url)
-        #expect(manifest.id == "fr.arcep")
-        #expect(manifest.prefixes.count == 20)
-        #expect(manifest.supersedes == ["fr.arcep-extra"])
+            .appendingPathComponent("Packs")
+        let files = try FileManager.default.contentsOfDirectory(at: packsFolder, includingPropertiesForKeys: nil)
+            .filter { $0.lastPathComponent.hasSuffix(".source.json") }
+            .sorted { $0.lastPathComponent < $1.lastPathComponent }
+        #expect(files.count == 4)
+
         let parser = WildcardParser.live
-        for pattern in manifest.prefixes {
-            let result = withDependencies {
-                $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
-            } operation: {
-                parser.parse(pattern, "FR")
+        let expander = WildcardExpander.live
+        var ids: [String] = []
+        for file in files {
+            let manifest = try PackManifest.load(from: file)
+            ids.append(manifest.id)
+            var total = 0
+            for pattern in manifest.prefixes {
+                let result = withDependencies {
+                    $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+                } operation: {
+                    parser.parse(pattern, "FR")
+                }
+                guard case .success(let prefix) = result else {
+                    Issue.record("\(manifest.id): \(pattern) rejected: \(result)")
+                    continue
+                }
+                total += expander.count(prefix)
             }
-            guard case .success(let prefix) = result else {
-                Issue.record("\(pattern) rejected: \(result)")
-                continue
-            }
-            #expect(prefix.wildcardLength == 6, "\(pattern)")
+            #expect(total > 0)
+            #expect(total <= WildcardQuotas.measuredExtensionCeiling, "\(manifest.id) has \(total) numbers")
         }
+        #expect(ids == ["fr.arcep.1", "fr.arcep.2", "fr.arcep.3", "fr.arcep.4"])
+
+        let first = try PackManifest.load(from: files[0])
+        #expect(first.enabledByDefault == true)
+        #expect(first.supersedes == ["fr.arcep", "fr.arcep-extra"])
+        for file in files.dropFirst() {
+            #expect(try PackManifest.load(from: file).enabledByDefault == false)
+        }
+    }
+
+    @Test func decodesEnabledByDefault() throws {
+        let json = """
+        {"id":"x","version":"2026-09-02","country":"FR","kind":"prefixes","enabledByDefault":false,"prefixes":["+33162*"]}
+        """.data(using: .utf8)!
+        #expect(try JSONDecoder().decode(PackManifest.self, from: json).enabledByDefault == false)
     }
 }
