@@ -31,7 +31,7 @@ struct AddRuleSheet: View {
                         }
                     }
 
-                    TextField("06 12 34 56 78 ou +33162999*", text: $store.rawNumber)
+                    TextField("06 12 34 56 78 ou 0162*", text: $store.rawNumber)
                         .keyboardType(.phonePad)
                         .textContentType(.telephoneNumber)
                         .focused($numberFieldFocused)
@@ -42,7 +42,7 @@ struct AddRuleSheet: View {
                 } header: {
                     Text("Numéro ou motif")
                 } footer: {
-                    Text("Terminez par `*` pour bloquer une famille de numéros (ex. `+33162999*`).")
+                    Text("Terminez par `*` pour bloquer une famille de numéros : `0162*` couvre tous les numéros commençant par 01 62 (jusqu'à 1 000 000 de numéros par motif).")
                         .font(.caption)
                 }
 
@@ -138,7 +138,7 @@ struct AddRuleSheet: View {
         case .unknownNationalLength(let country):
             return String(localized: "Longueur nationale inconnue pour \(country).")
         case .fixedTooShort(let minimum):
-            return String(localized: "Au moins \(minimum) chiffres fixes après l'indicatif pays.")
+            return String(localized: "Au moins \(minimum) chiffres avant le `*` (sans compter le 0 initial).")
         case .fixedTooLong(let maximum):
             return String(localized: "Trop de chiffres : maximum \(maximum) pour ce pays.")
         case .exceedsPerPatternQuota(let expanded, let limit):

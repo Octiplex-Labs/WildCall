@@ -4,10 +4,13 @@ import WildCallCoreApp
 
 struct PacksView: View {
     @Bindable var store: StoreOf<PacksFeature>
+    let appStore: StoreOf<AppFeature>
 
     var body: some View {
         NavigationStack {
             List {
+                FilterStatusSection(store: appStore)
+
                 if store.packs.isEmpty, store.isLoading {
                     HStack {
                         ProgressView()

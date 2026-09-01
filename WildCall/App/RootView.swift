@@ -12,6 +12,7 @@ struct RootView: View {
             NavigationStack {
                 VStack(spacing: 12) {
                     OnboardingBanner(store: store)
+                    FilterStatusBanner(store: store)
                     RulesListView(
                         store: store.scope(state: \.rules, action: \.rules)
                     )
@@ -22,7 +23,7 @@ struct RootView: View {
                 Label("Filtres", systemImage: "phone.down.fill")
             }
 
-            PacksView(store: store.scope(state: \.packs, action: \.packs))
+            PacksView(store: store.scope(state: \.packs, action: \.packs), appStore: store)
                 .tabItem {
                     Label("Réglages", systemImage: "gearshape")
                 }
