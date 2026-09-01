@@ -1,6 +1,17 @@
 import Foundation
 
-public struct IdentStoreReader {
+public struct IdentRangeEntry: Hashable, Sendable {
+    public let range: NumberRange
+    public let label: String
+
+    public init(range: NumberRange, label: String) {
+        self.range = range
+        self.label = label
+    }
+}
+
+/// Reads a WCI2 blob : sorted, disjoint ranges with one caller-ID label each.
+public struct IdentStoreReader: Sendable {
     public enum Error: Swift.Error, Equatable {
         case fileTooSmall
         case badMagic
@@ -8,13 +19,15 @@ public struct IdentStoreReader {
         case truncated
         case stringTableOutOfBounds
         case malformedLabel
+        case rangesNotSorted
+        case emptyRange
+        case totalMismatch
     }
 
-    public let count: Int
-    public let numbers: UnsafeBufferPointer<Int64>
-    private let data: Data
-    private let labelOffsets: UnsafeBufferPointer<UInt32>
-    private let stringTableStart: Int
+    public let entries: [IdentRangeEntry]
+    public let totalNumbers: Int64
+
+    public var rangeCount: Int { entries.count }
 
     public init(url: URL) throws {
         let data = try Data(contentsOf: url, options: [.mappedIfSafe])
@@ -23,54 +36,72 @@ public struct IdentStoreReader {
 
     public init(data: Data) throws {
         guard data.count >= BlockStoreFormat.identHeaderSize else { throw Error.fileTooSmall }
-        let magicOK = data.prefix(4).elementsEqual(BlockStoreFormat.identMagic)
-        guard magicOK else { throw Error.badMagic }
+        guard data.prefix(4).elementsEqual(BlockStoreFormat.identMagic) else { throw Error.badMagic }
 
-        let version: UInt32 = data.withUnsafeBytes { $0.load(fromByteOffset: 4, as: UInt32.self) }
+        let version: UInt32 = data.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: 4, as: UInt32.self) }
         guard version == BlockStoreFormat.version else { throw Error.unsupportedVersion(version) }
 
-        let count64: UInt64 = data.withUnsafeBytes { $0.load(fromByteOffset: 8, as: UInt64.self) }
-        let stringTableOffset: UInt64 = data.withUnsafeBytes { $0.load(fromByteOffset: 16, as: UInt64.self) }
-        let count = Int(count64)
+        let rangeCount = Int(data.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: 8, as: UInt64.self) })
+        let declaredTotal = Int64(data.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: 16, as: UInt64.self) })
+        let stringTableOffset = Int(data.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: 24, as: UInt64.self) })
 
-        let numbersStart = BlockStoreFormat.identHeaderSize
-        let numbersBytes = count * MemoryLayout<Int64>.size
-        let labelOffsetsStart = numbersStart + numbersBytes
-        let labelOffsetsBytes = count * MemoryLayout<UInt32>.size
-        let stringTableStart = labelOffsetsStart + labelOffsetsBytes
+        let rangesStart = BlockStoreFormat.identHeaderSize
+        let offsetsStart = rangesStart + rangeCount * BlockStoreFormat.rangeSize
+        let stringTableStart = offsetsStart + rangeCount * MemoryLayout<UInt32>.size
+        guard rangeCount >= 0, data.count >= stringTableStart else { throw Error.truncated }
+        guard stringTableOffset == stringTableStart else { throw Error.stringTableOutOfBounds }
 
-        guard data.count >= stringTableStart else { throw Error.truncated }
-        guard Int(stringTableOffset) == stringTableStart else { throw Error.stringTableOutOfBounds }
-
-        self.data = data
-        self.count = count
-        self.stringTableStart = stringTableStart
-        self.numbers = data.withUnsafeBytes { raw -> UnsafeBufferPointer<Int64> in
-            let base = raw.baseAddress!.advanced(by: numbersStart)
-                .assumingMemoryBound(to: Int64.self)
-            return UnsafeBufferPointer(start: base, count: count)
+        let ranges: [NumberRange]
+        do {
+            ranges = try BlockStoreReader.decodeRanges(data, at: rangesStart, count: rangeCount)
+        } catch {
+            throw Error.truncated
         }
-        self.labelOffsets = data.withUnsafeBytes { raw -> UnsafeBufferPointer<UInt32> in
-            let base = raw.baseAddress!.advanced(by: labelOffsetsStart)
-                .assumingMemoryBound(to: UInt32.self)
-            return UnsafeBufferPointer(start: base, count: count)
+
+        var entries: [IdentRangeEntry] = []
+        entries.reserveCapacity(rangeCount)
+        var total: Int64 = 0
+        var previousEnd: Int64? = nil
+        for (index, range) in ranges.enumerated() {
+            guard range.count > 0 else { throw Error.emptyRange }
+            if let previousEnd, range.start < previousEnd { throw Error.rangesNotSorted }
+            previousEnd = range.end
+            total += range.count
+
+            let labelOffset = Int(data.withUnsafeBytes {
+                $0.loadUnaligned(fromByteOffset: offsetsStart + index * 4, as: UInt32.self)
+            })
+            let label = try Self.readLabel(data, at: stringTableStart + labelOffset)
+            entries.append(IdentRangeEntry(range: range, label: label))
+        }
+        guard total == declaredTotal else { throw Error.totalMismatch }
+
+        self.entries = entries
+        self.totalNumbers = declaredTotal
+    }
+
+    /// Visits every (number, label) pair ascending, for
+    /// `addIdentificationEntry(withNextSequentialPhoneNumber:label:)`.
+    public func forEachNumber(_ body: (Int64, String) throws -> Void) rethrows {
+        for entry in entries {
+            var number = entry.range.start
+            let end = entry.range.end
+            while number < end {
+                try body(number, entry.label)
+                number += 1
+            }
         }
     }
 
-    public func label(at index: Int) throws -> String {
-        precondition(index >= 0 && index < count, "index out of bounds")
-        let offset = stringTableStart + Int(labelOffsets[index])
+    private static func readLabel(_ data: Data, at offset: Int) throws -> String {
         guard offset + 4 <= data.count else { throw Error.malformedLabel }
-        // String-table entries are variable-length, so the u32 length prefix
-        // can land on any byte offset : use the unaligned load.
-        let length: UInt32 = data.withUnsafeBytes {
-            $0.loadUnaligned(fromByteOffset: offset, as: UInt32.self)
-        }
+        let length = Int(data.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: offset, as: UInt32.self) })
         let stringStart = offset + 4
-        let stringEnd = stringStart + Int(length)
+        let stringEnd = stringStart + length
         guard stringEnd <= data.count else { throw Error.malformedLabel }
-        let bytes = data.subdata(in: stringStart..<stringEnd)
-        guard let str = String(data: bytes, encoding: .utf8) else { throw Error.malformedLabel }
-        return str
+        guard let label = String(data: data.subdata(in: stringStart..<stringEnd), encoding: .utf8) else {
+            throw Error.malformedLabel
+        }
+        return label
     }
 }
