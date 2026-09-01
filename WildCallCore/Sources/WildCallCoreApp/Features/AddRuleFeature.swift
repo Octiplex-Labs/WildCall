@@ -88,7 +88,7 @@ public struct AddRuleFeature: Sendable {
                 return .run { [repository = repository, orchestrator = orchestrator] send in
                     do {
                         try await repository.insert(rule)
-                        _ = try await orchestrator.rebuildAndReload()
+                        await orchestrator.requestRebuild()
                         await send(.ruleBuilt(rule))
                     } catch {
                         await send(.saveFailed(EquatableError(error)))

@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 import Testing
 import CustomDump
@@ -131,6 +132,40 @@ import CustomDump
             // expected
         } catch {
             Issue.record("expected .decodingFailed, got \(error)")
+        }
+    }
+
+    @Test func decodesSupersedes() throws {
+        let json = """
+        {"id":"fr.arcep","version":"2026-09-01","country":"FR","kind":"prefixes","supersedes":["fr.arcep-extra"],"prefixes":["+33162*"]}
+        """.data(using: .utf8)!
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: json)
+        #expect(manifest.supersedes == ["fr.arcep-extra"])
+    }
+
+    @Test func embeddedFrenchPackParsesEveryArcepPrefix() throws {
+        // The bundled pack is the one users get by default : make sure every
+        // prefix is accepted by the parser and covers exactly 10^6 numbers.
+        let url = URL(filePath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Packs/prefixes-FR.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "fr.arcep")
+        #expect(manifest.prefixes.count == 20)
+        #expect(manifest.supersedes == ["fr.arcep-extra"])
+        let parser = WildcardParser.live
+        for pattern in manifest.prefixes {
+            let result = withDependencies {
+                $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+            } operation: {
+                parser.parse(pattern, "FR")
+            }
+            guard case .success(let prefix) = result else {
+                Issue.record("\(pattern) rejected: \(result)")
+                continue
+            }
+            #expect(prefix.wildcardLength == 6, "\(pattern)")
         }
     }
 }

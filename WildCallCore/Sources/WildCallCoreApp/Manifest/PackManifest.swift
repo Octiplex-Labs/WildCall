@@ -16,6 +16,9 @@ public struct PackManifest: Codable, Hashable, Sendable {
     /// omit this : trust is rooted in OctiplexTrust.publicKey embedded in
     /// the app.
     public let publisherKey: String?
+    /// Ids of packs this one replaces. Installing it removes them (rules
+    /// included) so the user does not end up with two overlapping packs.
+    public let supersedes: [String]?
     public let prefixes: [String]
 
     public init(
@@ -27,6 +30,7 @@ public struct PackManifest: Codable, Hashable, Sendable {
         license: String? = nil,
         notes: String? = nil,
         publisherKey: String? = nil,
+        supersedes: [String]? = nil,
         prefixes: [String]
     ) {
         self.id = id
@@ -37,6 +41,7 @@ public struct PackManifest: Codable, Hashable, Sendable {
         self.license = license
         self.notes = notes
         self.publisherKey = publisherKey
+        self.supersedes = supersedes
         self.prefixes = prefixes
     }
 }

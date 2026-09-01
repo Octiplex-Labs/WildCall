@@ -225,7 +225,7 @@ public struct PackURLImportFeature: Sendable {
                 rulesRepository: rulesRepository,
                 now: now
             )
-            _ = try await orchestrator.rebuildAndReload()
+            await orchestrator.requestRebuild()
         case .failure(let err):
             throw EquatableError(err)
         }

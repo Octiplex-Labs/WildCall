@@ -89,7 +89,7 @@ public struct PackImportFeature: Sendable {
                             rulesRepository: rulesRepository,
                             now: now
                         )
-                        _ = try await orchestrator.rebuildAndReload()
+                        await orchestrator.requestRebuild()
                         await send(.installResult(.success(())))
                     } catch {
                         await send(.installResult(.failure(EquatableError(error))))

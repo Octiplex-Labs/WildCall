@@ -9,41 +9,52 @@ import CustomDump
 
     @Test func parsesFrenchPattern() {
         let result = parser.parse("+33162999*", "FR")
-        switch result {
-        case .success(let prefix):
-            #expect(prefix.fixedDigits == "33162999")
-            #expect(prefix.wildcardLength == 3)
-        case .failure(let error):
-            Issue.record("expected success, got \(error)")
+        #expect(result == .success(E164Prefix(fixedDigits: "33162999", wildcardLength: 3)))
+    }
+
+    @Test func parsesWideFrenchPatternRequestedByUsers() {
+        // "0123*" = every number after "01 23" : 10^6 numbers, one range.
+        #expect(parser.parse("0123*", "FR") == .success(E164Prefix(fixedDigits: "33123", wildcardLength: 6)))
+        #expect(parser.parse("01 23*", "FR") == .success(E164Prefix(fixedDigits: "33123", wildcardLength: 6)))
+        #expect(parser.parse("+33123*", "FR") == .success(E164Prefix(fixedDigits: "33123", wildcardLength: 6)))
+    }
+
+    @Test func stripsFrenchTrunkPrefixOnNationalInput() {
+        // Regression : "0162*" used to become 330162xxxxx (never matches).
+        #expect(parser.parse("0162999*", "FR") == .success(E164Prefix(fixedDigits: "33162999", wildcardLength: 3)))
+        #expect(parser.parse("0162999*", "FR") == parser.parse("+33162999*", "FR"))
+    }
+
+    @Test func stripsNanpTrunkPrefixOnNationalInput() {
+        #expect(parser.parse("1800555*", "US") == parser.parse("+1800555*", "US"))
+        #expect(parser.parse("800555*", "US") == .success(E164Prefix(fixedDigits: "1800555", wildcardLength: 4)))
+    }
+
+    @Test func doesNotStripWhenRegionHasNoTrunkPrefix() {
+        // Italian numbers start with 0 and have no trunk prefix : keep it.
+        let result = withDependencies {
+            $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+        } operation: {
+            parser.parse("0612*", "IT")
+        }
+        if case .success(let prefix) = result {
+            #expect(prefix.fixedDigits == "390612")
+        } else {
+            Issue.record("expected success, got \(result)")
         }
     }
 
-    @Test func parsesUsPatternHittingPerPatternCap() {
+    @Test func parsesUsPattern() {
         let result = parser.parse("+1800555*", "US")
-        switch result {
-        case .success(let prefix):
-            #expect(prefix.fixedDigits == "1800555")
-            #expect(prefix.wildcardLength == 4)
-        case .failure(let error):
-            Issue.record("expected success, got \(error)")
-        }
+        #expect(result == .success(E164Prefix(fixedDigits: "1800555", wildcardLength: 4)))
     }
 
     @Test func parsesPatternWithEmbeddedSpaces() {
-        let resultA = parser.parse("+33 1 62 999*", "FR")
-        let resultB = parser.parse("+33162999*", "FR")
-        expectNoDifference(resultA, resultB)
+        expectNoDifference(parser.parse("+33 1 62 999*", "FR"), parser.parse("+33162999*", "FR"))
     }
 
     @Test func parsesNationalInputUsingDefaultRegion() {
-        let result = parser.parse("162999*", "FR")
-        switch result {
-        case .success(let prefix):
-            #expect(prefix.fixedDigits == "33162999")
-            #expect(prefix.wildcardLength == 3)
-        case .failure(let error):
-            Issue.record("expected success, got \(error)")
-        }
+        #expect(parser.parse("162999*", "FR") == .success(E164Prefix(fixedDigits: "33162999", wildcardLength: 3)))
     }
 
     @Test func rejectsEmptyInput() {
@@ -64,10 +75,17 @@ import CustomDump
     }
 
     @Test func rejectsFixedTooShort() {
-        #expect(parser.parse("+33162*", "FR") == .failure(.fixedTooShort(minimum: 6)))
-        #expect(parser.parse("+3316*", "FR") == .failure(.fixedTooShort(minimum: 6)))
-        #expect(parser.parse("+33*", "FR") == .failure(.fixedTooShort(minimum: 6)))
-        #expect(parser.parse("16299*", "FR") == .failure(.fixedTooShort(minimum: 6)))
+        #expect(parser.parse("+331*", "FR") == .failure(.fixedTooShort(minimum: 2)))
+        #expect(parser.parse("+33*", "FR") == .failure(.fixedTooShort(minimum: 2)))
+        #expect(parser.parse("0*", "FR") == .failure(.fixedTooShort(minimum: 2)))
+        #expect(parser.parse("01*", "FR") == .failure(.fixedTooShort(minimum: 2)))
+    }
+
+    @Test func rejectsPatternsWiderThanOneMillion() {
+        // "012*" would be 10^7 numbers : refused with the actual count so the
+        // UI can explain.
+        #expect(parser.parse("012*", "FR") == .failure(.exceedsPerPatternQuota(expanded: 10_000_000, limit: 1_000_000)))
+        #expect(parser.parse("+3312*", "FR") == .failure(.exceedsPerPatternQuota(expanded: 10_000_000, limit: 1_000_000)))
     }
 
     @Test func rejectsFixedTooLong() {
@@ -93,16 +111,15 @@ import CustomDump
     }
 
     @Test func acceptsZeroWildcardWhenFixedHitsMaxLength() {
-        // 9 national digits in FR = exactly max length, wildcardLength = 0,
-        // expanded = 1 entry. Edge but valid.
         let result = parser.parse("+33162345678*", "FR")
-        switch result {
-        case .success(let prefix):
-            #expect(prefix.fixedDigits == "33162345678")
-            #expect(prefix.wildcardLength == 0)
-        case .failure(let error):
-            Issue.record("expected success, got \(error)")
-        }
+        #expect(result == .success(E164Prefix(fixedDigits: "33162345678", wildcardLength: 0)))
+    }
+
+    @Test func stripTrunkPrefixHelper() {
+        #expect(WildcardParser.stripTrunkPrefix("0162", trunkPrefix: "0") == "162")
+        #expect(WildcardParser.stripTrunkPrefix("162", trunkPrefix: "0") == "162")
+        #expect(WildcardParser.stripTrunkPrefix("0162", trunkPrefix: nil) == "0162")
+        #expect(WildcardParser.stripTrunkPrefix("0162", trunkPrefix: "") == "0162")
     }
 
     @Test func pow10Helper() {

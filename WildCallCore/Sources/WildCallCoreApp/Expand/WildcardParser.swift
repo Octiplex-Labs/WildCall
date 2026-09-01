@@ -72,7 +72,13 @@ extension WildcardParser {
             }
             region = defaultRegion
             countryCodeString = String(code)
-            nationalDigits = digitsString
+            // National input carries the trunk prefix ("0" in France, "1" in
+            // NANP countries) which is not part of the E.164 number : `0162*`
+            // must become `33162*`, not `330162*`.
+            nationalDigits = Self.stripTrunkPrefix(
+                digitsString,
+                trunkPrefix: box.nationalPrefix(forRegion: defaultRegion)
+            )
         }
 
         if nationalDigits.count < quotas.minFixedDigits {
@@ -100,6 +106,11 @@ extension WildcardParser {
                 wildcardLength: wildcardLength
             )
         )
+    }
+
+    static func stripTrunkPrefix(_ digits: String, trunkPrefix: String?) -> String {
+        guard let trunkPrefix, !trunkPrefix.isEmpty, digits.hasPrefix(trunkPrefix) else { return digits }
+        return String(digits.dropFirst(trunkPrefix.count))
     }
 
     static func pow10(_ exponent: Int) -> Int {

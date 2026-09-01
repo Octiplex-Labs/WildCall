@@ -80,7 +80,7 @@ public struct RulesFeature: Sendable {
                 return .run { [repository = repository, orchestrator = orchestrator] send in
                     do {
                         try await repository.delete(id)
-                        _ = try await orchestrator.rebuildAndReload()
+                        await orchestrator.requestRebuild()
                         await send(.mutationCompleted)
                     } catch {
                         await send(.mutationFailed(EquatableError(error)))
@@ -102,7 +102,7 @@ public struct RulesFeature: Sendable {
                 return .run { [repository = repository, orchestrator = orchestrator] send in
                     do {
                         try await repository.update(toggled)
-                        _ = try await orchestrator.rebuildAndReload()
+                        await orchestrator.requestRebuild()
                         await send(.mutationCompleted)
                     } catch {
                         await send(.mutationFailed(EquatableError(error)))

@@ -127,7 +127,10 @@ extension PackSyncCoordinator {
 
         let summary = SyncSummary(added: added, upgraded: upgraded, unchanged: unchanged, failed: failed)
         if summary.didChangeAnything {
-            _ = try await orchestrator.rebuildAndReload()
+            // Awaited on purpose : the background refresh task must not end
+            // while iOS is still ingesting. A reload failure is surfaced via
+            // StoreStatus and retried at next launch, it is not a sync error.
+            _ = try? await orchestrator.rebuildAndReload()
         }
         return summary
     }

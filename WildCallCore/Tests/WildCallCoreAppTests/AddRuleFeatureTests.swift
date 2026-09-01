@@ -65,9 +65,16 @@ import WildCallCoreShared
             $0.wildcardExpander = .live
         }
 
-        await store.send(.binding(.set(\.rawNumber, "+33162*"))) {
-            $0.rawNumber = "+33162*"
-            $0.validation = .wildcardInvalid(.fixedTooShort(minimum: 6))
+        await store.send(.binding(.set(\.rawNumber, "012*"))) {
+            $0.rawNumber = "012*"
+            $0.validation = .wildcardInvalid(.exceedsPerPatternQuota(expanded: 10_000_000, limit: 1_000_000))
+        }
+        await store.send(.binding(.set(\.rawNumber, "0123*"))) {
+            $0.rawNumber = "0123*"
+            $0.validation = .wildcardValid(
+                prefix: E164Prefix(fixedDigits: "33123", wildcardLength: 6),
+                expandedCount: 1_000_000
+            )
         }
     }
 

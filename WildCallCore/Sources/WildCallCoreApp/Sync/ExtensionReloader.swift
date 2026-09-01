@@ -8,7 +8,48 @@ public enum ExtensionEnabledStatus: Sendable, Equatable {
     case unknown
 }
 
+/// Typed mirror of `CXErrorCodeCallDirectoryManagerError`, so the UI can
+/// explain what went wrong without depending on CallKit.
+public enum ReloadFailure: Error, Equatable, Sendable, Codable {
+    case extensionDisabled
+    case noExtensionFound
+    case currentlyLoading
+    case loadingInterrupted
+    case entriesOutOfOrder
+    case duplicateEntries
+    case maximumEntriesExceeded
+    case unexpectedIncrementalRemoval
+    case unknown(String)
+
+    public init(_ error: any Error) {
+        if let failure = error as? ReloadFailure {
+            self = failure
+            return
+        }
+        let nsError = error as NSError
+        guard nsError.domain == CXErrorDomainCallDirectoryManager,
+              let code = CXErrorCodeCallDirectoryManagerError.Code(rawValue: nsError.code)
+        else {
+            self = .unknown(String(describing: error))
+            return
+        }
+        switch code {
+        case .extensionDisabled: self = .extensionDisabled
+        case .noExtensionFound: self = .noExtensionFound
+        case .currentlyLoading: self = .currentlyLoading
+        case .loadingInterrupted: self = .loadingInterrupted
+        case .entriesOutOfOrder: self = .entriesOutOfOrder
+        case .duplicateEntries: self = .duplicateEntries
+        case .maximumEntriesExceeded: self = .maximumEntriesExceeded
+        case .unexpectedIncrementalRemoval: self = .unexpectedIncrementalRemoval
+        case .unknown: self = .unknown("CXErrorCodeCallDirectoryManagerError.unknown")
+        @unknown default: self = .unknown("CXErrorCodeCallDirectoryManagerError(\(nsError.code))")
+        }
+    }
+}
+
 public struct ExtensionReloader: Sendable {
+    /// Throws `ReloadFailure`.
     public var reload: @Sendable () async throws -> Void
     public var getEnabledStatus: @Sendable () async throws -> ExtensionEnabledStatus
 
@@ -30,7 +71,7 @@ extension ExtensionReloader {
                 CXCallDirectoryManager.sharedInstance.reloadExtension(
                     withIdentifier: extensionBundleIdentifier
                 ) { error in
-                    if let error { cont.resume(throwing: error) }
+                    if let error { cont.resume(throwing: ReloadFailure(error)) }
                     else { cont.resume() }
                 }
             }

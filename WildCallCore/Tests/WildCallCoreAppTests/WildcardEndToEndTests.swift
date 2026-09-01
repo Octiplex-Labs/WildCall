@@ -6,17 +6,15 @@ import WildCallCoreShared
 
 @Suite struct WildcardEndToEndTests {
     @Test func userWildcardRuleFlowsFromParseToBlob() async throws {
-        // 1. Parse user input.
-        let parser = WildcardParser.live
-        let parsed = parser.parse("+33162999*", "FR")
+        // 1. Parse the input a French user actually types.
+        let parsed = WildcardParser.live.parse("0123*", "FR")
         guard case .success(let prefix) = parsed else {
             Issue.record("expected parse success, got \(parsed)")
             return
         }
-        #expect(prefix.fixedDigits == "33162999")
-        #expect(prefix.wildcardLength == 3)
+        #expect(prefix == E164Prefix(fixedDigits: "33123", wildcardLength: 6))
 
-        // 2. Build a BlockRule and round-trip through SwiftData mapping.
+        // 2. Round-trip through the SwiftData mapping.
         let rule = BlockRule(
             kind: .prefix(prefix),
             source: .user,
@@ -24,8 +22,7 @@ import WildCallCoreShared
             countryCode: "FR",
             createdAt: Date(timeIntervalSince1970: 1_700_000_000)
         )
-        let record = BlockRuleRecord.from(rule)
-        let recovered = try record.toRule()
+        let recovered = try BlockRuleRecord.from(rule).toRule()
         expectNoDifference(recovered, rule)
 
         // 3. Run the orchestrator end-to-end against an ephemeral container.
@@ -35,37 +32,38 @@ import WildCallCoreShared
         defer { try? FileManager.default.removeItem(at: tmpRoot) }
 
         let container = SharedContainer.ephemeral(root: tmpRoot)
-        let repository = RulesRepository(
-            fetchAll: { [rule] },
-            insert: { _ in },
-            delete: { _ in },
-            update: { _ in }
-        )
-        let reloader = ExtensionReloader(
-            reload: { },
-            getEnabledStatus: { .enabled }
-        )
-
         let orchestrator = StoreOrchestrator.live(
-            repository: repository,
+            repository: RulesRepository(fetchAll: { [rule] }, insert: { _ in }, delete: { _ in }, update: { _ in }),
             packsRepository: .inMemory,
             container: container,
-            reloader: reloader,
+            reloader: ExtensionReloader(reload: {}, getEnabledStatus: { .enabled }),
             expander: .live,
             quotas: .default,
+            status: StoreStatusHub().client,
             now: { Date(timeIntervalSince1970: 1_700_000_000) }
         )
 
         let summary = try await orchestrator.rebuildAndReload()
-        #expect(summary.blockCount == 1_000)
+        #expect(summary.blockCount == 1_000_000)
+        #expect(summary.block.rangeCount == 1)
         #expect(summary.identCount == 0)
 
-        // 4. Read the blob back and check the contents match the expansion.
+        // 4. Read the blob back the way the extension does.
         let reader = try BlockStoreReader(url: container.blockStoreURL())
-        let numbers = Array(reader.numbers)
-        #expect(numbers.count == 1_000)
-        #expect(numbers.first == 33_162_999_000)
-        #expect(numbers.last == 33_162_999_999)
-        #expect(numbers == numbers.sorted()) // builder guarantees sorted output
+        #expect(reader.ranges == [NumberRange(start: 33_123_000_000, count: 1_000_000)])
+        #expect(reader.ranges.first?.contains(33_123_456_789) == true)
+        #expect(reader.ranges.first?.contains(33_124_000_000) == false)
+
+        var visited: Int64 = 0
+        var first: Int64? = nil
+        var last: Int64? = nil
+        reader.forEachNumber { number in
+            if first == nil { first = number }
+            last = number
+            visited += 1
+        }
+        #expect(visited == 1_000_000)
+        #expect(first == 33_123_000_000)
+        #expect(last == 33_123_999_999)
     }
 }

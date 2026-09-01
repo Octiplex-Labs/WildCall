@@ -33,6 +33,14 @@ final class PhoneNumberBox: Sendable {
         }
     }
 
+    /// Trunk prefix dialled before a national number ("0" for FR, "1" for
+    /// US/CA, nil for IT). Nil when the region has none or is unknown.
+    func nationalPrefix(forRegion region: String) -> String? {
+        utility.withLock { box in
+            box.metadata(for: region)?.nationalPrefix
+        }
+    }
+
     /// Given the leading digits of an E.164 number (without `+`), try to
     /// identify the country by matching the first 1/2/3 digits against
     /// PhoneNumberKit's country-code metadata. Returns the canonical ISO

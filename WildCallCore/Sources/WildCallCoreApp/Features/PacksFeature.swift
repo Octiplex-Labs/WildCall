@@ -85,7 +85,7 @@ public struct PacksFeature: Sendable {
                 return .run { [packsRepository = packsRepository, orchestrator = orchestrator] send in
                     do {
                         try await packsRepository.setEnabled(id, enabled)
-                        _ = try await orchestrator.rebuildAndReload()
+                        await orchestrator.requestRebuild()
                         await send(.toggleCompleted(id: id))
                     } catch {
                         await send(.toggleFailed(id: id, EquatableError(error)))

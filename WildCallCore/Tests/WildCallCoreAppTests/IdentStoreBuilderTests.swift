@@ -4,65 +4,59 @@ import WildCallCoreShared
 @testable import WildCallCoreApp
 
 @Suite struct IdentStoreBuilderTests {
-    @Test func sortDedupeKeepsLastLabelPerNumber() {
-        let entries: [IdentEntry] = [
-            .init(number: 33_612_345_678, label: "Old"),
-            .init(number: 33_899_000_000, label: "Surtaxé"),
-            .init(number: 33_612_345_678, label: "Spam"),
-        ]
-        let result = IdentStoreBuilder.sortDedupe(entries)
-        #expect(result.count == 2)
-        #expect(result[0].number == 33_612_345_678)
-        #expect(result[0].label == "Spam")
-        #expect(result[1].number == 33_899_000_000)
-    }
-
     @Test func roundtripThroughReader() throws {
         let url = makeTempURL()
         defer { try? FileManager.default.removeItem(at: url) }
 
-        let builder = IdentStoreBuilder()
-        let entries: [IdentEntry] = [
-            .init(number: 33_899_111_222, label: "Surtaxé"),
-            .init(number: 33_162_000_000, label: "ARCEP démarchage"),
-            .init(number: 33_270_000_000, label: "ARCEP démarchage"),
+        let entries: [IdentRange] = [
+            .init(range: .single(33_899_111_222), label: "Surtaxé"),
+            .init(range: NumberRange(start: 33_162_000_000, count: 1_000_000), label: "ARCEP démarchage"),
+            .init(range: NumberRange(start: 33_270_000_000, count: 1_000_000), label: "ARCEP démarchage"),
         ]
-        let summary = try builder.build(entries: entries, to: url)
-        #expect(summary.count == 3)
+        let summary = try IdentStoreBuilder().build(entries: entries, to: url)
+        #expect(summary.count == 2_000_001)
+        #expect(summary.rangeCount == 3)
 
         let reader = try IdentStoreReader(url: url)
-        #expect(reader.count == 3)
-        #expect(reader.numbers[0] == 33_162_000_000)
-        #expect(try reader.label(at: 0) == "ARCEP démarchage")
-        #expect(reader.numbers[1] == 33_270_000_000)
-        #expect(reader.numbers[2] == 33_899_111_222)
-        #expect(try reader.label(at: 2) == "Surtaxé")
+        #expect(reader.entries.map(\.range) == [
+            NumberRange(start: 33_162_000_000, count: 1_000_000),
+            NumberRange(start: 33_270_000_000, count: 1_000_000),
+            .single(33_899_111_222),
+        ])
+        #expect(reader.entries.map(\.label) == ["ARCEP démarchage", "ARCEP démarchage", "Surtaxé"])
+    }
+
+    @Test func overlapKeepsEarliestEntry() throws {
+        let url = makeTempURL()
+        defer { try? FileManager.default.removeItem(at: url) }
+
+        let entries: [IdentRange] = [
+            .init(range: NumberRange(start: 10, count: 10), label: "Second"),
+            .init(range: NumberRange(start: 0, count: 15), label: "First"),
+        ]
+        _ = try IdentStoreBuilder().build(entries: entries, to: url)
+        let reader = try IdentStoreReader(url: url)
+        #expect(reader.entries == [
+            IdentRangeEntry(range: NumberRange(start: 0, count: 15), label: "First"),
+            IdentRangeEntry(range: NumberRange(start: 15, count: 5), label: "Second"),
+        ])
     }
 
     @Test func unicodeLabelRoundtrip() throws {
         let url = makeTempURL()
         defer { try? FileManager.default.removeItem(at: url) }
 
-        let builder = IdentStoreBuilder()
         let label = "Démarchage 📞 énergie verte"
-        _ = try builder.build(
-            entries: [.init(number: 33_162_999_999, label: label)],
-            to: url
-        )
-
-        let reader = try IdentStoreReader(url: url)
-        #expect(try reader.label(at: 0) == label)
+        _ = try IdentStoreBuilder().build(entries: [.init(range: .single(33_162_999_999), label: label)], to: url)
+        #expect(try IdentStoreReader(url: url).entries.first?.label == label)
     }
 
     @Test func emptyInputProducesValidEmptyBlob() throws {
         let url = makeTempURL()
         defer { try? FileManager.default.removeItem(at: url) }
 
-        let builder = IdentStoreBuilder()
-        let summary = try builder.build(entries: [], to: url)
+        let summary = try IdentStoreBuilder().build(entries: [], to: url)
         #expect(summary.count == 0)
-
-        let reader = try IdentStoreReader(url: url)
-        #expect(reader.count == 0)
+        #expect(try IdentStoreReader(url: url).rangeCount == 0)
     }
 }

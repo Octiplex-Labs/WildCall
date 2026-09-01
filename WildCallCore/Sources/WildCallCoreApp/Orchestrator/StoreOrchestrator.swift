@@ -1,5 +1,6 @@
 import Dependencies
 import Foundation
+import IssueReporting
 import WildCallCoreShared
 
 public struct RebuildSummary: Equatable, Sendable {
@@ -19,17 +20,33 @@ public struct RebuildSummary: Equatable, Sendable {
         self.block = block
         self.ident = ident
     }
+
+    public var totalNumbers: Int { blockCount + identCount }
 }
 
 public enum OrchestratorError: Error, Equatable, Sendable {
     case exceedsTotalQuota(expanded: Int, limit: Int)
 }
 
+/// Owns the "rules → shared store → reloadExtension" cycle.
+///
+/// - `rebuildAndReload` runs the full cycle and waits for iOS to finish
+///   ingesting. Used where the caller must know the outcome before
+///   continuing (background refresh, tests).
+/// - `requestRebuild` returns immediately. Cycles are serialized (CallKit
+///   rejects concurrent reloads with `currentlyLoading`) and coalesced :
+///   ten quick edits produce at most one extra cycle after the running one.
+///   Progress and failures are published through `StoreStatusClient`.
 public struct StoreOrchestrator: Sendable {
     public var rebuildAndReload: @Sendable () async throws -> RebuildSummary
+    public var requestRebuild: @Sendable () async -> Void
 
-    public init(rebuildAndReload: @escaping @Sendable () async throws -> RebuildSummary) {
+    public init(
+        rebuildAndReload: @escaping @Sendable () async throws -> RebuildSummary,
+        requestRebuild: (@Sendable () async -> Void)? = nil
+    ) {
         self.rebuildAndReload = rebuildAndReload
+        self.requestRebuild = requestRebuild ?? { _ = try? await rebuildAndReload() }
     }
 }
 
@@ -41,42 +58,90 @@ extension StoreOrchestrator {
         reloader: ExtensionReloader,
         expander: WildcardExpander,
         quotas: WildcardQuotas,
+        status: StoreStatusClient,
         now: @escaping @Sendable () -> Date = Date.init
     ) -> StoreOrchestrator {
-        StoreOrchestrator(
-            rebuildAndReload: {
+        let serializer = RebuildSerializer()
+
+        @Sendable func performCycle() async throws -> RebuildSummary {
+            status.set(.building)
+            let manifestURL = try container.manifestURL()
+            let summary: RebuildSummary
+            var manifest: StoreManifest
+            do {
                 let rules = try await repository.fetchAll()
                 let packs = try await packsRepository.fetchAll()
                 let activeRules = Self.filterByPackActivation(rules: rules, packs: packs)
-                let (blockNumbers, identEntries) = try Self.split(
+                let (blockRanges, identRanges) = try Self.split(
                     rules: activeRules,
                     expander: expander,
                     quotas: quotas
                 )
 
-                let blockURL = try container.blockStoreURL()
-                let identURL = try container.identStoreURL()
-                let manifestURL = try container.manifestURL()
+                let blockSummary = try BlockStoreBuilder().build(ranges: blockRanges, to: container.blockStoreURL())
+                let identSummary = try IdentStoreBuilder().build(entries: identRanges, to: container.identStoreURL())
 
-                let blockSummary = try BlockStoreBuilder().build(numbers: blockNumbers, to: blockURL)
-                let identSummary = try IdentStoreBuilder().build(entries: identEntries, to: identURL)
-
-                let manifest = StoreManifest(
+                manifest = StoreManifest(
                     buildDate: now(),
-                    block: .init(count: blockSummary.count, bytes: blockSummary.bytesWritten, sha256: blockSummary.sha256),
-                    ident: .init(count: identSummary.count, bytes: identSummary.bytesWritten, sha256: identSummary.sha256),
-                    sources: ["user"]
+                    block: .init(count: blockSummary.count, ranges: blockSummary.rangeCount, bytes: blockSummary.bytesWritten, sha256: blockSummary.sha256),
+                    ident: .init(count: identSummary.count, ranges: identSummary.rangeCount, bytes: identSummary.bytesWritten, sha256: identSummary.sha256),
+                    sources: Self.sources(of: activeRules)
                 )
                 try manifest.write(to: manifestURL)
 
-                try await reloader.reload()
-
-                return RebuildSummary(
+                summary = RebuildSummary(
                     blockCount: blockSummary.count,
                     identCount: identSummary.count,
                     block: blockSummary,
                     ident: identSummary
                 )
+            } catch {
+                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now()))
+                throw error
+            }
+
+            status.set(.reloading(numbers: summary.totalNumbers))
+            do {
+                try await reloader.reload()
+            } catch {
+                let failure = ReloadFailure(error)
+                manifest.lastReload = .init(date: now(), succeeded: false, failure: failure)
+                try? manifest.write(to: manifestURL)
+                status.set(.failed(failure, numbers: summary.totalNumbers, date: now()))
+                throw failure
+            }
+
+            manifest.lastReload = .init(date: now(), succeeded: true)
+            try? manifest.write(to: manifestURL)
+            status.set(.ready(numbers: summary.totalNumbers, date: now()))
+            return summary
+        }
+
+        return StoreOrchestrator(
+            rebuildAndReload: {
+                await serializer.acquire()
+                do {
+                    let summary = try await performCycle()
+                    await serializer.release()
+                    return summary
+                } catch {
+                    await serializer.release()
+                    throw error
+                }
+            },
+            requestRebuild: {
+                guard await serializer.markPending() else { return }
+                Task {
+                    await serializer.acquire()
+                    await serializer.clearPending()
+                    do {
+                        _ = try await performCycle()
+                    } catch {
+                        // Already surfaced through StoreStatusClient.
+                        reportIssue("Store rebuild failed: \(error)")
+                    }
+                    await serializer.release()
+                }
             }
         )
     }
@@ -85,20 +150,24 @@ extension StoreOrchestrator {
         rules: [BlockRule],
         expander: WildcardExpander,
         quotas: WildcardQuotas
-    ) throws -> (numbers: [Int64], entries: [IdentEntry]) {
-        var numbers: [Int64] = []
-        var entries: [IdentEntry] = []
+    ) throws -> (block: [NumberRange], ident: [IdentRange]) {
+        var block: [NumberRange] = []
+        var ident: [IdentRange] = []
         var userExpanded = 0
-        numbers.reserveCapacity(rules.count)
+        block.reserveCapacity(rules.count)
 
         for rule in rules {
+            let range: NumberRange
             switch rule.kind {
             case .exact(let e164):
-                appendNumberOrEntry(value: e164.value, rule: rule, into: &numbers, entries: &entries)
+                range = .single(e164.value)
             case .prefix(let prefix):
-                let expanded = expander.expand(prefix)
+                guard let expanded = expander.range(prefix) else {
+                    reportIssue("Skipping prefix rule \(rule.id): cannot expand \(prefix)")
+                    continue
+                }
                 if case .user = rule.source {
-                    userExpanded += expanded.count
+                    userExpanded += Int(expanded.count)
                     if userExpanded > quotas.totalUser {
                         throw OrchestratorError.exceedsTotalQuota(
                             expanded: userExpanded,
@@ -106,12 +175,24 @@ extension StoreOrchestrator {
                         )
                     }
                 }
-                for value in expanded {
-                    appendNumberOrEntry(value: value, rule: rule, into: &numbers, entries: &entries)
-                }
+                range = expanded
+            }
+
+            switch rule.action {
+            case .block:
+                block.append(range)
+            case .identify:
+                ident.append(IdentRange(range: range, label: rule.label ?? "WildCall"))
             }
         }
-        return (numbers, entries)
+
+        // An explicit "identify" rule wins over blocking : if the user asks
+        // to see a label for a number that a pack would block, the call must
+        // ring. Ranges are normalized here so the builders receive disjoint
+        // input and the two files never overlap.
+        let normalizedIdent = RangeSet.normalizeIdent(ident)
+        let normalizedBlock = RangeSet.subtract(block, removing: normalizedIdent.map(\.range))
+        return (normalizedBlock, normalizedIdent)
     }
 
     static func filterByPackActivation(
@@ -128,19 +209,51 @@ extension StoreOrchestrator {
         }
     }
 
-    private static func appendNumberOrEntry(
-        value: Int64,
-        rule: BlockRule,
-        into numbers: inout [Int64],
-        entries: inout [IdentEntry]
-    ) {
-        switch rule.action {
-        case .block:
-            numbers.append(value)
-        case .identify:
-            let label = rule.label ?? "WildCall"
-            entries.append(IdentEntry(number: value, label: label))
+    static func sources(of rules: [BlockRule]) -> [String] {
+        var seen: Set<String> = []
+        var out: [String] = []
+        for rule in rules {
+            let name: String
+            switch rule.source {
+            case .user: name = "user"
+            case .pack(let id): name = "pack:\(id)"
+            }
+            if seen.insert(name).inserted { out.append(name) }
         }
+        return out.sorted()
+    }
+}
+
+/// Serializes rebuild cycles and coalesces pending requests.
+actor RebuildSerializer {
+    private var isRunning = false
+    private var waiters: [CheckedContinuation<Void, Never>] = []
+    private var hasPendingRequest = false
+
+    func acquire() async {
+        while isRunning {
+            await withCheckedContinuation { waiters.append($0) }
+        }
+        isRunning = true
+    }
+
+    func release() {
+        isRunning = false
+        let resumed = waiters
+        waiters.removeAll()
+        for waiter in resumed { waiter.resume() }
+    }
+
+    /// Returns true when the caller should schedule a cycle; false when one
+    /// is already queued and will pick up the caller's changes.
+    func markPending() -> Bool {
+        if hasPendingRequest { return false }
+        hasPendingRequest = true
+        return true
+    }
+
+    func clearPending() {
+        hasPendingRequest = false
     }
 }
 
@@ -152,13 +265,15 @@ extension StoreOrchestrator: DependencyKey {
         @Dependency(\.extensionReloader) var reloader
         @Dependency(\.wildcardExpander) var expander
         @Dependency(\.wildcardQuotas) var quotas
+        @Dependency(\.storeStatus) var status
         return .live(
             repository: repository,
             packsRepository: packsRepository,
             container: container,
             reloader: reloader,
             expander: expander,
-            quotas: quotas
+            quotas: quotas,
+            status: status
         )
     }()
 
@@ -173,7 +288,8 @@ extension StoreOrchestrator: DependencyKey {
                     ident: BlobBuildSummary(count: 0, bytesWritten: 0, sha256: "")
                 )
             )
-        }
+        },
+        requestRebuild: { unimplemented("StoreOrchestrator.requestRebuild") }
     )
 }
 

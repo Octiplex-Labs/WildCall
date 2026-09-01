@@ -6,9 +6,9 @@ import Testing
 @Suite struct WildcardQuotasTests {
     @Test func defaultValuesAreStable() {
         let quotas = WildcardQuotas.default
-        #expect(quotas.perPattern == 10_000)
-        #expect(quotas.totalUser == 5_000_000)
-        #expect(quotas.minFixedDigits == 6)
+        #expect(quotas.perPattern == 1_000_000)
+        #expect(quotas.totalUser == 10_000_000)
+        #expect(quotas.minFixedDigits == 2)
     }
 
     @Test func liveAndTestValuesEqualDefault() {

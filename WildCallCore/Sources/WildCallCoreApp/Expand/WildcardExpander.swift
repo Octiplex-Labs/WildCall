@@ -1,27 +1,31 @@
 import Dependencies
 import Foundation
+import WildCallCoreShared
 
+/// Turns a prefix into the contiguous range it covers. `+33162*` with 6
+/// wildcard digits is `[33162000000, 33163000000)`. Nothing is materialised :
+/// the range itself is what gets written to the shared store.
 public struct WildcardExpander: Sendable {
-    public var expand: @Sendable (_ prefix: E164Prefix) -> [Int64]
+    public var range: @Sendable (_ prefix: E164Prefix) -> NumberRange?
     public var count: @Sendable (_ prefix: E164Prefix) -> Int
 
     public init(
-        expand: @escaping @Sendable (E164Prefix) -> [Int64],
+        range: @escaping @Sendable (E164Prefix) -> NumberRange?,
         count: @escaping @Sendable (E164Prefix) -> Int
     ) {
-        self.expand = expand
+        self.range = range
         self.count = count
     }
 }
 
 extension WildcardExpander {
     public static let live = WildcardExpander(
-        expand: { prefix in
-            guard let base = Int64(prefix.fixedDigits) else { return [] }
-            let count = Self.pow10(prefix.wildcardLength)
-            let multiplier = Int64(count)
-            let start = base * multiplier
-            return Array(start..<(start + multiplier))
+        range: { prefix in
+            guard let base = Int64(prefix.fixedDigits), prefix.wildcardLength >= 0 else { return nil }
+            let multiplier = Int64(Self.pow10(prefix.wildcardLength))
+            let (start, overflow) = base.multipliedReportingOverflow(by: multiplier)
+            guard !overflow else { return nil }
+            return NumberRange(start: start, count: multiplier)
         },
         count: { prefix in
             Self.pow10(prefix.wildcardLength)
@@ -37,7 +41,7 @@ extension WildcardExpander {
 extension WildcardExpander: DependencyKey {
     public static let liveValue: WildcardExpander = .live
     public static let testValue: WildcardExpander = WildcardExpander(
-        expand: { _ in unimplemented("WildcardExpander.expand", placeholder: []) },
+        range: { _ in unimplemented("WildcardExpander.range", placeholder: nil) },
         count: { _ in unimplemented("WildcardExpander.count", placeholder: 0) }
     )
 }
