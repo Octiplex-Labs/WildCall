@@ -226,7 +226,7 @@ enum FilterStatusFormatting {
         case .entriesOutOfOrder, .duplicateEntries, .unexpectedIncrementalRemoval:
             String(localized: "Le fichier partagé est incohérent. Reconstruisez le filtre ; si le problème persiste, signalez-le.")
         case .maximumEntriesExceeded:
-            String(localized: "Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.")
+            String(localized: "iOS accepte au plus \(count(WildcardQuotas.measuredExtensionCeiling)) numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.")
         case .unknown(let description):
             description
         }

@@ -142,6 +142,7 @@ import WildCallCoreShared
         func tearDown() { try? FileManager.default.removeItem(at: root) }
 
         func orchestrator(
+            quotas: WildcardQuotas = .default,
             reload: @escaping @Sendable () async throws -> Void = {}
         ) -> StoreOrchestrator {
             StoreOrchestrator.live(
@@ -156,11 +157,28 @@ import WildCallCoreShared
                     getEnabledStatus: { .enabled }
                 ),
                 expander: .live,
-                quotas: .default,
+                quotas: quotas,
                 status: hub.client,
                 now: { Date(timeIntervalSince1970: 1_700_000_000) }
             )
         }
+    }
+
+    @Test func listOverExtensionCeilingFailsFastWithoutReloading() async throws {
+        let harness = try Harness()
+        defer { harness.tearDown() }
+        harness.rules.withValue {
+            $0 = [BlockRule(kind: .prefix(.init(fixedDigits: "33162", wildcardLength: 6)), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR")]
+        }
+        let tight = WildcardQuotas(perPattern: 1_000_000, totalUser: 1_000_000, minFixedDigits: 2, maxExtensionEntries: 999_999)
+
+        await #expect(throws: ReloadFailure.maximumEntriesExceeded) {
+            try await harness.orchestrator(quotas: tight).rebuildAndReload()
+        }
+        #expect(harness.reloadCalls.value == 0)
+        #expect(harness.hub.current == .failed(.maximumEntriesExceeded, numbers: 1_000_000, date: Date(timeIntervalSince1970: 1_700_000_000)))
+        let manifest = try StoreManifest.load(from: harness.container.manifestURL())
+        #expect(manifest?.lastReload?.failure == .maximumEntriesExceeded)
     }
 
     @Test func rebuildAndReloadHappyPath() async throws {

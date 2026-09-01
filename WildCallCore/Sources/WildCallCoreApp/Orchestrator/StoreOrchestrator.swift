@@ -65,18 +65,35 @@ extension StoreOrchestrator {
 
         @Sendable func performCycle() async throws -> RebuildSummary {
             status.set(.building)
-            let manifestURL = try container.manifestURL()
+            let manifestURL: URL
+            do {
+                manifestURL = try container.manifestURL()
+            } catch {
+                WildCallLog.error("App Group container unavailable: \(error)")
+                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now()))
+                throw error
+            }
+            WildCallLog.info("Rebuild: store root \(manifestURL.deletingLastPathComponent().path)")
             let summary: RebuildSummary
             var manifest: StoreManifest
             do {
                 let rules = try await repository.fetchAll()
+                WildCallLog.info("Rebuild: \(rules.count) rules fetched")
                 let packs = try await packsRepository.fetchAll()
                 let activeRules = Self.filterByPackActivation(rules: rules, packs: packs)
-                let (blockRanges, identRanges) = try Self.split(
+                var (blockRanges, identRanges) = try Self.split(
                     rules: activeRules,
                     expander: expander,
                     quotas: quotas
                 )
+                if let cap = DebugProbe.maxNumbers {
+                    // Measurement harness : WILDCALL_DEBUG_MAX_NUMBERS caps the
+                    // volume sent to iOS so the extension's ceiling can be
+                    // bisected on device. Debug builds only.
+                    blockRanges = RangeSet.truncate(blockRanges, to: cap)
+                    identRanges = []
+                    WildCallLog.info("Rebuild: DEBUG cap applied, \(RangeSet.total(blockRanges)) numbers")
+                }
 
                 let blockSummary = try BlockStoreBuilder().build(ranges: blockRanges, to: container.blockStoreURL())
                 let identSummary = try IdentStoreBuilder().build(entries: identRanges, to: container.identStoreURL())
@@ -88,6 +105,7 @@ extension StoreOrchestrator {
                     sources: Self.sources(of: activeRules)
                 )
                 try manifest.write(to: manifestURL)
+                WildCallLog.info("Rebuild: block \(blockSummary.count) numbers / \(blockSummary.rangeCount) ranges, ident \(identSummary.count) / \(identSummary.rangeCount)")
 
                 summary = RebuildSummary(
                     blockCount: blockSummary.count,
@@ -96,15 +114,31 @@ extension StoreOrchestrator {
                     ident: identSummary
                 )
             } catch {
+                WildCallLog.error("Rebuild failed before reload: \(error)")
                 status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now()))
                 throw error
             }
 
+            // iOS rejects the whole list past the ceiling, after ingesting it
+            // for tens of seconds : fail fast with the same typed error so the
+            // UI can explain and the user can disable a pack.
+            if summary.totalNumbers > quotas.maxExtensionEntries {
+                WildCallLog.error("Reload skipped: \(summary.totalNumbers) numbers exceed the extension ceiling \(quotas.maxExtensionEntries)")
+                manifest.lastReload = .init(date: now(), succeeded: false, failure: .maximumEntriesExceeded)
+                try? manifest.write(to: manifestURL)
+                status.set(.failed(.maximumEntriesExceeded, numbers: summary.totalNumbers, date: now()))
+                throw ReloadFailure.maximumEntriesExceeded
+            }
+
             status.set(.reloading(numbers: summary.totalNumbers))
+            WildCallLog.info("Reload: asking iOS to ingest \(summary.totalNumbers) numbers")
+            let reloadStart = now()
             do {
                 try await reloader.reload()
+                WildCallLog.info("Reload: completed in \(Int(now().timeIntervalSince(reloadStart))) s")
             } catch {
                 let failure = ReloadFailure(error)
+                WildCallLog.error("Reload failed: \(failure)")
                 manifest.lastReload = .init(date: now(), succeeded: false, failure: failure)
                 try? manifest.write(to: manifestURL)
                 status.set(.failed(failure, numbers: summary.totalNumbers, date: now()))
@@ -297,5 +331,26 @@ extension DependencyValues {
     public var storeOrchestrator: StoreOrchestrator {
         get { self[StoreOrchestrator.self] }
         set { self[StoreOrchestrator.self] = newValue }
+    }
+}
+
+/// Debug-only knobs read from the environment (`devicectl ... --environment-variables`).
+enum DebugProbe {
+    static var maxNumbers: Int64? {
+        #if DEBUG
+        guard let raw = ProcessInfo.processInfo.environment["WILDCALL_DEBUG_MAX_NUMBERS"],
+              let value = Int64(raw) else { return nil }
+        return value
+        #else
+        return nil
+        #endif
+    }
+
+    static var forceRebuild: Bool {
+        #if DEBUG
+        return maxNumbers != nil
+        #else
+        return false
+        #endif
     }
 }

@@ -66,6 +66,20 @@ public enum RangeSet {
         return out
     }
 
+    /// Keeps the leading ranges up to `limit` numbers, clipping the last one.
+    /// Used by the debug ingestion-budget probe.
+    public static func truncate(_ ranges: [NumberRange], to limit: Int64) -> [NumberRange] {
+        var out: [NumberRange] = []
+        var remaining = max(0, limit)
+        for range in ranges {
+            guard remaining > 0 else { break }
+            let take = min(range.count, remaining)
+            out.append(NumberRange(start: range.start, count: take))
+            remaining -= take
+        }
+        return out
+    }
+
     public static func total(_ ranges: [NumberRange]) -> Int64 {
         ranges.reduce(0) { $0 + max(0, $1.count) }
     }

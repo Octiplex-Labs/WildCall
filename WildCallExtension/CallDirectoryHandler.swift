@@ -21,6 +21,7 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
             .containerURL(forSecurityApplicationGroupIdentifier: BlockStoreFormat.appGroupIdentifier)
         var report = ExtensionRunReport(startedAt: Date(), isIncremental: context.isIncremental)
         writeReport(report, root: root)
+        WildCallLog.info("Extension: beginRequest incremental=\(context.isIncremental) root=\(root?.path ?? "nil")")
 
         do {
             if context.isIncremental {
@@ -32,8 +33,10 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
             report.outcome = .completed
             report.finishedAt = Date()
             writeReport(report, root: root)
+            WildCallLog.info("Extension: loaded \(report.blockNumbers) block + \(report.identNumbers) ident in \(Int(report.duration ?? 0)) s")
             context.completeRequest()
         } catch {
+            WildCallLog.error("Extension: failed \(error)")
             report.outcome = .failed
             report.finishedAt = Date()
             report.errorDescription = String(describing: error)

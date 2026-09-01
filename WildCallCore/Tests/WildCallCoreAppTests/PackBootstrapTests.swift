@@ -177,4 +177,23 @@ import Testing
         #expect(!PackBootstrap.isNewer("2026-09-01", than: "2026-09-01"))
         #expect(PackBootstrap.isNewer("v10", than: "v9"))
     }
+
+    @Test func freshInstallHonoursEnabledByDefault() async throws {
+        let (rulesRepo, packsRepo) = makeRepositories()
+        let disabled = PackManifest(
+            id: "fr.arcep.2", version: "2026-09-02", country: "FR", kind: .prefixes,
+            enabledByDefault: false, prefixes: ["+33270*"]
+        )
+        _ = try await withDependencies {
+            $0.rulesRepository = rulesRepo
+            $0.packsRepository = packsRepo
+            $0.packLoader = .live
+            $0.wildcardParser = .live
+            $0.date = .constant(Date(timeIntervalSince1970: 1_700_000_000))
+            $0.uuid = .incrementing
+        } operation: {
+            try await PackBootstrap.live.run([disabled])
+        }
+        #expect(try await packsRepo.fetch("fr.arcep.2")?.enabled == false)
+    }
 }

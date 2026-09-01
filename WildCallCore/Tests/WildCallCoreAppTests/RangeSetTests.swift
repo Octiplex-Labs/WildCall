@@ -102,4 +102,11 @@ import WildCallCoreShared
             IdentRange(range: NumberRange(start: 0, count: 10), label: "wide"),
         ])
     }
+
+    @Test func truncateClipsToBudget() {
+        let ranges = [NumberRange(start: 0, count: 10), NumberRange(start: 20, count: 10)]
+        #expect(RangeSet.truncate(ranges, to: 15) == [NumberRange(start: 0, count: 10), NumberRange(start: 20, count: 5)])
+        #expect(RangeSet.truncate(ranges, to: 0) == [])
+        #expect(RangeSet.truncate(ranges, to: 100) == ranges)
+    }
 }

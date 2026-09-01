@@ -28,6 +28,7 @@ struct PacksView: View {
                         ForEach(store.packs) { pack in
                             PackRow(
                                 pack: pack,
+                                numberCount: store.numberCounts[pack.id],
                                 isToggling: store.togglingId == pack.id,
                                 onToggle: { newValue in
                                     store.send(.toggle(id: pack.id, enabled: newValue))
@@ -37,7 +38,7 @@ struct PacksView: View {
                     } header: {
                         Text("Packs installés")
                     } footer: {
-                        Text("Les packs désactivés ne contribuent plus à la liste de blocage. Les règles que vous avez ajoutées vous-même ne sont pas affectées.")
+                        Text("iOS accepte au plus \(FilterStatusFormatting.count(WildcardQuotas.measuredExtensionCeiling)) numéros par extension : activez les packs de façon à rester sous ce total (\(FilterStatusFormatting.count(enabledPackNumbers)) actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.")
                     }
                 }
 
@@ -141,6 +142,10 @@ struct PacksView: View {
         }
     }
 
+    private var enabledPackNumbers: Int {
+        store.packs.filter(\.enabled).reduce(0) { $0 + (store.numberCounts[$1.id] ?? 0) }
+    }
+
     @ViewBuilder private var syncFooterView: some View {
         if let error = store.lastSyncError {
             Label(error.message, systemImage: "exclamationmark.triangle.fill")
@@ -173,6 +178,7 @@ struct PacksView: View {
 
 private struct PackRow: View {
     let pack: InstalledPack
+    let numberCount: Int?
     let isToggling: Bool
     let onToggle: (Bool) -> Void
 
@@ -184,6 +190,11 @@ private struct PackRow: View {
                 Text("\(pack.country) · version \(pack.version)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                if let numberCount {
+                    Text("\(FilterStatusFormatting.count(numberCount)) numéros")
+                        .font(.caption.monospacedDigit())
+                        .foregroundStyle(.secondary)
+                }
             }
             Spacer()
             if isToggling {
@@ -204,6 +215,9 @@ private struct PackRow: View {
 
     private var packDescription: String {
         let country = Locale.current.localizedString(forRegionCode: pack.country) ?? pack.country
+        if let numberCount {
+            return String(localized: "Pack \(pack.id), \(country), version \(pack.version), \(FilterStatusFormatting.count(numberCount)) numéros")
+        }
         return String(localized: "Pack \(pack.id), \(country), version \(pack.version)")
     }
 }

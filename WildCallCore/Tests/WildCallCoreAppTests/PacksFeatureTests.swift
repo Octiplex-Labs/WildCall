@@ -2,6 +2,7 @@ import ComposableArchitecture
 import Foundation
 import IdentifiedCollections
 import Testing
+import WildCallCoreShared
 @testable import WildCallCoreApp
 
 @MainActor
@@ -26,6 +27,13 @@ import Testing
                 delete: { _ in }
             )
             $0.storeOrchestrator = .testValue
+            $0.rulesRepository = RulesRepository(
+                fetchAll: {
+                    [BlockRule(kind: .prefix(.init(fixedDigits: "33162", wildcardLength: 6)), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR")]
+                },
+                insert: { _ in }, delete: { _ in }, update: { _ in }
+            )
+            $0.wildcardExpander = .live
         }
 
         await store.send(.task) { $0.isLoading = true }
@@ -33,6 +41,19 @@ import Testing
             $0.isLoading = false
             $0.packs = [self.arcep]
         }
+        await store.receive(\.numberCountsLoaded) {
+            $0.numberCounts = ["fr.arcep": 1_000_000]
+        }
+    }
+
+    @Test func numberCountsSumPackRulesOnly() {
+        let rules: [BlockRule] = [
+            .init(kind: .prefix(.init(fixedDigits: "33162", wildcardLength: 6)), source: .pack(packId: "a"), action: .block, countryCode: "FR"),
+            .init(kind: .prefix(.init(fixedDigits: "331629", wildcardLength: 5)), source: .pack(packId: "a"), action: .block, countryCode: "FR"),
+            .init(kind: .exact(E164(33_612_345_678)!), source: .pack(packId: "b"), action: .block, countryCode: "FR"),
+            .init(kind: .exact(E164(33_612_345_679)!), source: .user, action: .block, countryCode: "FR"),
+        ]
+        #expect(PacksFeature.numberCounts(of: rules, expander: .live) == ["a": 1_100_000, "b": 1])
     }
 
     @Test func toggleUpdatesStateAndPersistsAndRebuilds() async {
@@ -98,6 +119,8 @@ import Testing
             )
             $0.packSyncCoordinator = PackSyncCoordinator { summary }
             $0.storeOrchestrator = .testValue
+            $0.rulesRepository = RulesRepository(fetchAll: { [] }, insert: { _ in }, delete: { _ in }, update: { _ in })
+            $0.wildcardExpander = .live
             $0.date = .constant(now)
         }
         store.exhaustivity = .off

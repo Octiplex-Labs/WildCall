@@ -8,6 +8,8 @@ public struct PacksFeature: Sendable {
     @ObservableState
     public struct State: Equatable {
         public var packs: IdentifiedArrayOf<InstalledPack> = []
+        /// Numbers each pack contributes when enabled, keyed by pack id.
+        public var numberCounts: [String: Int] = [:]
         public var togglingId: String? = nil
         public var isLoading: Bool = false
         public var isSyncing: Bool = false
@@ -26,6 +28,7 @@ public struct PacksFeature: Sendable {
     public enum Action: Sendable {
         case task
         case packsLoaded([InstalledPack])
+        case numberCountsLoaded([String: Int])
         case toggle(id: String, enabled: Bool)
         case toggleCompleted(id: String)
         case toggleFailed(id: String, EquatableError)
@@ -45,6 +48,7 @@ public struct PacksFeature: Sendable {
     @Dependency(\.rulesRepository) var rulesRepository
     @Dependency(\.storeOrchestrator) var orchestrator
     @Dependency(\.packSyncCoordinator) var syncCoordinator
+    @Dependency(\.wildcardExpander) var expander
     @Dependency(\.date.now) var now
 
     public init() {}
@@ -54,10 +58,12 @@ public struct PacksFeature: Sendable {
             switch action {
             case .task:
                 state.isLoading = true
-                return .run { [packsRepository = packsRepository] send in
+                return .run { [packsRepository = packsRepository, rulesRepository = rulesRepository, expander = expander] send in
                     do {
                         let packs = try await packsRepository.fetchAll()
                         await send(.packsLoaded(packs))
+                        let rules = try await rulesRepository.fetchAll()
+                        await send(.numberCountsLoaded(Self.numberCounts(of: rules, expander: expander)))
                     } catch {
                         await send(.loadFailed(EquatableError(error)))
                     }
@@ -66,6 +72,10 @@ public struct PacksFeature: Sendable {
             case .packsLoaded(let packs):
                 state.isLoading = false
                 state.packs = IdentifiedArray(uniqueElements: packs)
+                return .none
+
+            case .numberCountsLoaded(let counts):
+                state.numberCounts = counts
                 return .none
 
             case .loadFailed:
@@ -171,6 +181,22 @@ public struct PacksFeature: Sendable {
         .ifLet(\.$urlImportPresentation, action: \.urlImportPresentation) {
             PackURLImportFeature()
         }
+    }
+}
+
+extension PacksFeature {
+    static func numberCounts(of rules: [BlockRule], expander: WildcardExpander) -> [String: Int] {
+        var counts: [String: Int] = [:]
+        for rule in rules {
+            guard case .pack(let packId) = rule.source else { continue }
+            let count: Int
+            switch rule.kind {
+            case .exact: count = 1
+            case .prefix(let prefix): count = expander.count(prefix)
+            }
+            counts[packId, default: 0] += count
+        }
+        return counts
     }
 }
 

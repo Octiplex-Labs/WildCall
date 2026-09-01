@@ -35,6 +35,40 @@
         }
       }
     },
+    "%@ numéros": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numbers"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ números"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numéros"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numeri"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ números"
+          }
+        }
+      }
+    },
     "%@ numéros actifs": {
       "localizations": {
         "en": {
@@ -2057,40 +2091,6 @@
         }
       }
     },
-    "Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Disable a pack or narrow your patterns, then rebuild the filter."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desactiva un pack o reduce tus patrones y reconstruye el filtro."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Disattiva un pack o restringi i tuoi schemi, poi ricostruisci il filtro."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desative um pack ou reduza os seus padrões e reconstrua o filtro."
-          }
-        }
-      }
-    },
     "Empreinte du pack : %@": {
       "localizations": {
         "en": {
@@ -4076,6 +4076,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abrir Ajustes"
+          }
+        }
+      }
+    },
+    "Pack %@, %@, version %@, %@ numéros": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, version %3$@, %4$@ numbers"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versión %3$@, %4$@ números"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %@, %@, version %@, %@ numéros"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versione %3$@, %4$@ numeri"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versão %3$@, %4$@ números"
           }
         }
       }
@@ -6378,6 +6412,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex."
+          }
+        }
+      }
+    },
+    "iOS accepte au plus %@ numéros par extension : activez les packs de façon à rester sous ce total (%@ actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepts at most %1$@ numbers per extension: enable packs so that you stay under that total (%2$@ right now). Disabled packs no longer contribute to the block list. Your own rules are not affected."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS acepta como máximo %1$@ números por extensión: activa los packs de modo que no superes ese total (%2$@ ahora). Los packs desactivados ya no contribuyen a la lista de bloqueo. Tus propias reglas no se ven afectadas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepte au plus %@ numéros par extension : activez les packs de façon à rester sous ce total (%@ actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accetta al massimo %1$@ numeri per estensione: attiva i pack in modo da restare sotto quel totale (%2$@ al momento). I pack disattivati non contribuiscono più alla lista di blocco. Le tue regole non sono interessate."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS aceita no máximo %1$@ números por extensão: ative os packs de modo a ficar abaixo desse total (%2$@ neste momento). Os packs desativados deixam de contribuir para a lista de bloqueio. As suas próprias regras não são afetadas."
+          }
+        }
+      }
+    },
+    "iOS accepte au plus %@ numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepts at most %@ numbers per extension. Disable a pack or narrow your patterns, then rebuild the filter."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS acepta como máximo %@ números por extensión. Desactiva un pack o reduce tus patrones y reconstruye el filtro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepte au plus %@ numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accetta al massimo %@ numeri per estensione. Disattiva un pack o restringi i tuoi schemi, poi ricostruisci il filtro."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS aceita no máximo %@ números por extensão. Desative um pack ou reduza os seus padrões e reconstrua o filtro."
           }
         }
       }

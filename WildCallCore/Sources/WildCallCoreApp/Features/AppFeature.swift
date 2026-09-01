@@ -182,13 +182,17 @@ public struct AppFeature: Sendable {
             container = container,
             storeStatus = storeStatus
         ] send in
+            let manifests = embeddedPacks.manifests()
+            WildCallLog.info("Bootstrap: \(manifests.count) embedded pack(s): \(manifests.map { "\($0.id)@\($0.version)" }.joined(separator: ", "))")
             let summary: BootstrapSummary
             do {
-                summary = try await bootstrap.run(embeddedPacks.manifests())
+                summary = try await bootstrap.run(manifests)
             } catch {
+                WildCallLog.error("Bootstrap failed: \(error)")
                 await send(.bootstrapFailed(EquatableError(error)))
                 return
             }
+            WildCallLog.info("Bootstrap: installed \(summary.installed), upgraded \(summary.upgraded), removed \(summary.removed), unchanged \(summary.unchanged)")
             await send(.bootstrapFinished(summary))
 
             let manifest = (try? container.manifestURL()).flatMap { try? StoreManifest.load(from: $0) }
@@ -198,7 +202,9 @@ public struct AppFeature: Sendable {
                     : .failed(record.failure ?? .unknown("?"), numbers: manifest.totalNumbers, date: record.date)
                 if case .unknown = storeStatus.current() { storeStatus.set(status) }
             }
-            if Self.needsRebuild(bootstrap: summary, manifest: manifest) {
+            let needsRebuild = Self.needsRebuild(bootstrap: summary, manifest: manifest) || DebugProbe.forceRebuild
+            WildCallLog.info("Bootstrap: store manifest \(manifest == nil ? "missing" : "v\(manifest!.formatVersion)"), rebuild needed: \(needsRebuild)")
+            if needsRebuild {
                 await orchestrator.requestRebuild()
             }
         }

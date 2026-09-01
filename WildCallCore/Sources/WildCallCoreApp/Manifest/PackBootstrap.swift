@@ -60,7 +60,7 @@ extension PackBootstrap {
             }
 
             let existing = try await packsRepo.fetch(manifest.id)
-            var enabled = true
+            var enabled = manifest.enabledByDefault ?? true
 
             if let existing {
                 guard Self.isNewer(manifest.version, than: existing.version) else {

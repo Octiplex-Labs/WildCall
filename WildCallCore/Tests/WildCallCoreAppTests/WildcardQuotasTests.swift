@@ -7,8 +7,9 @@ import Testing
     @Test func defaultValuesAreStable() {
         let quotas = WildcardQuotas.default
         #expect(quotas.perPattern == 1_000_000)
-        #expect(quotas.totalUser == 10_000_000)
+        #expect(quotas.totalUser == 1_999_999)
         #expect(quotas.minFixedDigits == 2)
+        #expect(quotas.maxExtensionEntries == 1_999_999)
     }
 
     @Test func liveAndTestValuesEqualDefault() {
