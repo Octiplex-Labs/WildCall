@@ -15,8 +15,15 @@ public struct EmbeddedPacks: Sendable {
 extension EmbeddedPacks {
     public static func live(bundle: Bundle = .main) -> EmbeddedPacks {
         EmbeddedPacks {
-            let urls = (bundle.urls(forResourcesWithExtension: "json", subdirectory: nil) ?? [])
+            // XcodeGen copies `Packs/` as a folder reference, so the files
+            // live in `WildCall.app/Packs/`, not at the bundle root. Look in
+            // both places so a flat copy keeps working too.
+            let candidates = (bundle.urls(forResourcesWithExtension: "json", subdirectory: "Packs") ?? [])
+                + (bundle.urls(forResourcesWithExtension: "json", subdirectory: nil) ?? [])
+            var seen: Set<String> = []
+            let urls = candidates
                 .filter { $0.lastPathComponent.hasSuffix(".source.json") }
+                .filter { seen.insert($0.lastPathComponent).inserted }
                 .sorted { $0.lastPathComponent < $1.lastPathComponent }
             if urls.isEmpty {
                 reportIssue("No embedded *.source.json packs found in bundle")
