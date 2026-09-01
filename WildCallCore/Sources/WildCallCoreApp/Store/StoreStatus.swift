@@ -1,16 +1,19 @@
 import Dependencies
 import Foundation
 import Synchronization
+import WildCallCoreShared
 
-/// What the shared store / extension pipeline is doing right now. Published
-/// by `StoreOrchestrator`, observed by `AppFeature` so every screen can show
-/// "iOS is ingesting N numbers" or "the last reload failed because…".
+/// What the shared store / extensions pipeline is doing right now.
+/// Published by `StoreOrchestrator`, observed by `AppFeature` so every
+/// screen can show "iOS is ingesting N numbers" or "slot 3 failed because…".
 public enum StoreStatus: Equatable, Sendable {
     case unknown
     case building
-    case reloading(numbers: Int)
+    /// `slot` is the extension currently being reloaded, `numbers` the
+    /// grand total of the cycle.
+    case reloading(numbers: Int, slot: Int)
     case ready(numbers: Int, date: Date)
-    case failed(ReloadFailure, numbers: Int, date: Date)
+    case failed(ReloadFailure, numbers: Int, date: Date, slot: Int?)
 
     public var isBusy: Bool {
         switch self {

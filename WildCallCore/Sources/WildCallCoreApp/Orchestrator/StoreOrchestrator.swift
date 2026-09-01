@@ -8,17 +8,34 @@ public struct RebuildSummary: Equatable, Sendable {
     public let identCount: Int
     public let block: BlobBuildSummary
     public let ident: BlobBuildSummary
+    public let slots: [SlotSummary]
+
+    public struct SlotSummary: Equatable, Sendable {
+        public let slot: ExtensionSlot
+        public let block: BlobBuildSummary
+        public let ident: BlobBuildSummary
+
+        public init(slot: ExtensionSlot, block: BlobBuildSummary, ident: BlobBuildSummary) {
+            self.slot = slot
+            self.block = block
+            self.ident = ident
+        }
+
+        public var totalNumbers: Int { block.count + ident.count }
+    }
 
     public init(
         blockCount: Int,
         identCount: Int,
         block: BlobBuildSummary,
-        ident: BlobBuildSummary
+        ident: BlobBuildSummary,
+        slots: [SlotSummary] = []
     ) {
         self.blockCount = blockCount
         self.identCount = identCount
         self.block = block
         self.ident = ident
+        self.slots = slots
     }
 
     public var totalNumbers: Int { blockCount + identCount }
@@ -28,11 +45,11 @@ public enum OrchestratorError: Error, Equatable, Sendable {
     case exceedsTotalQuota(expanded: Int, limit: Int)
 }
 
-/// Owns the "rules → shared store → reloadExtension" cycle.
+/// Owns the "rules → per-slot shared stores → reloadExtension ×N" cycle.
 ///
 /// - `rebuildAndReload` runs the full cycle and waits for iOS to finish
-///   ingesting. Used where the caller must know the outcome before
-///   continuing (background refresh, tests).
+///   ingesting every slot. Used where the caller must know the outcome
+///   before continuing (background refresh, tests).
 /// - `requestRebuild` returns immediately. Cycles are serialized (CallKit
 ///   rejects concurrent reloads with `currentlyLoading`) and coalesced :
 ///   ten quick edits produce at most one extra cycle after the running one.
@@ -59,6 +76,7 @@ extension StoreOrchestrator {
         expander: WildcardExpander,
         quotas: WildcardQuotas,
         status: StoreStatusClient,
+        slots: [ExtensionSlot] = ExtensionSlot.all,
         now: @escaping @Sendable () -> Date = Date.init
     ) -> StoreOrchestrator {
         let serializer = RebuildSerializer()
@@ -70,79 +88,118 @@ extension StoreOrchestrator {
                 manifestURL = try container.manifestURL()
             } catch {
                 WildCallLog.error("App Group container unavailable: \(error)")
-                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now()))
+                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now(), slot: nil))
                 throw error
             }
             WildCallLog.info("Rebuild: store root \(manifestURL.deletingLastPathComponent().path)")
-            let summary: RebuildSummary
-            var manifest: StoreManifest
+
+            // 1. Rules → normalized ranges.
+            let blockRanges: [NumberRange]
+            let identRanges: [IdentRange]
+            let sources: [String]
             do {
                 let rules = try await repository.fetchAll()
                 WildCallLog.info("Rebuild: \(rules.count) rules fetched")
                 let packs = try await packsRepository.fetchAll()
                 let activeRules = Self.filterByPackActivation(rules: rules, packs: packs)
-                var (blockRanges, identRanges) = try Self.split(
-                    rules: activeRules,
-                    expander: expander,
-                    quotas: quotas
-                )
+                var split = try Self.split(rules: activeRules, expander: expander, quotas: quotas)
                 if let cap = DebugProbe.maxNumbers {
                     // Measurement harness : WILDCALL_DEBUG_MAX_NUMBERS caps the
                     // volume sent to iOS so the extension's ceiling can be
                     // bisected on device. Debug builds only.
-                    blockRanges = RangeSet.truncate(blockRanges, to: cap)
-                    identRanges = []
-                    WildCallLog.info("Rebuild: DEBUG cap applied, \(RangeSet.total(blockRanges)) numbers")
+                    split.block = RangeSet.truncate(split.block, to: cap)
+                    split.ident = []
+                    WildCallLog.info("Rebuild: DEBUG cap applied, \(RangeSet.total(split.block)) numbers")
                 }
-
-                let blockSummary = try BlockStoreBuilder().build(ranges: blockRanges, to: container.blockStoreURL())
-                let identSummary = try IdentStoreBuilder().build(entries: identRanges, to: container.identStoreURL())
-
-                manifest = StoreManifest(
-                    buildDate: now(),
-                    block: .init(count: blockSummary.count, ranges: blockSummary.rangeCount, bytes: blockSummary.bytesWritten, sha256: blockSummary.sha256),
-                    ident: .init(count: identSummary.count, ranges: identSummary.rangeCount, bytes: identSummary.bytesWritten, sha256: identSummary.sha256),
-                    sources: Self.sources(of: activeRules)
-                )
-                try manifest.write(to: manifestURL)
-                WildCallLog.info("Rebuild: block \(blockSummary.count) numbers / \(blockSummary.rangeCount) ranges, ident \(identSummary.count) / \(identSummary.rangeCount)")
-
-                summary = RebuildSummary(
-                    blockCount: blockSummary.count,
-                    identCount: identSummary.count,
-                    block: blockSummary,
-                    ident: identSummary
-                )
+                blockRanges = split.block
+                identRanges = split.ident
+                sources = Self.sources(of: activeRules)
             } catch {
-                WildCallLog.error("Rebuild failed before reload: \(error)")
-                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now()))
+                WildCallLog.error("Rebuild failed while reading rules: \(error)")
+                status.set(.failed(.unknown(String(describing: error)), numbers: 0, date: now(), slot: nil))
                 throw error
             }
 
-            // iOS rejects the whole list past the ceiling, after ingesting it
-            // for tens of seconds : fail fast with the same typed error so the
-            // UI can explain and the user can disable a pack.
-            if summary.totalNumbers > quotas.maxExtensionEntries {
-                WildCallLog.error("Reload skipped: \(summary.totalNumbers) numbers exceed the extension ceiling \(quotas.maxExtensionEntries)")
+            // 2. Spread across the slots. Past the total capacity iOS would
+            //    reject the last slot after ingesting for seconds : fail fast
+            //    with the same typed error so the UI can explain.
+            let total = Int(RangeSet.total(blockRanges) + RangeSet.total(identRanges.map(\.range)))
+            let payloads: [SlotPayload]
+            do {
+                payloads = try SlotDistributor.distribute(
+                    block: blockRanges,
+                    ident: identRanges,
+                    slots: slots,
+                    perSlot: Int64(quotas.maxExtensionEntries)
+                )
+            } catch {
+                WildCallLog.error("Reload skipped: \(total) numbers exceed the capacity of \(slots.count) extension(s)")
+                var manifest = StoreManifest(
+                    buildDate: now(), block: .init(count: total, ranges: blockRanges.count, bytes: 0, sha256: ""),
+                    ident: .empty, sources: sources
+                )
                 manifest.lastReload = .init(date: now(), succeeded: false, failure: .maximumEntriesExceeded)
                 try? manifest.write(to: manifestURL)
-                status.set(.failed(.maximumEntriesExceeded, numbers: summary.totalNumbers, date: now()))
+                status.set(.failed(.maximumEntriesExceeded, numbers: total, date: now(), slot: nil))
                 throw ReloadFailure.maximumEntriesExceeded
             }
 
-            status.set(.reloading(numbers: summary.totalNumbers))
-            WildCallLog.info("Reload: asking iOS to ingest \(summary.totalNumbers) numbers")
-            let reloadStart = now()
+            // 3. Write one pair of files per slot.
+            var slotSummaries: [RebuildSummary.SlotSummary] = []
             do {
-                try await reloader.reload()
-                WildCallLog.info("Reload: completed in \(Int(now().timeIntervalSince(reloadStart))) s")
+                for payload in payloads {
+                    let blockSummary = try BlockStoreBuilder().build(ranges: payload.block, to: container.blockStoreURL(payload.slot))
+                    let identSummary = try IdentStoreBuilder().build(entries: payload.ident, to: container.identStoreURL(payload.slot))
+                    slotSummaries.append(.init(slot: payload.slot, block: blockSummary, ident: identSummary))
+                    WildCallLog.info("Rebuild: slot \(payload.slot.index) block \(blockSummary.count) numbers / \(blockSummary.rangeCount) ranges, ident \(identSummary.count) / \(identSummary.rangeCount)")
+                }
             } catch {
-                let failure = ReloadFailure(error)
-                WildCallLog.error("Reload failed: \(failure)")
-                manifest.lastReload = .init(date: now(), succeeded: false, failure: failure)
-                try? manifest.write(to: manifestURL)
-                status.set(.failed(failure, numbers: summary.totalNumbers, date: now()))
-                throw failure
+                WildCallLog.error("Rebuild failed while writing stores: \(error)")
+                status.set(.failed(.unknown(String(describing: error)), numbers: total, date: now(), slot: nil))
+                throw error
+            }
+
+            let blockTotal = Self.aggregate(slotSummaries.map(\.block))
+            let identTotal = Self.aggregate(slotSummaries.map(\.ident))
+            var manifest = StoreManifest(
+                buildDate: now(),
+                block: .init(count: blockTotal.count, ranges: blockTotal.rangeCount, bytes: blockTotal.bytesWritten, sha256: blockTotal.sha256),
+                ident: .init(count: identTotal.count, ranges: identTotal.rangeCount, bytes: identTotal.bytesWritten, sha256: identTotal.sha256),
+                slots: slotSummaries.map {
+                    .init(
+                        slot: $0.slot.index,
+                        block: .init(count: $0.block.count, ranges: $0.block.rangeCount, bytes: $0.block.bytesWritten, sha256: $0.block.sha256),
+                        ident: .init(count: $0.ident.count, ranges: $0.ident.rangeCount, bytes: $0.ident.bytesWritten, sha256: $0.ident.sha256)
+                    )
+                },
+                sources: sources
+            )
+            try? manifest.write(to: manifestURL)
+            let summary = RebuildSummary(
+                blockCount: blockTotal.count,
+                identCount: identTotal.count,
+                block: blockTotal,
+                ident: identTotal,
+                slots: slotSummaries
+            )
+
+            // 4. Reload every slot, sequentially : CallKit serves one load at a time.
+            for slotSummary in slotSummaries {
+                let slot = slotSummary.slot
+                status.set(.reloading(numbers: summary.totalNumbers, slot: slot.index))
+                WildCallLog.info("Reload: slot \(slot.index), asking iOS to ingest \(slotSummary.totalNumbers) numbers")
+                let reloadStart = now()
+                do {
+                    try await reloader.reload(slot)
+                    WildCallLog.info("Reload: slot \(slot.index) completed in \(Int(now().timeIntervalSince(reloadStart))) s")
+                } catch {
+                    let failure = ReloadFailure(error)
+                    WildCallLog.error("Reload: slot \(slot.index) failed: \(failure)")
+                    manifest.lastReload = .init(date: now(), succeeded: false, failure: failure, slot: slot.index)
+                    try? manifest.write(to: manifestURL)
+                    status.set(.failed(failure, numbers: summary.totalNumbers, date: now(), slot: slot.index))
+                    throw failure
+                }
             }
 
             manifest.lastReload = .init(date: now(), succeeded: true)
@@ -177,6 +234,15 @@ extension StoreOrchestrator {
                     await serializer.release()
                 }
             }
+        )
+    }
+
+    static func aggregate(_ summaries: [BlobBuildSummary]) -> BlobBuildSummary {
+        BlobBuildSummary(
+            count: summaries.reduce(0) { $0 + $1.count },
+            rangeCount: summaries.reduce(0) { $0 + $1.rangeCount },
+            bytesWritten: summaries.reduce(0) { $0 + $1.bytesWritten },
+            sha256: summaries.map(\.sha256).joined(separator: "+")
         )
     }
 
@@ -291,6 +357,27 @@ actor RebuildSerializer {
     }
 }
 
+/// Debug-only knobs read from the environment (`devicectl ... --environment-variables`).
+enum DebugProbe {
+    static var maxNumbers: Int64? {
+        #if DEBUG
+        guard let raw = ProcessInfo.processInfo.environment["WILDCALL_DEBUG_MAX_NUMBERS"],
+              let value = Int64(raw) else { return nil }
+        return value
+        #else
+        return nil
+        #endif
+    }
+
+    static var forceRebuild: Bool {
+        #if DEBUG
+        return maxNumbers != nil
+        #else
+        return false
+        #endif
+    }
+}
+
 extension StoreOrchestrator: DependencyKey {
     public static let liveValue: StoreOrchestrator = {
         @Dependency(\.sharedContainer) var container
@@ -331,26 +418,5 @@ extension DependencyValues {
     public var storeOrchestrator: StoreOrchestrator {
         get { self[StoreOrchestrator.self] }
         set { self[StoreOrchestrator.self] = newValue }
-    }
-}
-
-/// Debug-only knobs read from the environment (`devicectl ... --environment-variables`).
-enum DebugProbe {
-    static var maxNumbers: Int64? {
-        #if DEBUG
-        guard let raw = ProcessInfo.processInfo.environment["WILDCALL_DEBUG_MAX_NUMBERS"],
-              let value = Int64(raw) else { return nil }
-        return value
-        #else
-        return nil
-        #endif
-    }
-
-    static var forceRebuild: Bool {
-        #if DEBUG
-        return maxNumbers != nil
-        #else
-        return false
-        #endif
     }
 }

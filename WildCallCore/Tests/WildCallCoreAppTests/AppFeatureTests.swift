@@ -20,7 +20,7 @@ import WildCallCoreShared
         let store = TestStore(initialState: AppFeature.State()) {
             AppFeature()
         } withDependencies: {
-            $0.extensionReloader = ExtensionReloader(reload: {}, getEnabledStatus: { .enabled })
+            $0.extensionReloader = ExtensionReloader(reload: { _ in }, getEnabledStatus: { _ in .enabled })
             $0.rulesRepository = RulesRepository(fetchAll: { [] }, insert: { _ in }, delete: { _ in }, update: { _ in })
             $0.packsRepository = PacksRepository(fetchAll: { [] }, fetch: { _ in nil }, insert: { _ in }, setEnabled: { _, _ in }, delete: { _ in })
             $0.embeddedPacks = EmbeddedPacks { [manifest] }
@@ -45,6 +45,7 @@ import WildCallCoreShared
         await waitUntil { rebuilds.value == 1 }
         await store.skipReceivedActions()
         #expect(store.state.extensionStatus == .enabled)
+        #expect(store.state.allSlotsEnabled)
         #expect(store.state.isCheckingStatus == false)
     }
 
@@ -54,6 +55,7 @@ import WildCallCoreShared
             buildDate: Date(timeIntervalSince1970: 1_700_000_000),
             block: .init(count: 5, ranges: 1, bytes: 40, sha256: ""),
             ident: .init(count: 0, ranges: 0, bytes: 32, sha256: ""),
+            slots: ExtensionSlot.all.map { .init(slot: $0.index, block: .empty, ident: .empty) },
             sources: ["user"],
             lastReload: .init(date: Date(timeIntervalSince1970: 1_700_000_010), succeeded: true)
         ).write(to: container.manifestURL())
@@ -62,7 +64,7 @@ import WildCallCoreShared
         let store = TestStore(initialState: AppFeature.State()) {
             AppFeature()
         } withDependencies: {
-            $0.extensionReloader = ExtensionReloader(reload: {}, getEnabledStatus: { .enabled })
+            $0.extensionReloader = ExtensionReloader(reload: { _ in }, getEnabledStatus: { _ in .enabled })
             $0.rulesRepository = RulesRepository(fetchAll: { [] }, insert: { _ in }, delete: { _ in }, update: { _ in })
             $0.packsRepository = PacksRepository(fetchAll: { [] }, fetch: { _ in nil }, insert: { _ in }, setEnabled: { _, _ in }, delete: { _ in })
             $0.embeddedPacks = EmbeddedPacks { [] }
@@ -86,7 +88,9 @@ import WildCallCoreShared
 
     @Test func needsRebuildRules() {
         let ok = StoreManifest(
-            buildDate: .init(), block: .empty, ident: .empty, sources: [],
+            buildDate: .init(), block: .empty, ident: .empty,
+            slots: ExtensionSlot.all.map { .init(slot: $0.index, block: .empty, ident: .empty) },
+            sources: [],
             lastReload: .init(date: .init(), succeeded: true)
         )
         #expect(AppFeature.needsRebuild(bootstrap: BootstrapSummary(), manifest: ok) == false)
@@ -105,6 +109,10 @@ import WildCallCoreShared
         var neverReloaded = ok
         neverReloaded.lastReload = nil
         #expect(AppFeature.needsRebuild(bootstrap: BootstrapSummary(), manifest: neverReloaded) == true)
+
+        var fewerSlots = ok
+        fewerSlots.slots = [.init(slot: 1, block: .empty, ident: .empty)]
+        #expect(AppFeature.needsRebuild(bootstrap: BootstrapSummary(), manifest: fewerSlots) == true)
     }
 
     @Test func cycleEndLoadsRunReportAndRechecksStatus() async throws {
@@ -116,27 +124,28 @@ import WildCallCoreShared
             blockNumbers: 20_000_000,
             outcome: .completed
         )
-        try report.write(to: container.extensionRunURL())
+        try report.write(to: container.extensionRunURL(ExtensionSlot(2)))
 
         let store = TestStore(initialState: AppFeature.State()) {
             AppFeature()
         } withDependencies: {
-            $0.extensionReloader = ExtensionReloader(reload: {}, getEnabledStatus: { .disabled })
+            $0.extensionReloader = ExtensionReloader(reload: { _ in }, getEnabledStatus: { _ in .disabled })
             $0.sharedContainer = container
         }
         store.exhaustivity = .off
 
-        await store.send(.storeStatusChanged(.reloading(numbers: 20_000_000))) {
-            $0.storeStatus = .reloading(numbers: 20_000_000)
+        await store.send(.storeStatusChanged(.reloading(numbers: 20_000_000, slot: 1))) {
+            $0.storeStatus = .reloading(numbers: 20_000_000, slot: 1)
         }
-        let failed = StoreStatus.failed(.extensionDisabled, numbers: 20_000_000, date: Date(timeIntervalSince1970: 1_700_000_050))
+        let failed = StoreStatus.failed(.extensionDisabled, numbers: 20_000_000, date: Date(timeIntervalSince1970: 1_700_000_050), slot: 2)
         await store.send(.storeStatusChanged(failed)) {
             $0.storeStatus = failed
             $0.isCheckingStatus = true
         }
         await store.skipReceivedActions()
-        #expect(store.state.lastExtensionRun == report)
+        #expect(store.state.lastExtensionRuns == [2: report])
         #expect(store.state.extensionStatus == .disabled)
+        #expect(store.state.disabledSlots == ExtensionSlot.all)
         #expect(store.state.isCheckingStatus == false)
     }
 
@@ -172,13 +181,57 @@ import WildCallCoreShared
             AppFeature()
         } withDependencies: {
             $0.extensionReloader = ExtensionReloader(
-                reload: { },
-                getEnabledStatus: { throw EquatableError(message: "boom") }
+                reload: { _ in },
+                getEnabledStatus: { _ in throw EquatableError(message: "boom") }
             )
         }
         await store.send(.refreshStatusButtonTapped) { $0.isCheckingStatus = true }
         await store.receive(\.statusCheckFailed) {
             $0.isCheckingStatus = false
         }
+    }
+
+    @Test func aggregatedStatusReflectsEverySlot() {
+        var state = AppFeature.State()
+        #expect(state.extensionStatus == .unknown)
+        state.extensionStatuses = [1: .enabled, 2: .enabled, 3: .disabled, 4: .enabled]
+        #expect(state.extensionStatus == .disabled)
+        #expect(state.disabledSlots == [ExtensionSlot(3)])
+        #expect(state.enabledSlots.count == 3)
+        state.extensionStatuses = Dictionary(uniqueKeysWithValues: ExtensionSlot.all.map { ($0.index, ExtensionEnabledStatus.enabled) })
+        #expect(state.extensionStatus == .enabled)
+        #expect(state.allSlotsEnabled)
+    }
+
+    @Test func enablingTheLastExtensionRetriesAFailedReload() async {
+        let rebuilds = LockIsolated(0)
+        var initial = AppFeature.State()
+        initial.storeStatus = .failed(.extensionDisabled, numbers: 7_000_000, date: Date(timeIntervalSince1970: 1_700_000_000), slot: 2)
+        initial.extensionStatuses = [1: .enabled, 2: .disabled, 3: .disabled, 4: .disabled]
+        let allEnabled = Dictionary(uniqueKeysWithValues: ExtensionSlot.all.map { ($0.index, ExtensionEnabledStatus.enabled) })
+
+        let store = TestStore(initialState: initial) {
+            AppFeature()
+        } withDependencies: {
+            $0.extensionReloader = ExtensionReloader(reload: { _ in }, getEnabledStatus: { _ in .enabled })
+            $0.storeOrchestrator = StoreOrchestrator(
+                rebuildAndReload: { fatalError("not used") },
+                requestRebuild: { rebuilds.withValue { $0 += 1 } }
+            )
+        }
+
+        await store.send(.refreshStatusButtonTapped) { $0.isCheckingStatus = true }
+        await store.receive(\.statusesReceived) {
+            $0.isCheckingStatus = false
+            $0.extensionStatuses = allEnabled
+        }
+        await store.finish()
+        #expect(rebuilds.value == 1)
+
+        // A second identical check must not trigger another cycle.
+        await store.send(.refreshStatusButtonTapped) { $0.isCheckingStatus = true }
+        await store.receive(\.statusesReceived) { $0.isCheckingStatus = false }
+        await store.finish()
+        #expect(rebuilds.value == 1)
     }
 }

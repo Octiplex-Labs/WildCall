@@ -60,10 +60,8 @@ public enum BlockStoreFormat {
 
     public static let rangeSize = 16
 
-    // Files exchanged through the App Group container.
+    // Files exchanged through the App Group container. Per-slot file names
+    // live on `ExtensionSlot`.
     public static let appGroupIdentifier = "group.com.octiplex.wildcall"
-    public static let blockFileName = "block.bin"
-    public static let identFileName = "ident.bin"
     public static let manifestFileName = "store.json"
-    public static let extensionRunFileName = "extension-run.json"
 }

@@ -38,6 +38,12 @@ targets:
     dependencies:
       - target: WildCallExtension
         embed: true
+      - target: WildCallExtension2
+        embed: true
+      - target: WildCallExtension3
+        embed: true
+      - target: WildCallExtension4
+        embed: true
       - package: WildCallCore
         product: WildCallCoreApp
       - package: WildCallCore
@@ -90,6 +96,9 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MACCATALYST: NO
 
+  # iOS caps a Call Directory extension at 1 999 999 entries (measured).
+  # Four identical extensions, distinguished by WildCallSlot, give ~8 M.
+  # Slot 1 keeps the original bundle id so existing installs stay enabled.
   WildCallExtension:
     type: app-extension
     platform: iOS
@@ -102,9 +111,10 @@ targets:
     info:
       path: Generated/WildCallExtension-Info.plist
       properties:
-        CFBundleDisplayName: WildCall
+        CFBundleDisplayName: WildCall 1
         CFBundleShortVersionString: "1.0.0"
         CFBundleVersion: "1"
+        WildCallSlot: 1
         NSExtension:
           NSExtensionPointIdentifier: com.apple.callkit.call-directory
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CallDirectoryHandler
@@ -119,12 +129,105 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MACCATALYST: NO
 
+  WildCallExtension2:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: WildCallExtension
+    dependencies:
+      - package: WildCallCore
+        product: WildCallCoreShared
+      - sdk: CallKit.framework
+    info:
+      path: Generated/WildCallExtension2-Info.plist
+      properties:
+        CFBundleDisplayName: WildCall 2
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        WildCallSlot: 2
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.callkit.call-directory
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CallDirectoryHandler
+    entitlements:
+      path: Generated/WildCallExtension2.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.octiplex.wildcall
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.octiplex.wildcall.directory2
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+
+  WildCallExtension3:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: WildCallExtension
+    dependencies:
+      - package: WildCallCore
+        product: WildCallCoreShared
+      - sdk: CallKit.framework
+    info:
+      path: Generated/WildCallExtension3-Info.plist
+      properties:
+        CFBundleDisplayName: WildCall 3
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        WildCallSlot: 3
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.callkit.call-directory
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CallDirectoryHandler
+    entitlements:
+      path: Generated/WildCallExtension3.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.octiplex.wildcall
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.octiplex.wildcall.directory3
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+
+  WildCallExtension4:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: WildCallExtension
+    dependencies:
+      - package: WildCallCore
+        product: WildCallCoreShared
+      - sdk: CallKit.framework
+    info:
+      path: Generated/WildCallExtension4-Info.plist
+      properties:
+        CFBundleDisplayName: WildCall 4
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        WildCallSlot: 4
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.callkit.call-directory
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).CallDirectoryHandler
+    entitlements:
+      path: Generated/WildCallExtension4.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.octiplex.wildcall
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.octiplex.wildcall.directory4
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+
 schemes:
   WildCall:
     build:
       targets:
         WildCall: all
         WildCallExtension: all
+        WildCallExtension2: all
+        WildCallExtension3: all
+        WildCallExtension4: all
     run:
       config: Debug
     test:

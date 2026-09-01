@@ -1,5 +1,6 @@
 import Dependencies
 import Foundation
+import WildCallCoreShared
 
 /// Limits on user-entered wildcard patterns.
 ///
@@ -37,6 +38,9 @@ public struct WildcardQuotas: Sendable, Equatable {
     }
 
     public static let measuredExtensionCeiling = 1_999_999
+
+    /// Everything the shipped extensions can hold together.
+    public var totalCapacity: Int { maxExtensionEntries * ExtensionSlot.count }
 
     public static let `default` = WildcardQuotas(
         perPattern: 1_000_000,

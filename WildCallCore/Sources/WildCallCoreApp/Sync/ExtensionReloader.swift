@@ -1,6 +1,7 @@
 import CallKit
 import Dependencies
 import Foundation
+import WildCallCoreShared
 
 public enum ExtensionEnabledStatus: Sendable, Equatable {
     case enabled
@@ -50,12 +51,12 @@ public enum ReloadFailure: Error, Equatable, Sendable, Codable {
 
 public struct ExtensionReloader: Sendable {
     /// Throws `ReloadFailure`.
-    public var reload: @Sendable () async throws -> Void
-    public var getEnabledStatus: @Sendable () async throws -> ExtensionEnabledStatus
+    public var reload: @Sendable (ExtensionSlot) async throws -> Void
+    public var getEnabledStatus: @Sendable (ExtensionSlot) async throws -> ExtensionEnabledStatus
 
     public init(
-        reload: @escaping @Sendable () async throws -> Void,
-        getEnabledStatus: @escaping @Sendable () async throws -> ExtensionEnabledStatus
+        reload: @escaping @Sendable (ExtensionSlot) async throws -> Void,
+        getEnabledStatus: @escaping @Sendable (ExtensionSlot) async throws -> ExtensionEnabledStatus
     ) {
         self.reload = reload
         self.getEnabledStatus = getEnabledStatus
@@ -63,23 +64,21 @@ public struct ExtensionReloader: Sendable {
 }
 
 extension ExtensionReloader {
-    public static let extensionBundleIdentifier = "com.octiplex.wildcall.directory"
-
     public static let live = ExtensionReloader(
-        reload: {
+        reload: { slot in
             try await withCheckedThrowingContinuation { (cont: CheckedContinuation<Void, any Error>) in
                 CXCallDirectoryManager.sharedInstance.reloadExtension(
-                    withIdentifier: extensionBundleIdentifier
+                    withIdentifier: slot.bundleIdentifier
                 ) { error in
                     if let error { cont.resume(throwing: ReloadFailure(error)) }
                     else { cont.resume() }
                 }
             }
         },
-        getEnabledStatus: {
+        getEnabledStatus: { slot in
             try await withCheckedThrowingContinuation { (cont: CheckedContinuation<ExtensionEnabledStatus, any Error>) in
                 CXCallDirectoryManager.sharedInstance.getEnabledStatusForExtension(
-                    withIdentifier: extensionBundleIdentifier
+                    withIdentifier: slot.bundleIdentifier
                 ) { status, error in
                     if let error {
                         cont.resume(throwing: error)
@@ -102,8 +101,8 @@ extension ExtensionReloader {
 extension ExtensionReloader: DependencyKey {
     public static let liveValue: ExtensionReloader = .live
     public static let testValue: ExtensionReloader = ExtensionReloader(
-        reload: { unimplemented("ExtensionReloader.reload") },
-        getEnabledStatus: { unimplemented("ExtensionReloader.getEnabledStatus", placeholder: .unknown) }
+        reload: { _ in unimplemented("ExtensionReloader.reload") },
+        getEnabledStatus: { _ in unimplemented("ExtensionReloader.getEnabledStatus", placeholder: .unknown) }
     )
 }
 

@@ -36,7 +36,7 @@ import WildCallCoreShared
             repository: RulesRepository(fetchAll: { [rule] }, insert: { _ in }, delete: { _ in }, update: { _ in }),
             packsRepository: .inMemory,
             container: container,
-            reloader: ExtensionReloader(reload: {}, getEnabledStatus: { .enabled }),
+            reloader: ExtensionReloader(reload: { _ in }, getEnabledStatus: { _ in .enabled }),
             expander: .live,
             quotas: .default,
             status: StoreStatusHub().client,
@@ -49,7 +49,7 @@ import WildCallCoreShared
         #expect(summary.identCount == 0)
 
         // 4. Read the blob back the way the extension does.
-        let reader = try BlockStoreReader(url: container.blockStoreURL())
+        let reader = try BlockStoreReader(url: container.blockStoreURL(ExtensionSlot(1)))
         #expect(reader.ranges == [NumberRange(start: 33_123_000_000, count: 1_000_000)])
         #expect(reader.ranges.first?.contains(33_123_456_789) == true)
         #expect(reader.ranges.first?.contains(33_124_000_000) == false)

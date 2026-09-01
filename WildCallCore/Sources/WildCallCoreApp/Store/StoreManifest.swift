@@ -6,10 +6,12 @@ public struct StoreManifest: Codable, Equatable, Sendable {
 
     public var formatVersion: Int
     public var buildDate: Date
+    /// Aggregated over every slot.
     public var block: BlobInfo
     public var ident: BlobInfo
+    public var slots: [SlotInfo]
     public var sources: [String]
-    /// Outcome of the last `reloadExtension` for this build, nil while the
+    /// Outcome of the last reload cycle for this build, nil while the
     /// reload is still running or never happened.
     public var lastReload: ReloadRecord?
 
@@ -40,15 +42,32 @@ public struct StoreManifest: Codable, Equatable, Sendable {
         }
     }
 
+    public struct SlotInfo: Codable, Equatable, Sendable {
+        public var slot: Int
+        public var block: BlobInfo
+        public var ident: BlobInfo
+
+        public init(slot: Int, block: BlobInfo, ident: BlobInfo) {
+            self.slot = slot
+            self.block = block
+            self.ident = ident
+        }
+
+        public var totalNumbers: Int { block.count + ident.count }
+    }
+
     public struct ReloadRecord: Codable, Equatable, Sendable {
         public var date: Date
         public var succeeded: Bool
         public var failure: ReloadFailure?
+        /// Slot whose reload failed, when applicable.
+        public var slot: Int?
 
-        public init(date: Date, succeeded: Bool, failure: ReloadFailure? = nil) {
+        public init(date: Date, succeeded: Bool, failure: ReloadFailure? = nil, slot: Int? = nil) {
             self.date = date
             self.succeeded = succeeded
             self.failure = failure
+            self.slot = slot
         }
     }
 
@@ -57,6 +76,7 @@ public struct StoreManifest: Codable, Equatable, Sendable {
         buildDate: Date,
         block: BlobInfo,
         ident: BlobInfo,
+        slots: [SlotInfo] = [],
         sources: [String],
         lastReload: ReloadRecord? = nil
     ) {
@@ -64,11 +84,12 @@ public struct StoreManifest: Codable, Equatable, Sendable {
         self.buildDate = buildDate
         self.block = block
         self.ident = ident
+        self.slots = slots
         self.sources = sources
         self.lastReload = lastReload
     }
 
-    enum CodingKeys: String, CodingKey { case formatVersion, buildDate, block, ident, sources, lastReload }
+    enum CodingKeys: String, CodingKey { case formatVersion, buildDate, block, ident, slots, sources, lastReload }
 
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -77,11 +98,18 @@ public struct StoreManifest: Codable, Equatable, Sendable {
         self.buildDate = try container.decode(Date.self, forKey: .buildDate)
         self.block = try container.decode(BlobInfo.self, forKey: .block)
         self.ident = try container.decode(BlobInfo.self, forKey: .ident)
+        self.slots = try container.decodeIfPresent([SlotInfo].self, forKey: .slots) ?? []
         self.sources = try container.decode([String].self, forKey: .sources)
         self.lastReload = try container.decodeIfPresent(ReloadRecord.self, forKey: .lastReload)
     }
 
     public var totalNumbers: Int { block.count + ident.count }
+
+    /// True when the manifest was written for a different number of slots
+    /// than the running app ships : files must be regenerated.
+    public var matchesSlotLayout: Bool {
+        slots.map(\.slot) == ExtensionSlot.all.map(\.index)
+    }
 }
 
 extension StoreManifest {

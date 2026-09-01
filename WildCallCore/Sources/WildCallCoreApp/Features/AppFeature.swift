@@ -8,25 +8,49 @@ public struct AppFeature: Sendable {
     public struct State: Equatable {
         public var rules: RulesFeature.State = .init()
         public var packs: PacksFeature.State = .init()
-        public var extensionStatus: ExtensionEnabledStatus = .unknown
+        /// Enabled status per extension slot index.
+        public var extensionStatuses: [Int: ExtensionEnabledStatus] = [:]
         public var isCheckingStatus: Bool = false
         public var storeStatus: StoreStatus = .unknown
-        public var lastExtensionRun: ExtensionRunReport? = nil
+        /// Last run report per slot index.
+        public var lastExtensionRuns: [Int: ExtensionRunReport] = [:]
         @Presents public var importPresentation: PackImportFeature.State?
 
         public init() {}
+
+        /// Slots iOS reports as enabled.
+        public var enabledSlots: [ExtensionSlot] {
+            ExtensionSlot.all.filter { extensionStatuses[$0.index] == .enabled }
+        }
+
+        /// Slots the user still has to switch on in Réglages.
+        public var disabledSlots: [ExtensionSlot] {
+            ExtensionSlot.all.filter { extensionStatuses[$0.index] == .disabled }
+        }
+
+        public var allSlotsEnabled: Bool {
+            enabledSlots.count == ExtensionSlot.count
+        }
+
+        /// Aggregated status for the banner : enabled only when every slot
+        /// is, disabled when at least one is, unknown otherwise.
+        public var extensionStatus: ExtensionEnabledStatus {
+            if allSlotsEnabled { return .enabled }
+            if !disabledSlots.isEmpty { return .disabled }
+            return .unknown
+        }
     }
 
     public enum Action: Sendable {
         case task
         case bootstrapFinished(BootstrapSummary)
         case bootstrapFailed(EquatableError)
-        case statusReceived(ExtensionEnabledStatus)
+        case statusesReceived([Int: ExtensionEnabledStatus])
         case statusCheckFailed(EquatableError)
         case refreshStatusButtonTapped
         case openSettingsButtonTapped
         case storeStatusChanged(StoreStatus)
-        case extensionRunLoaded(ExtensionRunReport?)
+        case extensionRunsLoaded([Int: ExtensionRunReport])
         case rebuildButtonTapped
         case onOpenURL(URL)
         case rules(RulesFeature.Action)
@@ -66,7 +90,7 @@ public struct AppFeature: Sendable {
             case .task:
                 state.isCheckingStatus = true
                 return .merge(
-                    checkExtensionStatus(),
+                    checkExtensionStatuses(),
                     runBootstrap(),
                     .run { [storeStatus = storeStatus] send in
                         for await status in storeStatus.stream() {
@@ -78,7 +102,7 @@ public struct AppFeature: Sendable {
 
             case .refreshStatusButtonTapped:
                 state.isCheckingStatus = true
-                return checkExtensionStatus()
+                return checkExtensionStatuses()
 
             case .bootstrapFinished:
                 // Rules and packs may have been inserted after the tabs
@@ -88,9 +112,18 @@ public struct AppFeature: Sendable {
             case .bootstrapFailed:
                 return .none
 
-            case .statusReceived(let status):
+            case .statusesReceived(let statuses):
                 state.isCheckingStatus = false
-                state.extensionStatus = status
+                let wasComplete = state.allSlotsEnabled
+                state.extensionStatuses = statuses
+                // The user just switched the missing extensions on : retry
+                // the cycle that failed on a disabled slot without asking.
+                if state.allSlotsEnabled, !wasComplete,
+                   case .failed(.extensionDisabled, _, _, _) = state.storeStatus {
+                    return .run { [orchestrator = orchestrator] _ in
+                        await orchestrator.requestRebuild()
+                    }
+                }
                 return .none
 
             case .statusCheckFailed:
@@ -105,14 +138,14 @@ public struct AppFeature: Sendable {
                 let wasBusy = state.storeStatus.isBusy
                 state.storeStatus = status
                 guard wasBusy, !status.isBusy else { return .none }
-                // A cycle just ended : pick up what the extension reported,
-                // and re-query the enabled status (a failure with
+                // A cycle just ended : pick up what the extensions reported,
+                // and re-query the enabled statuses (a failure with
                 // `extensionDisabled` means the banner must come back).
                 state.isCheckingStatus = true
-                return .merge(loadExtensionRun(), checkExtensionStatus())
+                return .merge(loadExtensionRuns(), checkExtensionStatuses())
 
-            case .extensionRunLoaded(let report):
-                state.lastExtensionRun = report
+            case .extensionRunsLoaded(let reports):
+                state.lastExtensionRuns = reports
                 return .none
 
             case .rebuildButtonTapped:
@@ -138,10 +171,8 @@ public struct AppFeature: Sendable {
                 // without leaving the rules screen.
                 return .send(.packs(.syncButtonTapped))
 
-            case .packs(.syncCompleted):
-                // After a successful sync the rules list needs to refresh
-                // even when the user is on the Filtres tab (sync may have
-                // added or upgraded a pack contributing new rules).
+            case .packs(.syncCompleted), .packs(.toggleCompleted):
+                // Pack changes reshape the grouped list in the Filtres tab.
                 return .send(.rules(.task))
 
             case .rules:
@@ -153,27 +184,35 @@ public struct AppFeature: Sendable {
         }
     }
 
-    private func checkExtensionStatus() -> Effect<Action> {
+    private func checkExtensionStatuses() -> Effect<Action> {
         .run { [reloader = reloader] send in
             do {
-                let status = try await reloader.getEnabledStatus()
-                await send(.statusReceived(status))
+                var statuses: [Int: ExtensionEnabledStatus] = [:]
+                for slot in ExtensionSlot.all {
+                    statuses[slot.index] = try await reloader.getEnabledStatus(slot)
+                }
+                await send(.statusesReceived(statuses))
             } catch {
                 await send(.statusCheckFailed(EquatableError(error)))
             }
         }
     }
 
-    private func loadExtensionRun() -> Effect<Action> {
+    private func loadExtensionRuns() -> Effect<Action> {
         .run { [container = container] send in
-            let report = try? ExtensionRunReport.load(from: container.extensionRunURL())
-            await send(.extensionRunLoaded(report))
+            var reports: [Int: ExtensionRunReport] = [:]
+            for slot in ExtensionSlot.all {
+                if let report = try? ExtensionRunReport.load(from: container.extensionRunURL(slot)) {
+                    reports[slot.index] = report
+                }
+            }
+            await send(.extensionRunsLoaded(reports))
         }
     }
 
     /// Installs or upgrades embedded packs, then rebuilds the shared store
     /// whenever something changed or the store on disk cannot be trusted
-    /// (missing, older format, or last reload failed).
+    /// (missing, older format, different slot layout, or last reload failed).
     private func runBootstrap() -> Effect<Action> {
         .run { [
             embeddedPacks = embeddedPacks,
@@ -199,11 +238,11 @@ public struct AppFeature: Sendable {
             if let manifest, let record = manifest.lastReload {
                 let status: StoreStatus = record.succeeded
                     ? .ready(numbers: manifest.totalNumbers, date: record.date)
-                    : .failed(record.failure ?? .unknown("?"), numbers: manifest.totalNumbers, date: record.date)
+                    : .failed(record.failure ?? .unknown("?"), numbers: manifest.totalNumbers, date: record.date, slot: record.slot)
                 if case .unknown = storeStatus.current() { storeStatus.set(status) }
             }
             let needsRebuild = Self.needsRebuild(bootstrap: summary, manifest: manifest) || DebugProbe.forceRebuild
-            WildCallLog.info("Bootstrap: store manifest \(manifest == nil ? "missing" : "v\(manifest!.formatVersion)"), rebuild needed: \(needsRebuild)")
+            WildCallLog.info("Bootstrap: store manifest \(manifest == nil ? "missing" : "v\(manifest!.formatVersion), \(manifest!.slots.count) slot(s)"), rebuild needed: \(needsRebuild)")
             if needsRebuild {
                 await orchestrator.requestRebuild()
             }
@@ -214,6 +253,7 @@ public struct AppFeature: Sendable {
         if bootstrap.didChangeAnything { return true }
         guard let manifest else { return true }
         if manifest.formatVersion != StoreManifest.currentFormatVersion { return true }
+        if !manifest.matchesSlotLayout { return true }
         guard let lastReload = manifest.lastReload else { return true }
         return !lastReload.succeeded
     }

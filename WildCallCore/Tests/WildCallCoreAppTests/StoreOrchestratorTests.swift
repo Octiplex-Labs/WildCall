@@ -131,6 +131,7 @@ import WildCallCoreShared
         let container: SharedContainer
         let hub = StoreStatusHub()
         let reloadCalls = LockIsolated(0)
+        let reloadedSlots = LockIsolated([Int]())
         let rules = LockIsolated([BlockRule]())
 
         init() throws {
@@ -143,7 +144,8 @@ import WildCallCoreShared
 
         func orchestrator(
             quotas: WildcardQuotas = .default,
-            reload: @escaping @Sendable () async throws -> Void = {}
+            slots: [ExtensionSlot] = ExtensionSlot.all,
+            reload: @escaping @Sendable (ExtensionSlot) async throws -> Void = { _ in }
         ) -> StoreOrchestrator {
             StoreOrchestrator.live(
                 repository: RulesRepository(
@@ -153,12 +155,17 @@ import WildCallCoreShared
                 packsRepository: .inMemory,
                 container: container,
                 reloader: ExtensionReloader(
-                    reload: { reloadCalls.withValue { $0 += 1 }; try await reload() },
-                    getEnabledStatus: { .enabled }
+                    reload: { slot in
+                        reloadCalls.withValue { $0 += 1 }
+                        reloadedSlots.withValue { $0.append(slot.index) }
+                        try await reload(slot)
+                    },
+                    getEnabledStatus: { _ in .enabled }
                 ),
                 expander: .live,
                 quotas: quotas,
                 status: hub.client,
+                slots: slots,
                 now: { Date(timeIntervalSince1970: 1_700_000_000) }
             )
         }
@@ -170,13 +177,14 @@ import WildCallCoreShared
         harness.rules.withValue {
             $0 = [BlockRule(kind: .prefix(.init(fixedDigits: "33162", wildcardLength: 6)), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR")]
         }
-        let tight = WildcardQuotas(perPattern: 1_000_000, totalUser: 1_000_000, minFixedDigits: 2, maxExtensionEntries: 999_999)
+        let tight = WildcardQuotas(perPattern: 1_000_000, totalUser: 1_000_000, minFixedDigits: 2, maxExtensionEntries: 400_000)
 
+        // 2 slots × 400 000 < 1 000 000 : refused before any reload.
         await #expect(throws: ReloadFailure.maximumEntriesExceeded) {
-            try await harness.orchestrator(quotas: tight).rebuildAndReload()
+            try await harness.orchestrator(quotas: tight, slots: [ExtensionSlot(1), ExtensionSlot(2)]).rebuildAndReload()
         }
         #expect(harness.reloadCalls.value == 0)
-        #expect(harness.hub.current == .failed(.maximumEntriesExceeded, numbers: 1_000_000, date: Date(timeIntervalSince1970: 1_700_000_000)))
+        #expect(harness.hub.current == .failed(.maximumEntriesExceeded, numbers: 1_000_000, date: Date(timeIntervalSince1970: 1_700_000_000), slot: nil))
         let manifest = try StoreManifest.load(from: harness.container.manifestURL())
         #expect(manifest?.lastReload?.failure == .maximumEntriesExceeded)
     }
@@ -195,31 +203,62 @@ import WildCallCoreShared
         #expect(summary.blockCount == 1_000_001)
         #expect(summary.block.rangeCount == 2)
         #expect(summary.identCount == 0)
-        #expect(harness.reloadCalls.value == 1)
+        #expect(summary.slots.count == ExtensionSlot.count)
+        // Everything fits in slot 1; the other slots get empty files and are reloaded too.
+        #expect(harness.reloadedSlots.value == ExtensionSlot.all.map(\.index))
 
-        let reader = try BlockStoreReader(url: harness.container.blockStoreURL())
+        let reader = try BlockStoreReader(url: harness.container.blockStoreURL(ExtensionSlot(1)))
         #expect(reader.ranges == [NumberRange(start: 33_162_000_000, count: 1_000_000), .single(33_612_345_678)])
+        #expect(try BlockStoreReader(url: harness.container.blockStoreURL(ExtensionSlot(2))).rangeCount == 0)
 
         let manifest = try StoreManifest.load(from: harness.container.manifestURL())
         #expect(manifest?.formatVersion == StoreManifest.currentFormatVersion)
         #expect(manifest?.block.count == 1_000_001)
+        #expect(manifest?.slots.map(\.slot) == [1, 2, 3, 4])
+        #expect(manifest?.slots[0].block.count == 1_000_001)
+        #expect(manifest?.matchesSlotLayout == true)
         #expect(manifest?.lastReload?.succeeded == true)
         #expect(manifest?.sources == ["user"])
         #expect(harness.hub.current == .ready(numbers: 1_000_001, date: Date(timeIntervalSince1970: 1_700_000_000)))
     }
 
+    @Test func largeListIsSplitAcrossSlotsAtTheCeiling() async throws {
+        let harness = try Harness()
+        defer { harness.tearDown() }
+        harness.rules.withValue {
+            $0 = (0..<5).map { i in
+                BlockRule(kind: .prefix(.init(fixedDigits: "3316\(i)", wildcardLength: 6)), source: .pack(packId: "fr.arcep"), action: .block, countryCode: "FR")
+            }
+        }
+        let summary = try await harness.orchestrator().rebuildAndReload()
+        #expect(summary.blockCount == 5_000_000)
+        #expect(summary.slots.map(\.totalNumbers) == [1_999_999, 1_999_999, 1_000_002, 0])
+        for slot in ExtensionSlot.all {
+            let reader = try BlockStoreReader(url: harness.container.blockStoreURL(slot))
+            #expect(reader.totalNumbers <= 1_999_999)
+        }
+        // Slot files are contiguous : slot 2 starts right after slot 1 ends.
+        let first = try BlockStoreReader(url: harness.container.blockStoreURL(ExtensionSlot(1)))
+        let second = try BlockStoreReader(url: harness.container.blockStoreURL(ExtensionSlot(2)))
+        #expect(second.ranges.first?.start == first.ranges.last?.end)
+    }
+
     @Test func reloadFailureIsRecordedAndPublished() async throws {
         let harness = try Harness()
         defer { harness.tearDown() }
-        let orchestrator = harness.orchestrator(reload: { throw ReloadFailure.extensionDisabled })
+        let orchestrator = harness.orchestrator(reload: { slot in
+            if slot.index == 2 { throw ReloadFailure.extensionDisabled }
+        })
 
         await #expect(throws: ReloadFailure.extensionDisabled) {
             try await orchestrator.rebuildAndReload()
         }
+        #expect(harness.reloadedSlots.value == [1, 2])  // stops at the failing slot
         let manifest = try StoreManifest.load(from: harness.container.manifestURL())
         #expect(manifest?.lastReload?.succeeded == false)
         #expect(manifest?.lastReload?.failure == .extensionDisabled)
-        #expect(harness.hub.current == .failed(.extensionDisabled, numbers: 0, date: Date(timeIntervalSince1970: 1_700_000_000)))
+        #expect(manifest?.lastReload?.slot == 2)
+        #expect(harness.hub.current == .failed(.extensionDisabled, numbers: 0, date: Date(timeIntervalSince1970: 1_700_000_000), slot: 2))
     }
 
     @Test func statusStreamSeesEveryPhase() async throws {
@@ -238,7 +277,10 @@ import WildCallCoreShared
         #expect(seen == [
             .unknown,
             .building,
-            .reloading(numbers: 0),
+            .reloading(numbers: 0, slot: 1),
+            .reloading(numbers: 0, slot: 2),
+            .reloading(numbers: 0, slot: 3),
+            .reloading(numbers: 0, slot: 4),
             .ready(numbers: 0, date: Date(timeIntervalSince1970: 1_700_000_000)),
         ])
     }
@@ -247,7 +289,7 @@ import WildCallCoreShared
         let harness = try Harness()
         defer { harness.tearDown() }
         let gate = AsyncGate()
-        let orchestrator = harness.orchestrator(reload: { await gate.wait() })
+        let orchestrator = harness.orchestrator(slots: [ExtensionSlot(1)], reload: { _ in await gate.wait() })
 
         // First request starts a cycle and blocks inside reload.
         await orchestrator.requestRebuild()

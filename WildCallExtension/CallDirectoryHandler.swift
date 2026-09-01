@@ -2,7 +2,9 @@ import CallKit
 import Foundation
 import WildCallCoreShared
 
-/// Streams the ranges built by the app into CallKit.
+/// Streams the ranges built by the app into CallKit. The same source is
+/// compiled into every extension target; `WildCallSlot` in the Info.plist
+/// tells each copy which files to read.
 ///
 /// Two rules drive this file :
 /// 1. iOS calls `beginRequest` with `isIncremental == true` on every reload
@@ -17,38 +19,37 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
     override func beginRequest(with context: CXCallDirectoryExtensionContext) {
         context.delegate = self
 
+        let slot = ExtensionSlot.current()
         let root = FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: BlockStoreFormat.appGroupIdentifier)
         var report = ExtensionRunReport(startedAt: Date(), isIncremental: context.isIncremental)
-        writeReport(report, root: root)
-        WildCallLog.info("Extension: beginRequest incremental=\(context.isIncremental) root=\(root?.path ?? "nil")")
+        writeReport(report, slot: slot, root: root)
+        WildCallLog.info("Extension \(slot.index): beginRequest incremental=\(context.isIncremental) root=\(root?.path ?? "nil")")
 
         do {
             if context.isIncremental {
                 context.removeAllBlockingEntries()
                 context.removeAllIdentificationEntries()
             }
-            report.blockNumbers = try loadBlockingNumbers(root: root, into: context)
-            report.identNumbers = try loadIdentificationEntries(root: root, into: context)
+            report.blockNumbers = try loadBlockingNumbers(url: root?.appendingPathComponent(slot.blockFileName), into: context)
+            report.identNumbers = try loadIdentificationEntries(url: root?.appendingPathComponent(slot.identFileName), into: context)
             report.outcome = .completed
             report.finishedAt = Date()
-            writeReport(report, root: root)
-            WildCallLog.info("Extension: loaded \(report.blockNumbers) block + \(report.identNumbers) ident in \(Int(report.duration ?? 0)) s")
+            writeReport(report, slot: slot, root: root)
+            WildCallLog.info("Extension \(slot.index): loaded \(report.blockNumbers) block + \(report.identNumbers) ident in \(Int(report.duration ?? 0)) s")
             context.completeRequest()
         } catch {
-            WildCallLog.error("Extension: failed \(error)")
+            WildCallLog.error("Extension \(slot.index): failed \(error)")
             report.outcome = .failed
             report.finishedAt = Date()
             report.errorDescription = String(describing: error)
-            writeReport(report, root: root)
+            writeReport(report, slot: slot, root: root)
             context.cancelRequest(withError: error)
         }
     }
 
-    private func loadBlockingNumbers(root: URL?, into context: CXCallDirectoryExtensionContext) throws -> Int64 {
-        guard let url = root?.appendingPathComponent(BlockStoreFormat.blockFileName),
-              FileManager.default.fileExists(atPath: url.path)
-        else { return 0 }
+    private func loadBlockingNumbers(url: URL?, into context: CXCallDirectoryExtensionContext) throws -> Int64 {
+        guard let url, FileManager.default.fileExists(atPath: url.path) else { return 0 }
         let reader = try BlockStoreReader(url: url)
         reader.forEachNumber { number in
             context.addBlockingEntry(withNextSequentialPhoneNumber: number)
@@ -56,10 +57,8 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
         return reader.totalNumbers
     }
 
-    private func loadIdentificationEntries(root: URL?, into context: CXCallDirectoryExtensionContext) throws -> Int64 {
-        guard let url = root?.appendingPathComponent(BlockStoreFormat.identFileName),
-              FileManager.default.fileExists(atPath: url.path)
-        else { return 0 }
+    private func loadIdentificationEntries(url: URL?, into context: CXCallDirectoryExtensionContext) throws -> Int64 {
+        guard let url, FileManager.default.fileExists(atPath: url.path) else { return 0 }
         let reader = try IdentStoreReader(url: url)
         reader.forEachNumber { number, label in
             context.addIdentificationEntry(withNextSequentialPhoneNumber: number, label: label)
@@ -67,8 +66,8 @@ final class CallDirectoryHandler: CXCallDirectoryProvider {
         return reader.totalNumbers
     }
 
-    private func writeReport(_ report: ExtensionRunReport, root: URL?) {
-        guard let url = root?.appendingPathComponent(BlockStoreFormat.extensionRunFileName) else { return }
+    private func writeReport(_ report: ExtensionRunReport, slot: ExtensionSlot, root: URL?) {
+        guard let url = root?.appendingPathComponent(slot.extensionRunFileName) else { return }
         // Best effort : a failed report write must never abort the load.
         try? report.write(to: url)
     }
