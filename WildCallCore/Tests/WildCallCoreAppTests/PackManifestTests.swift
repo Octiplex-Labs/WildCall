@@ -143,48 +143,37 @@ import CustomDump
         #expect(manifest.supersedes == ["fr.arcep-extra"])
     }
 
-    @Test func embeddedFrenchPacksFitUnderTheExtensionCeiling() throws {
-        // The bundled packs are what users get by default : every pattern
-        // must parse, and each pack must stay under what iOS accepts.
-        let packsFolder = URL(filePath: #filePath)
+    @Test func embeddedFrenchPackFitsTheShippedExtensions() throws {
+        // The bundled pack is what users get by default : every pattern
+        // must parse and the total must fit in the extensions we ship.
+        let url = URL(filePath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent()
-            .appendingPathComponent("Packs")
-        let files = try FileManager.default.contentsOfDirectory(at: packsFolder, includingPropertiesForKeys: nil)
-            .filter { $0.lastPathComponent.hasSuffix(".source.json") }
-            .sorted { $0.lastPathComponent < $1.lastPathComponent }
-        #expect(files.count == 4)
+            .appendingPathComponent("Packs/prefixes-FR.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "fr.arcep")
+        #expect(manifest.enabledByDefault == true)
+        #expect(manifest.supersedes == ["fr.arcep.1", "fr.arcep.2", "fr.arcep.3", "fr.arcep.4", "fr.arcep-extra"])
+        #expect(manifest.title?.isEmpty == false)
 
         let parser = WildcardParser.live
         let expander = WildcardExpander.live
-        var ids: [String] = []
-        for file in files {
-            let manifest = try PackManifest.load(from: file)
-            ids.append(manifest.id)
-            var total = 0
-            for pattern in manifest.prefixes {
-                let result = withDependencies {
-                    $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
-                } operation: {
-                    parser.parse(pattern, "FR")
-                }
-                guard case .success(let prefix) = result else {
-                    Issue.record("\(manifest.id): \(pattern) rejected: \(result)")
-                    continue
-                }
-                total += expander.count(prefix)
+        var total = 0
+        for pattern in manifest.prefixes {
+            let result = withDependencies {
+                $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+            } operation: {
+                parser.parse(pattern, "FR")
             }
-            #expect(total > 0)
-            #expect(total <= WildcardQuotas.measuredExtensionCeiling, "\(manifest.id) has \(total) numbers")
+            guard case .success(let prefix) = result else {
+                Issue.record("\(pattern) rejected: \(result)")
+                continue
+            }
+            #expect(prefix.fixedDigits.hasPrefix("33"))
+            total += expander.count(prefix)
         }
-        #expect(ids == ["fr.arcep.1", "fr.arcep.2", "fr.arcep.3", "fr.arcep.4"])
-
-        let first = try PackManifest.load(from: files[0])
-        #expect(first.enabledByDefault == true)
-        #expect(first.supersedes == ["fr.arcep", "fr.arcep-extra"])
-        for file in files.dropFirst() {
-            #expect(try PackManifest.load(from: file).enabledByDefault == false)
-        }
+        #expect(total > 5_000_000)
+        #expect(total <= WildcardQuotas.default.totalCapacity, "\(total) numbers exceed the shipped extensions")
     }
 
     @Test func decodesEnabledByDefault() throws {
