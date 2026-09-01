@@ -84,7 +84,8 @@ extension PackBootstrap {
                     version: manifest.version,
                     country: manifest.country,
                     enabled: enabled,
-                    installedAt: now
+                    installedAt: now,
+                    title: manifest.title
                 )
             )
         }

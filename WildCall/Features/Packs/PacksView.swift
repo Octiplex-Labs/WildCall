@@ -38,7 +38,7 @@ struct PacksView: View {
                     } header: {
                         Text("Packs installés")
                     } footer: {
-                        Text("iOS accepte au plus \(FilterStatusFormatting.count(WildcardQuotas.measuredExtensionCeiling)) numéros par extension : activez les packs de façon à rester sous ce total (\(FilterStatusFormatting.count(enabledPackNumbers)) actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.")
+                        Text("WildCall peut envoyer \(FilterStatusFormatting.count(WildcardQuotas.default.totalCapacity)) numéros à iOS (\(FilterStatusFormatting.count(enabledPackNumbers)) actuellement via les packs). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.")
                     }
                 }
 
@@ -185,9 +185,9 @@ private struct PackRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(pack.id)
-                    .font(.body.monospaced())
-                Text("\(pack.country) · version \(pack.version)")
+                Text(pack.displayTitle)
+                    .font(.body.weight(.medium))
+                Text("\(pack.id) · \(pack.country) · version \(pack.version)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 if let numberCount {

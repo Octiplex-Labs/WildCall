@@ -24,6 +24,7 @@ import WildCallCoreShared
                 update: { _ in }
             )
             $0.storeOrchestrator = .testValue
+            $0.packsRepository = PacksRepository(fetchAll: { [] }, fetch: { _ in nil }, insert: { _ in }, setEnabled: { _, _ in }, delete: { _ in })
         }
 
         await store.send(.task) { $0.isLoading = true }
@@ -66,7 +67,7 @@ import WildCallCoreShared
         }
         store.exhaustivity = .off
 
-        await store.send(.rulesLoaded([rule])) {
+        await store.send(.rulesLoaded([rule], packs: [])) {
             $0.rules = [rule]
         }
         await store.send(.deleteRequested(id: rule.id)) {

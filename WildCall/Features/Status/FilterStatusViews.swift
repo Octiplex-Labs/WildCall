@@ -19,12 +19,12 @@ struct FilterStatusBanner: View {
                         .font(.subheadline)
                 }
             }
-        case .reloading(let numbers):
+        case .reloading(let numbers, let slot):
             card(tint: .indigo) {
                 HStack(alignment: .top, spacing: 10) {
                     ProgressView()
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("iOS charge \(FilterStatusFormatting.count(numbers)) numéros")
+                        Text("iOS charge \(FilterStatusFormatting.count(numbers)) numéros (extension \(slot) sur \(ExtensionSlot.count))")
                             .font(.subheadline.weight(.medium))
                         Text("Cela peut prendre plusieurs minutes. Vous pouvez continuer à utiliser l'app.")
                             .font(.caption)
@@ -32,10 +32,10 @@ struct FilterStatusBanner: View {
                     }
                 }
             }
-        case .failed(let failure, _, _):
+        case .failed(let failure, _, _, let slot):
             card(tint: .orange) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Label(FilterStatusFormatting.title(for: failure), systemImage: "exclamationmark.triangle.fill")
+                    Label(FilterStatusFormatting.title(for: failure, slot: slot), systemImage: "exclamationmark.triangle.fill")
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.orange)
                     Text(FilterStatusFormatting.detail(for: failure))
@@ -78,15 +78,21 @@ struct FilterStatusSection: View {
         Section {
             statusRow
 
-            if let run = store.lastExtensionRun {
-                row("Dernier chargement iOS", FilterStatusFormatting.summary(of: run))
-                if let duration = run.duration {
-                    row("Durée", FilterStatusFormatting.duration(duration))
-                }
-                if run.outcome == .failed, let error = run.errorDescription {
-                    Text(error)
-                        .font(.caption.monospaced())
-                        .foregroundStyle(.orange)
+            ForEach(ExtensionSlot.all) { slot in
+                if let run = store.lastExtensionRuns[slot.index] {
+                    VStack(alignment: .leading, spacing: 2) {
+                        row(LocalizedStringKey(slot.displayName), FilterStatusFormatting.summary(of: run))
+                        if let duration = run.duration {
+                            Text("Chargé en \(FilterStatusFormatting.duration(duration))")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        if run.outcome == .failed, let error = run.errorDescription {
+                            Text(error)
+                                .font(.caption.monospaced())
+                                .foregroundStyle(.orange)
+                        }
+                    }
                 }
             }
 
@@ -104,7 +110,7 @@ struct FilterStatusSection: View {
         } header: {
             Text("État du filtre")
         } footer: {
-            Text("iOS ne journalise pas les appels bloqués : ils n'apparaissent ni dans Récents ni en notification. Pour vérifier qu'une règle est active, préférez l'action Identifier : l'étiquette s'affiche sur l'appel entrant et dans Récents. Les numéros présents dans vos contacts ne sont jamais filtrés.")
+            Text("WildCall embarque \(ExtensionSlot.count) extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés.")
                 .font(.caption)
         }
     }
@@ -120,10 +126,10 @@ struct FilterStatusSection: View {
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .combine)
-        case .reloading(let numbers):
+        case .reloading(let numbers, let slot):
             HStack {
                 ProgressView()
-                Text("iOS charge \(FilterStatusFormatting.count(numbers)) numéros…")
+                Text("iOS charge \(FilterStatusFormatting.count(numbers)) numéros… (extension \(slot) sur \(ExtensionSlot.count))")
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .combine)
@@ -136,9 +142,9 @@ struct FilterStatusSection: View {
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .combine)
-        case .failed(let failure, let numbers, let date):
+        case .failed(let failure, let numbers, let date, let slot):
             VStack(alignment: .leading, spacing: 2) {
-                Label(FilterStatusFormatting.title(for: failure), systemImage: "exclamationmark.triangle.fill")
+                Label(FilterStatusFormatting.title(for: failure, slot: slot), systemImage: "exclamationmark.triangle.fill")
                     .foregroundStyle(.orange)
                 Text(FilterStatusFormatting.detail(for: failure))
                     .font(.caption)
@@ -194,6 +200,12 @@ enum FilterStatusFormatting {
         }
     }
 
+    static func title(for failure: ReloadFailure, slot: Int? = nil) -> String {
+        let base = title(for: failure)
+        guard let slot else { return base }
+        return String(localized: "\(base) (extension \(slot))")
+    }
+
     static func title(for failure: ReloadFailure) -> String {
         switch failure {
         case .extensionDisabled:
@@ -216,7 +228,7 @@ enum FilterStatusFormatting {
     static func detail(for failure: ReloadFailure) -> String {
         switch failure {
         case .extensionDisabled:
-            String(localized: "Réglages → Apps → Téléphone → Blocage et identification d'appel → activez WildCall, puis réessayez.")
+            String(localized: "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall, puis réessayez.")
         case .noExtensionFound:
             String(localized: "L'extension de blocage n'est pas installée avec l'app. Réinstallez WildCall.")
         case .currentlyLoading:
@@ -226,7 +238,7 @@ enum FilterStatusFormatting {
         case .entriesOutOfOrder, .duplicateEntries, .unexpectedIncrementalRemoval:
             String(localized: "Le fichier partagé est incohérent. Reconstruisez le filtre ; si le problème persiste, signalez-le.")
         case .maximumEntriesExceeded:
-            String(localized: "iOS accepte au plus \(count(WildcardQuotas.measuredExtensionCeiling)) numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.")
+            String(localized: "iOS accepte au plus \(count(WildcardQuotas.measuredExtensionCeiling)) numéros par extension, soit \(count(WildcardQuotas.default.totalCapacity)) pour WildCall. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.")
         case .unknown(let description):
             description
         }

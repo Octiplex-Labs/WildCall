@@ -145,7 +145,8 @@ public struct PackImportFeature: Sendable {
                 version: loaded.manifest.version,
                 country: loaded.manifest.country,
                 enabled: previouslyEnabled,
-                installedAt: now
+                installedAt: now,
+                title: loaded.manifest.title
             )
         )
     }

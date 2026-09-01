@@ -2,7 +2,11 @@ import ComposableArchitecture
 import SwiftUI
 import UIKit
 import WildCallCoreApp
+import WildCallCoreShared
 
+/// Guides the user through enabling every WildCall extension. iOS lists
+/// one toggle per extension ("WildCall 1" to "WildCall 4"): the filter is
+/// complete only when all of them are on.
 struct OnboardingBanner: View {
     let store: StoreOf<AppFeature>
 
@@ -20,6 +24,7 @@ struct OnboardingBanner: View {
                 Text(detail)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                slotIndicators
                 HStack {
                     Button {
                         openCallBlockingSettings()
@@ -41,7 +46,7 @@ struct OnboardingBanner: View {
                     .buttonStyle(.bordered)
                     .disabled(store.isCheckingStatus)
                     .accessibilityLabel(Text(store.isCheckingStatus ? "Vérification en cours" : "Vérifier le statut"))
-                    .accessibilityHint(Text("Demande à iOS si l'extension est activée."))
+                    .accessibilityHint(Text("Demande à iOS si les extensions sont activées."))
                 }
             }
             .padding()
@@ -54,11 +59,33 @@ struct OnboardingBanner: View {
         }
     }
 
+    private var slotIndicators: some View {
+        HStack(spacing: 8) {
+            ForEach(ExtensionSlot.all) { slot in
+                let status = store.extensionStatuses[slot.index] ?? .unknown
+                Label {
+                    Text(slot.displayName)
+                } icon: {
+                    Image(systemName: status == .enabled ? "checkmark.circle.fill" : "circle")
+                }
+                .font(.caption.weight(.medium))
+                .foregroundStyle(status == .enabled ? Color.green : Color.secondary)
+                .accessibilityLabel(Text("\(slot.displayName), \(status == .enabled ? String(localized: "activée") : String(localized: "à activer"))"))
+            }
+        }
+    }
+
     private var title: String {
         switch store.extensionStatus {
-        case .enabled: String(localized: "Extension activée")
-        case .disabled: String(localized: "Activez WildCall dans Réglages")
-        case .unknown: String(localized: "Statut de l'extension inconnu")
+        case .enabled:
+            return String(localized: "Extensions activées")
+        case .disabled:
+            let missing = store.disabledSlots.count
+            return missing == ExtensionSlot.count
+                ? String(localized: "Activez WildCall dans Réglages")
+                : String(localized: "\(missing) extension(s) WildCall à activer")
+        case .unknown:
+            return String(localized: "Statut des extensions inconnu")
         }
     }
 
@@ -67,7 +94,7 @@ struct OnboardingBanner: View {
         case .enabled:
             String(localized: "WildCall filtre les appels.")
         case .disabled:
-            String(localized: "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall.")
+            String(localized: "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc \(ExtensionSlot.count).")
         case .unknown:
             String(localized: "Lancez la vérification pour interroger le système.")
         }

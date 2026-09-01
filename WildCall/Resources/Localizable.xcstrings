@@ -1,6 +1,40 @@
 {
   "sourceLanguage": "fr",
   "strings": {
+    "%@ (extension %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (extension %2$@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (extensión %2$@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (extension %@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (estensione %2$@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (extensão %2$@)"
+          }
+        }
+      }
+    },
     "%@ bloqués, %@ identifiés": {
       "localizations": {
         "en": {
@@ -31,6 +65,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ bloqueados, %2$@ identificados"
+          }
+        }
+      }
+    },
+    "%@ extension(s) WildCall à activer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ WildCall extension(s) to enable"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ extensión(es) WildCall por activar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ extension(s) WildCall à activer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ estensione/i WildCall da attivare"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ extensão(ões) WildCall por ativar"
           }
         }
       }
@@ -103,6 +171,108 @@
         }
       }
     },
+    "%@ numéros dans %@ racines": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numbers in %2$@ roots"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números en %2$@ raíces"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numéros dans %@ racines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numeri in %2$@ radici"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números em %2$@ raízes"
+          }
+        }
+      }
+    },
+    "%@ numéros · %@ blocs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numbers · %2$@ blocks"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$@ bloques"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numéros · %@ blocs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numeri · %2$@ blocchi"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$@ blocos"
+          }
+        }
+      }
+    },
+    "%@ numéros · %@ racines": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numbers · %2$@ roots"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$@ raíces"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numéros · %@ racines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numeri · %2$@ radici"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$@ raízes"
+          }
+        }
+      }
+    },
     "%@ numéros · échec %@": {
       "localizations": {
         "en": {
@@ -171,6 +341,40 @@
         }
       }
     },
+    "%@ · %@ · version %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · version %3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · versión %3$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@ · version %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · versione %3$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · versão %3$@"
+          }
+        }
+      }
+    },
     "%@ · version %@": {
       "localizations": {
         "en": {
@@ -201,6 +405,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ · versão %2$@"
+          }
+        }
+      }
+    },
+    "%@ · version %@ · %@ motifs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · version %2$@ · %3$@ patterns"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · versión %2$@ · %3$@ patrones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · version %@ · %@ motifs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · versione %2$@ · %3$@ schemi"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · versão %2$@ · %3$@ padrões"
+          }
+        }
+      }
+    },
+    "%@, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
           }
         }
       }
@@ -615,6 +887,40 @@
         }
       }
     },
+    "Activez ou désactivez un pack dans Réglages. Touchez un pack pour voir ses plages.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable or disable a pack in Settings. Tap a pack to see its ranges."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa o desactiva un pack en Ajustes. Toca un pack para ver sus rangos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez ou désactivez un pack dans Réglages. Touchez un pack pour voir ses plages."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva o disattiva un pack in Impostazioni. Tocca un pack per vederne gli intervalli."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative ou desative um pack em Definições. Toque num pack para ver os seus intervalos."
+          }
+        }
+      }
+    },
     "Affiche la prochaine page de l'introduction.": {
       "localizations": {
         "en": {
@@ -679,6 +985,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mostra a versão, a chave do editor e os componentes de terceiros."
+          }
+        }
+      }
+    },
+    "Affiche les plages de numéros de ce pack.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows this pack's number ranges."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra los rangos de números de este pack."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affiche les plages de numéros de ce pack."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra gli intervalli di numeri di questo pack."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra os intervalos de números deste pack."
           }
         }
       }
@@ -1235,6 +1575,40 @@
         }
       }
     },
+    "Aucune règle personnelle. Touchez + pour en ajouter une.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No personal rule yet. Tap + to add one."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguna regla personal. Toca + para añadir una."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune règle personnelle. Touchez + pour en ajouter une."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna regola personale. Tocca + per aggiungerne una."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhuma regra pessoal. Toque em + para adicionar uma."
+          }
+        }
+      }
+    },
     "Balayez vers la gauche pour supprimer ou vers la droite pour changer l'action.": {
       "localizations": {
         "en": {
@@ -1679,6 +2053,40 @@
         }
       }
     },
+    "Chargé en %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loaded in %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargado en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chargé en %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricato in %@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregado em %@"
+          }
+        }
+      }
+    },
     "Clé publique disparue du manifeste.": {
       "extractionState": "stale",
       "localizations": {
@@ -1887,70 +2295,36 @@
         }
       }
     },
-    "Demande à iOS si l'extension est activée.": {
+    "Demande à iOS si les extensions sont activées.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Asks iOS whether the extension is enabled."
+            "value": "Asks iOS whether the extensions are enabled."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pregunta a iOS si la extensión está activada."
+            "value": "Pregunta a iOS si las extensiones están activadas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demande à iOS si l'extension est activée."
+            "value": "Demande à iOS si les extensions sont activées."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chiede a iOS se l'estensione è attiva."
+            "value": "Chiede a iOS se le estensioni sono attive."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pergunta ao iOS se a extensão está ativada."
-          }
-        }
-      }
-    },
-    "Dernier chargement iOS": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Last iOS load"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Última carga de iOS"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dernier chargement iOS"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ultimo caricamento iOS"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Último carregamento iOS"
+            "value": "Pergunta ao iOS se as extensões estão ativadas."
           }
         }
       }
@@ -2087,6 +2461,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Telemarketing FR"
+          }
+        }
+      }
+    },
+    "Désactivé": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disabled"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattivato"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desativado"
           }
         }
       }
@@ -2228,41 +2636,6 @@
         }
       }
     },
-    "Extension activée": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extension enabled"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensión activada"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extension activée"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estensione attiva"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensão ativada"
-          }
-        }
-      }
-    },
     "Extension introuvable": {
       "localizations": {
         "en": {
@@ -2293,6 +2666,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Extensão não encontrada"
+          }
+        }
+      }
+    },
+    "Extensions activées": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions enabled"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones activadas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions activées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estensioni attive"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensões ativadas"
           }
         }
       }
@@ -2469,7 +2876,6 @@
       }
     },
     "Filtres": {
-      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -3430,6 +3836,40 @@
         }
       }
     },
+    "Mes règles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My rules"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mis reglas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes règles"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mie regole"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As minhas regras"
+          }
+        }
+      }
+    },
     "Mises à jour": {
       "localizations": {
         "en": {
@@ -4080,6 +4520,40 @@
         }
       }
     },
+    "Pack %@, %@, %@ numéros, %@ racines": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, %3$@ numbers, %4$@ roots"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, %3$@ números, %4$@ raíces"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %@, %@, %@ numéros, %@ racines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, %3$@ numeri, %4$@ radici"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, %3$@ números, %4$@ raízes"
+          }
+        }
+      }
+    },
     "Pack %@, %@, version %@, %@ numéros": {
       "localizations": {
         "en": {
@@ -4144,6 +4618,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pack instalado."
+          }
+        }
+      }
+    },
+    "Packs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs"
           }
         }
       }
@@ -4802,41 +5310,6 @@
         }
       }
     },
-    "Règles": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rules"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reglas"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Règles"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regole"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regras"
-          }
-        }
-      }
-    },
     "Règles déclarées": {
       "extractionState": "stale",
       "localizations": {
@@ -5009,40 +5482,6 @@
         }
       }
     },
-    "Réglages → Apps → Téléphone → Blocage et identification d'appel → activez WildCall, puis réessayez.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Settings → Apps → Phone → Call Blocking & Identification → enable WildCall, then retry."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → activa WildCall y vuelve a intentarlo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réglages → Apps → Téléphone → Blocage et identification d'appel → activez WildCall, puis réessayez."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Impostazioni → App → Telefono → Blocco e identificazione chiamate → attiva WildCall, poi riprova."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definições → Apps → Telefone → Bloqueio e identificação de chamadas → ative o WildCall e tente novamente."
-          }
-        }
-      }
-    },
     "Réglages → Apps → Téléphone → Blocage et identification d'appel → cocher WildCall.": {
       "extractionState": "stale",
       "localizations": {
@@ -5074,6 +5513,74 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ajustes → Apps → Telefone → Bloqueio e identificação de chamadas → ativar WildCall."
+          }
+        }
+      }
+    },
+    "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall, puis réessayez.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings → Apps → Phone → Call Blocking & Identification → tick every WildCall row, then retry."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → marca cada línea WildCall y vuelve a intentarlo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall, puis réessayez."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni → App → Telefono → Blocco e identificazione chiamate → spunta ogni riga WildCall, poi riprova."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definições → Apps → Telefone → Bloqueio e identificação de chamadas → marque cada linha WildCall e tente novamente."
+          }
+        }
+      }
+    },
+    "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings → Apps → Phone → Call Blocking & Identification → tick every WildCall row. iOS caps each extension at 2 million numbers, so WildCall ships %@ of them."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → marca cada línea WildCall. iOS limita cada extensión a 2 millones de números, por eso WildCall incluye %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni → App → Telefono → Blocco e identificazione chiamate → spunta ogni riga WildCall. iOS limita ogni estensione a 2 milioni di numeri, per questo WildCall ne include %@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definições → Apps → Telefone → Bloqueio e identificação de chamadas → marque cada linha WildCall. O iOS limita cada extensão a 2 milhões de números, por isso o WildCall inclui %@."
           }
         }
       }
@@ -5419,6 +5926,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Status da extensão desconhecido"
+          }
+        }
+      }
+    },
+    "Statut des extensions inconnu": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions status unknown"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado de las extensiones desconocido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statut des extensions inconnu"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stato delle estensioni sconosciuto"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado das extensões desconhecido"
           }
         }
       }
@@ -6211,6 +6752,40 @@
         }
       }
     },
+    "WildCall embarque %@ extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WildCall ships %@ extensions because iOS caps each one at 2 million numbers; ranges are spread automatically. In Recents, a blocked call keeps the name of the app that blocked it at the time: calls that predate enabling WildCall stay credited to the other app. Numbers in your contacts are never filtered."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WildCall incluye %@ extensiones porque iOS limita cada una a 2 millones de números; los rangos se reparten automáticamente. En Recientes, una llamada bloqueada conserva el nombre de la app que la bloqueó en ese momento: las llamadas anteriores a la activación de WildCall siguen atribuidas a la otra app. Los números de tus contactos nunca se filtran."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WildCall embarque %@ extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WildCall include %@ estensioni perché iOS limita ciascuna a 2 milioni di numeri; gli intervalli vengono distribuiti automaticamente. In Recenti, una chiamata bloccata conserva il nome dell'app che l'ha bloccata in quel momento: le chiamate precedenti all'attivazione di WildCall restano attribuite all'altra app. I numeri presenti nei tuoi contatti non vengono mai filtrati."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O WildCall inclui %@ extensões porque o iOS limita cada uma a 2 milhões de números; os intervalos são distribuídos automaticamente. Em Recentes, uma chamada bloqueada mantém o nome da app que a bloqueou nesse momento: as chamadas anteriores à ativação do WildCall continuam atribuídas à outra app. Os números dos seus contactos nunca são filtrados."
+          }
+        }
+      }
+    },
     "WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire : c'est totalement optionnel.": {
       "localizations": {
         "en": {
@@ -6416,138 +6991,240 @@
         }
       }
     },
-    "iOS accepte au plus %@ numéros par extension : activez les packs de façon à rester sous ce total (%@ actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.": {
+    "WildCall peut envoyer %@ numéros à iOS (%@ actuellement via les packs). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accepts at most %1$@ numbers per extension: enable packs so that you stay under that total (%2$@ right now). Disabled packs no longer contribute to the block list. Your own rules are not affected."
+            "value": "WildCall can send %1$@ numbers to iOS (%2$@ right now through packs). Disabled packs no longer contribute to the block list. Your own rules are not affected."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS acepta como máximo %1$@ números por extensión: activa los packs de modo que no superes ese total (%2$@ ahora). Los packs desactivados ya no contribuyen a la lista de bloqueo. Tus propias reglas no se ven afectadas."
+            "value": "WildCall puede enviar %1$@ números a iOS (%2$@ ahora mediante los packs). Los packs desactivados ya no contribuyen a la lista de bloqueo. Tus propias reglas no se ven afectadas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accepte au plus %@ numéros par extension : activez les packs de façon à rester sous ce total (%@ actuellement). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées."
+            "value": "WildCall peut envoyer %@ numéros à iOS (%@ actuellement via les packs). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accetta al massimo %1$@ numeri per estensione: attiva i pack in modo da restare sotto quel totale (%2$@ al momento). I pack disattivati non contribuiscono più alla lista di blocco. Le tue regole non sono interessate."
+            "value": "WildCall può inviare %1$@ numeri a iOS (%2$@ al momento tramite i pack). I pack disattivati non contribuiscono più alla lista di blocco. Le tue regole non sono interessate."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS aceita no máximo %1$@ números por extensão: ative os packs de modo a ficar abaixo desse total (%2$@ neste momento). Os packs desativados deixam de contribuir para a lista de bloqueio. As suas próprias regras não são afetadas."
+            "value": "O WildCall pode enviar %1$@ números ao iOS (%2$@ neste momento através dos packs). Os packs desativados deixam de contribuir para a lista de bloqueio. As suas próprias regras não são afetadas."
           }
         }
       }
     },
-    "iOS accepte au plus %@ numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.": {
+    "activé": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accepts at most %@ numbers per extension. Disable a pack or narrow your patterns, then rebuild the filter."
+            "value": "enabled"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS acepta como máximo %@ números por extensión. Desactiva un pack o reduce tus patrones y reconstruye el filtro."
+            "value": "activado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accepte au plus %@ numéros par extension. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre."
+            "value": "activé"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS accetta al massimo %@ numeri per estensione. Disattiva un pack o restringi i tuoi schemi, poi ricostruisci il filtro."
+            "value": "attivo"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS aceita no máximo %@ números por extensão. Desative um pack ou reduza os seus padrões e reconstrua o filtro."
+            "value": "ativado"
           }
         }
       }
     },
-    "iOS charge %@ numéros": {
+    "activée": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS is loading %@ numbers"
+            "value": "enabled"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS está cargando %@ números"
+            "value": "activada"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS charge %@ numéros"
+            "value": "activée"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS sta caricando %@ numeri"
+            "value": "attiva"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS está a carregar %@ números"
+            "value": "ativada"
           }
         }
       }
     },
-    "iOS charge %@ numéros…": {
+    "désactivé": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS is loading %@ numbers…"
+            "value": "disabled"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS está cargando %@ números…"
+            "value": "desactivado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS charge %@ numéros…"
+            "value": "désactivé"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS sta caricando %@ numeri…"
+            "value": "disattivato"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS está a carregar %@ números…"
+            "value": "desativado"
+          }
+        }
+      }
+    },
+    "iOS accepte au plus %@ numéros par extension, soit %@ pour WildCall. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepts at most %1$@ numbers per extension, %2$@ for WildCall. Disable a pack or narrow your patterns, then rebuild the filter."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS acepta como máximo %1$@ números por extensión, es decir %2$@ para WildCall. Desactiva un pack o reduce tus patrones y reconstruye el filtro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accepte au plus %@ numéros par extension, soit %@ pour WildCall. Désactivez un pack ou réduisez vos motifs, puis reconstruisez le filtre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS accetta al massimo %1$@ numeri per estensione, cioè %2$@ per WildCall. Disattiva un pack o restringi i tuoi schemi, poi ricostruisci il filtro."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS aceita no máximo %1$@ números por extensão, ou seja %2$@ para o WildCall. Desative um pack ou reduza os seus padrões e reconstrua o filtro."
+          }
+        }
+      }
+    },
+    "iOS charge %@ numéros (extension %@ sur %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS is loading %1$@ numbers (extension %2$@ of %3$@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS está cargando %1$@ números (extensión %2$@ de %3$@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS charge %@ numéros (extension %@ sur %@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS sta caricando %1$@ numeri (estensione %2$@ di %3$@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS está a carregar %1$@ números (extensão %2$@ de %3$@)"
+          }
+        }
+      }
+    },
+    "iOS charge %@ numéros… (extension %@ sur %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS is loading %1$@ numbers… (extension %2$@ of %3$@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS está cargando %1$@ números… (extensión %2$@ de %3$@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS charge %@ numéros… (extension %@ sur %@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS sta caricando %1$@ numeri… (estensione %2$@ di %3$@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS está a carregar %1$@ números… (extensão %2$@ de %3$@)"
           }
         }
       }
@@ -6616,40 +7293,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "O iOS pede sua permissão para que o app possa filtrar chamadas. Leva 10 segundos em Ajustes."
-          }
-        }
-      }
-    },
-    "iOS ne journalise pas les appels bloqués : ils n'apparaissent ni dans Récents ni en notification. Pour vérifier qu'une règle est active, préférez l'action Identifier : l'étiquette s'affiche sur l'appel entrant et dans Récents. Les numéros présents dans vos contacts ne sont jamais filtrés.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS does not log blocked calls: they appear neither in Recents nor as notifications. To check that a rule is active, prefer the Identify action: the label shows on the incoming call and in Recents. Numbers in your contacts are never filtered."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS no registra las llamadas bloqueadas: no aparecen en Recientes ni como notificación. Para comprobar que una regla está activa, usa la acción Identificar: la etiqueta se muestra en la llamada entrante y en Recientes. Los números de tus contactos nunca se filtran."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS ne journalise pas les appels bloqués : ils n'apparaissent ni dans Récents ni en notification. Pour vérifier qu'une règle est active, préférez l'action Identifier : l'étiquette s'affiche sur l'appel entrant et dans Récents. Les numéros présents dans vos contacts ne sont jamais filtrés."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS non registra le chiamate bloccate: non compaiono né in Recenti né come notifica. Per verificare che una regola sia attiva, preferisci l'azione Identifica: l'etichetta appare sulla chiamata in arrivo e in Recenti. I numeri presenti nei tuoi contatti non vengono mai filtrati."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O iOS não regista as chamadas bloqueadas: não aparecem em Recentes nem como notificação. Para verificar que uma regra está ativa, prefira a ação Identificar: a etiqueta aparece na chamada recebida e em Recentes. Os números dos seus contactos nunca são filtrados."
           }
         }
       }
@@ -6958,6 +7601,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rótulo mostrado na chamada"
+          }
+        }
+      }
+    },
+    "à activer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "to enable"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "por activar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "à activer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "da attivare"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "por ativar"
           }
         }
       }

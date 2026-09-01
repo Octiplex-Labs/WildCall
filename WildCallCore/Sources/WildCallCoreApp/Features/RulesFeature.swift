@@ -1,13 +1,22 @@
 import ComposableArchitecture
 import Foundation
 import IdentifiedCollections
+import WildCallCoreShared
 
 @Reducer
 public struct RulesFeature: Sendable {
     @ObservableState
     public struct State: Equatable {
         public var rules: IdentifiedArrayOf<BlockRule> = []
+        public var packs: [InstalledPack] = []
         public var isLoading: Bool = false
+
+        /// Rules the user added, newest first (repository order).
+        public var userRules: [BlockRule] {
+            rules.filter { $0.source == .user }
+        }
+
+        public var isEmpty: Bool { rules.isEmpty && packs.isEmpty }
         @Presents public var addRule: AddRuleFeature.State?
 
         public init() {}
@@ -15,7 +24,7 @@ public struct RulesFeature: Sendable {
 
     public enum Action: Sendable {
         case task
-        case rulesLoaded([BlockRule])
+        case rulesLoaded([BlockRule], packs: [InstalledPack])
         case loadFailed(EquatableError)
         case addButtonTapped
         case addRule(PresentationAction<AddRuleFeature.Action>)
@@ -33,6 +42,7 @@ public struct RulesFeature: Sendable {
     }
 
     @Dependency(\.rulesRepository) var repository
+    @Dependency(\.packsRepository) var packsRepository
     @Dependency(\.storeOrchestrator) var orchestrator
 
     public init() {}
@@ -42,18 +52,20 @@ public struct RulesFeature: Sendable {
             switch action {
             case .task:
                 state.isLoading = true
-                return .run { [repository = repository] send in
+                return .run { [repository = repository, packsRepository = packsRepository] send in
                     do {
                         let rules = try await repository.fetchAll()
-                        await send(.rulesLoaded(rules))
+                        let packs = try await packsRepository.fetchAll()
+                        await send(.rulesLoaded(rules, packs: packs))
                     } catch {
                         await send(.loadFailed(EquatableError(error)))
                     }
                 }
 
-            case .rulesLoaded(let rules):
+            case .rulesLoaded(let rules, let packs):
                 state.isLoading = false
                 state.rules = IdentifiedArray(uniqueElements: rules)
+                state.packs = packs
                 return .none
 
             case .loadFailed:
