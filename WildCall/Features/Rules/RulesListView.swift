@@ -25,6 +25,7 @@ struct RulesListView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.indigo)
                         .controlSize(.large)
+                        .accessibilityHint(Text("Ouvre le formulaire pour saisir un numéro ou un motif."))
 
                         Button {
                             store.send(.syncFromEmptyStateTapped)
@@ -38,6 +39,8 @@ struct RulesListView: View {
                             }
                         }
                         .foregroundStyle(.indigo)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityHint(Text("Télécharge les derniers packs publiés par Octiplex."))
                     }
                     .padding(.horizontal, 24)
                 }
@@ -45,6 +48,9 @@ struct RulesListView: View {
                 List {
                     ForEach(store.rules) { rule in
                         RuleRow(rule: rule)
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel(Self.accessibilityLabel(for: rule))
+                            .accessibilityHint(Text("Balayez vers la gauche pour supprimer ou vers la droite pour changer l'action."))
                             .swipeActions(edge: .leading) {
                                 Button {
                                     store.send(.toggleActionRequested(id: rule.id))
@@ -84,17 +90,42 @@ struct RulesListView: View {
             AddRuleSheet(store: addRuleStore)
         }
     }
+
+    private static func accessibilityLabel(for rule: BlockRule) -> Text {
+        let actionLabel: String = switch rule.action {
+        case .block: String(localized: "Bloquer")
+        case .identify: String(localized: "Identifier")
+        }
+        let countryLabel = Locale.current.localizedString(forRegionCode: rule.countryCode) ?? rule.countryCode
+
+        let numberLabel: String = switch rule.kind {
+        case .exact(let e164):
+            String(localized: "numéro + \(AccessibilityFormatting.spelledOut(String(e164.value)))")
+        case .prefix(let prefix):
+            String(
+                localized: "préfixe + \(AccessibilityFormatting.spelledOut(prefix.fixedDigits)) suivi de \(prefix.wildcardLength) chiffre\(prefix.wildcardLength > 1 ? "s" : "") variable\(prefix.wildcardLength > 1 ? "s" : "")"
+            )
+        }
+
+        if let label = rule.label, !label.isEmpty {
+            return Text("\(actionLabel), \(numberLabel), libellé \(label), pays \(countryLabel)")
+        } else {
+            return Text("\(actionLabel), \(numberLabel), pays \(countryLabel)")
+        }
+    }
 }
 
 private struct RuleRow: View {
     let rule: BlockRule
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(alignment: .firstTextBaseline, spacing: 12) {
             Image(systemName: actionIcon)
                 .foregroundStyle(actionTint)
                 .font(.title3)
                 .frame(width: 32)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(displayNumber)
@@ -104,15 +135,23 @@ private struct RuleRow: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+                if dynamicTypeSize.isAccessibilitySize {
+                    Text(rule.countryCode)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
             }
 
-            Spacer()
+            Spacer(minLength: 8)
 
-            Text(rule.countryCode)
-                .font(.caption2.weight(.semibold))
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(.quaternary, in: .capsule)
+            if !dynamicTypeSize.isAccessibilitySize {
+                Text(rule.countryCode)
+                    .font(.caption2.weight(.semibold))
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(.quaternary, in: .capsule)
+                    .accessibilityHidden(true)
+            }
         }
         .padding(.vertical, 2)
     }

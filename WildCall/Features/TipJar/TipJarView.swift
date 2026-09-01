@@ -132,5 +132,20 @@ private struct TipRow: View {
             }
         }
         .disabled(isPurchasing)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityHint(Text(isPurchasing
+            ? "Achat en cours."
+            : "Lance l'achat de ce pourboire via l'App Store."))
+    }
+
+    private var accessibilityLabel: Text {
+        if isPurchasing {
+            return Text("Achat en cours de \(product.displayName).")
+        }
+        if product.description.isEmpty {
+            return Text("\(product.displayName), \(product.displayPrice)")
+        }
+        return Text("\(product.displayName), \(product.description), \(product.displayPrice)")
     }
 }

@@ -35,6 +35,8 @@ struct AddRuleSheet: View {
                         .keyboardType(.phonePad)
                         .textContentType(.telephoneNumber)
                         .focused($numberFieldFocused)
+                        .accessibilityLabel(Text("Numéro ou motif"))
+                        .accessibilityHint(Text("Terminez par une étoile pour bloquer une famille de numéros."))
 
                     validationFooter
                 } header: {
@@ -69,6 +71,11 @@ struct AddRuleSheet: View {
                         store.send(.saveButtonTapped)
                     }
                     .disabled(!store.validation.isValid || store.isSaving)
+                    .accessibilityHint(
+                        Text(store.validation.isValid
+                            ? "Enregistre la règle dans votre liste."
+                            : "Saisissez un numéro ou un motif valide pour activer ce bouton.")
+                    )
                 }
             }
             .onAppear { numberFieldFocused = true }
@@ -85,16 +92,22 @@ struct AddRuleSheet: View {
             Label("Numéro invalide pour ce pays.", systemImage: "exclamationmark.triangle.fill")
                 .font(.caption)
                 .foregroundStyle(.orange)
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isStaticText)
 
         case .exactValid(let e164):
             Label("+\(e164.value)", systemImage: "checkmark.seal.fill")
                 .font(.caption.monospacedDigit())
                 .foregroundStyle(.green)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("Numéro valide + \(AccessibilityFormatting.spelledOut(String(e164.value)))"))
 
         case .wildcardInvalid(let error):
             Label(Self.message(for: error), systemImage: "exclamationmark.triangle.fill")
                 .font(.caption)
                 .foregroundStyle(.orange)
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isStaticText)
 
         case .wildcardValid(let prefix, let count):
             VStack(alignment: .leading, spacing: 2) {
@@ -105,6 +118,10 @@ struct AddRuleSheet: View {
                     .font(.caption2.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(
+                Text("Motif valide, préfixe + \(AccessibilityFormatting.spelledOut(prefix.fixedDigits)) suivi de \(prefix.wildcardLength) chiffre\(prefix.wildcardLength > 1 ? "s" : "") variable\(prefix.wildcardLength > 1 ? "s" : ""), couvre \(Self.formatted(count)) numéros.")
+            )
         }
     }
 

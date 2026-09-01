@@ -15,6 +15,7 @@ struct PackImportSheet: View {
                         Text("Lecture du pack…")
                             .foregroundStyle(.secondary)
                     }
+                    .accessibilityElement(children: .combine)
 
                 case .awaitingConfirmation(let loaded):
                     confirmationView(loaded)
@@ -25,6 +26,7 @@ struct PackImportSheet: View {
                         Text("Installation…")
                             .foregroundStyle(.secondary)
                     }
+                    .accessibilityElement(children: .combine)
 
                 case .failed(let error):
                     failureView(error: error.message)
@@ -34,8 +36,11 @@ struct PackImportSheet: View {
                         Image(systemName: "checkmark.seal.fill")
                             .font(.largeTitle)
                             .foregroundStyle(.green)
+                            .accessibilityHidden(true)
                         Text("Pack installé.")
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isHeader)
                 }
             }
             .padding()
@@ -86,6 +91,10 @@ struct PackImportSheet: View {
             )
                 .font(.caption)
                 .foregroundStyle(.indigo)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(
+                    Text("Signé par Octiplex. Empreinte \(AccessibilityFormatting.readableFingerprint(OctiplexTrust.fingerprint(of: OctiplexTrust.publicKey))).")
+                )
 
             Spacer()
 
@@ -98,6 +107,7 @@ struct PackImportSheet: View {
             .buttonStyle(.borderedProminent)
             .tint(.indigo)
             .controlSize(.large)
+            .accessibilityHint(Text("Installe le pack et reconstruit votre liste de blocage."))
         }
     }
 
@@ -107,6 +117,8 @@ struct PackImportSheet: View {
             Spacer()
             Text(verbatim: value).font(.callout.monospaced())
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(label) : \(value)"))
     }
 
     @ViewBuilder
@@ -115,8 +127,10 @@ struct PackImportSheet: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.largeTitle)
                 .foregroundStyle(.orange)
+                .accessibilityHidden(true)
             Text("Impossible d'importer ce pack.")
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
             Text(error)
                 .font(.caption.monospaced())
                 .foregroundStyle(.secondary)

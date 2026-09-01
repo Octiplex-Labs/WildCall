@@ -54,6 +54,8 @@ struct PacksView: View {
                         }
                     }
                     .disabled(store.isSyncing)
+                    .accessibilityLabel(Text(store.isSyncing ? "Synchronisation en cours" : "Synchroniser maintenant"))
+                    .accessibilityHint(Text("Récupère les nouveaux packs et les mises à jour depuis Octiplex."))
 
                     Button {
                         store.send(.addByURLTapped)
@@ -64,6 +66,7 @@ struct PacksView: View {
                             Spacer()
                         }
                     }
+                    .accessibilityHint(Text("Ouvre un formulaire pour télécharger un pack signé depuis une URL externe."))
 
                     if let lastSync = store.lastSync {
                         HStack {
@@ -73,6 +76,7 @@ struct PacksView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .font(.footnote)
+                        .accessibilityElement(children: .combine)
                     }
                 } header: {
                     Text("Mises à jour")
@@ -96,6 +100,8 @@ struct PacksView: View {
                         }
                     }
                     .disabled(store.isExporting)
+                    .accessibilityLabel(Text(store.isExporting ? "Préparation de l'export" : "Exporter mes règles"))
+                    .accessibilityHint(Text("Prépare un fichier JSON contenant les règles que vous avez ajoutées."))
 
                     if let url = store.exportFile {
                         ShareLink(item: url) {
@@ -106,6 +112,7 @@ struct PacksView: View {
                                 Spacer()
                             }
                         }
+                        .accessibilityHint(Text("Ouvre la feuille de partage pour envoyer le fichier vers une autre application."))
                         .simultaneousGesture(TapGesture().onEnded {
                             // Clear the file slot after the user picks a target;
                             // they can regenerate by tapping Export again.
@@ -178,14 +185,22 @@ private struct PackRow: View {
             Spacer()
             if isToggling {
                 ProgressView()
+                    .accessibilityLabel(Text("Application en cours"))
             } else {
-                Toggle("", isOn: Binding(
+                Toggle(packDescription, isOn: Binding(
                     get: { pack.enabled },
                     set: { onToggle($0) }
                 ))
                 .labelsHidden()
+                .accessibilityLabel(Text(packDescription))
+                .accessibilityHint(Text("Activez ou désactivez la contribution de ce pack à votre liste de blocage."))
             }
         }
         .padding(.vertical, 2)
+    }
+
+    private var packDescription: String {
+        let country = Locale.current.localizedString(forRegionCode: pack.country) ?? pack.country
+        return String(localized: "Pack \(pack.id), \(country), version \(pack.version)")
     }
 }

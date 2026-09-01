@@ -18,6 +18,7 @@ struct PackURLImportSheet: View {
                         Text("Téléchargement…").foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityElement(children: .combine)
 
                 case .awaitingTrust(let manifest, let fingerprint, _):
                     trustView(manifest: manifest, fingerprint: fingerprint)
@@ -28,6 +29,7 @@ struct PackURLImportSheet: View {
                         Text("Installation…").foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityElement(children: .combine)
 
                 case .failed(let error):
                     failureView(error: error.message)
@@ -37,8 +39,11 @@ struct PackURLImportSheet: View {
                         Image(systemName: "checkmark.seal.fill")
                             .font(.largeTitle)
                             .foregroundStyle(.green)
+                            .accessibilityHidden(true)
                         Text("Pack installé.")
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isHeader)
                 }
             }
             .padding()
@@ -57,6 +62,7 @@ struct PackURLImportSheet: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("URL du pack")
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
             TextField("https://example.com/pack.wildcallpack", text: $store.urlInput)
                 .textContentType(.URL)
                 .textInputAutocapitalization(.never)
@@ -65,6 +71,7 @@ struct PackURLImportSheet: View {
                 .padding(12)
                 .background(Color(.secondarySystemGroupedBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .accessibilityLabel(Text("URL du pack à télécharger"))
 
             Text("Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter.")
                 .font(.caption)
@@ -82,6 +89,7 @@ struct PackURLImportSheet: View {
             .tint(.indigo)
             .controlSize(.large)
             .disabled(store.urlInput.isEmpty)
+            .accessibilityHint(Text("Télécharge le pack et affiche son empreinte de signature avant installation."))
         }
     }
 
@@ -89,6 +97,7 @@ struct PackURLImportSheet: View {
         VStack(alignment: .leading, spacing: 14) {
             Text(manifest.title ?? manifest.id)
                 .font(.title3.weight(.semibold))
+                .accessibilityAddTraits(.isHeader)
             Text(manifest.id).font(.caption.monospaced()).foregroundStyle(.secondary)
 
             Divider()
@@ -104,6 +113,7 @@ struct PackURLImportSheet: View {
                 Label("Publisher non reconnu", systemImage: "questionmark.shield")
                     .foregroundStyle(.orange)
                     .font(.subheadline.weight(.medium))
+                    .accessibilityElement(children: .combine)
                 Text("Ce pack n'est pas signé par Octiplex. Avant d'installer, vérifiez que cette empreinte correspond bien à celle publiée hors-bande par l'éditeur :")
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -113,6 +123,7 @@ struct PackURLImportSheet: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .background(Color(.secondarySystemGroupedBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .accessibilityLabel(Text("Empreinte du pack : \(AccessibilityFormatting.readableFingerprint(fingerprint))"))
             }
 
             Spacer()
@@ -127,11 +138,13 @@ struct PackURLImportSheet: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
                 .controlSize(.large)
+                .accessibilityHint(Text("Épingle cette empreinte pour ce pack et installe les règles."))
 
                 Button("Refuser") {
                     store.send(.trustRejectTapped)
                 }
                 .foregroundStyle(.red)
+                .accessibilityHint(Text("Annule l'installation sans épingler la clé."))
             }
         }
     }
@@ -142,6 +155,8 @@ struct PackURLImportSheet: View {
             Spacer()
             Text(value).font(.callout.monospaced())
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(label) : \(value)"))
     }
 
     @ViewBuilder private func failureView(error: String) -> some View {
@@ -149,7 +164,8 @@ struct PackURLImportSheet: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.largeTitle)
                 .foregroundStyle(.orange)
-            Text("Échec de l'import").font(.headline)
+                .accessibilityHidden(true)
+            Text("Échec de l'import").font(.headline).accessibilityAddTraits(.isHeader)
             Text(error).font(.caption.monospaced()).foregroundStyle(.secondary).multilineTextAlignment(.center)
             Spacer()
             Button("Fermer") { store.send(.cancelTapped) }

@@ -12,16 +12,21 @@ struct AboutSection: View {
                 Label("Soutenir WildCall", systemImage: "heart.fill")
                     .foregroundStyle(.indigo)
             }
+            .accessibilityHint(Text("Ouvre la page des pourboires optionnels."))
+
             Button {
                 hasSeenOnboarding = false
             } label: {
                 Label("Revoir l'introduction", systemImage: "play.rectangle.fill")
             }
+            .accessibilityHint(Text("Affiche à nouveau l'introduction au prochain retour à l'écran principal."))
+
             NavigationLink {
                 AboutView()
             } label: {
                 Label("À propos", systemImage: "info.circle")
             }
+            .accessibilityHint(Text("Affiche la version, la clé publisher et les composants tiers."))
         }
     }
 }
@@ -43,7 +48,7 @@ struct AboutView: View {
         List {
             Section {
                 row("Version", "\(appVersion) (\(buildNumber))")
-                row("Clé publisher Octiplex", octiplexFingerprint)
+                fingerprintRow
                     .listRowSeparator(.hidden)
                 Text("Cette empreinte doit correspondre à celle publiée sur la page du projet. Si elle ne correspond pas, votre build a été modifié.")
                     .font(.caption)
@@ -61,6 +66,8 @@ struct AboutView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .accessibilityHint(Text("Ouvre le dépôt GitHub dans Safari."))
+
                 Link(destination: URL(string: "https://github.com/Octiplex-Labs/WildCall/tree/main/dist/packs")!) {
                     HStack {
                         Label("Catalogue de packs", systemImage: "shippingbox")
@@ -69,6 +76,7 @@ struct AboutView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .accessibilityHint(Text("Ouvre le dossier des packs publiés dans Safari."))
             } header: {
                 Text("Liens")
             }
@@ -100,6 +108,24 @@ struct AboutView: View {
                 .lineLimit(1)
                 .truncationMode(.middle)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(label) : \(value)"))
+    }
+
+    private var fingerprintRow: some View {
+        HStack {
+            Text("Clé publisher Octiplex")
+            Spacer()
+            Text(octiplexFingerprint)
+                .font(.callout.monospaced())
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .truncationMode(.middle)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            Text("Clé publisher Octiplex, empreinte \(AccessibilityFormatting.readableFingerprint(octiplexFingerprint))")
+        )
     }
 
     private func acknowledgement(_ name: String, url: String, license: String) -> some View {
@@ -113,5 +139,8 @@ struct AboutView: View {
                 }
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(name), licence \(license)"))
+        .accessibilityHint(Text("Ouvre la page du projet dans Safari."))
     }
 }

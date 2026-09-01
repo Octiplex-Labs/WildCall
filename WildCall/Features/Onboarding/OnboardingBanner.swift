@@ -15,6 +15,8 @@ struct OnboardingBanner: View {
                     Image(systemName: icon)
                         .foregroundStyle(tint)
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isHeader)
                 Text(detail)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -25,6 +27,7 @@ struct OnboardingBanner: View {
                         Label("Ouvrir Réglages", systemImage: "gear")
                     }
                     .buttonStyle(.borderedProminent)
+                    .accessibilityHint(Text("Ouvre l'app Réglages pour activer WildCall."))
 
                     Button {
                         store.send(.refreshStatusButtonTapped)
@@ -37,6 +40,8 @@ struct OnboardingBanner: View {
                     }
                     .buttonStyle(.bordered)
                     .disabled(store.isCheckingStatus)
+                    .accessibilityLabel(Text(store.isCheckingStatus ? "Vérification en cours" : "Vérifier le statut"))
+                    .accessibilityHint(Text("Demande à iOS si l'extension est activée."))
                 }
             }
             .padding()

@@ -15,6 +15,7 @@ struct OnboardingFlowView: View {
                 if index < totalPanels - 1 {
                     Button("Passer") { dismiss() }
                         .foregroundStyle(.secondary)
+                        .accessibilityHint(Text("Ferme l'introduction et passe directement à l'app."))
                 }
             }
             .padding(.horizontal)
@@ -29,6 +30,7 @@ struct OnboardingFlowView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .accessibilityValue(Text("Page \(index + 1) sur \(totalPanels)"))
 
             // Bottom action zone
             VStack(spacing: 12) {
@@ -44,6 +46,7 @@ struct OnboardingFlowView: View {
                     .buttonStyle(.borderedProminent)
                     .tint(.indigo)
                     .controlSize(.large)
+                    .accessibilityHint(Text("Affiche la prochaine page de l'introduction."))
                 }
             }
             .padding(.horizontal, 24)
@@ -109,6 +112,7 @@ private struct WildcardsPanel: View {
         .padding(12)
         .background(Color(.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -138,6 +142,7 @@ private struct PacksPanel: View {
             }
             Spacer()
         }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -166,10 +171,12 @@ private struct ActivationPanel: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.indigo)
                 .controlSize(.large)
+                .accessibilityHint(Text("Ouvre l'app Réglages sur la page Blocage et identification d'appel."))
 
                 Button("Plus tard") { dismiss() }
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .accessibilityHint(Text("Ferme l'introduction sans ouvrir Réglages."))
             }
             .padding(.top, 24)
         }
@@ -220,11 +227,13 @@ private struct OnboardingPanelLayout<Bottom: View>: View {
                 .font(.system(size: 80))
                 .foregroundStyle(iconTint)
                 .padding(.bottom, 8)
+                .accessibilityHidden(true)
 
             title
                 .font(.largeTitle.weight(.bold))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .accessibilityAddTraits(.isHeader)
 
             descriptionText
                 .font(.body)
