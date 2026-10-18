@@ -176,6 +176,86 @@ import CustomDump
         #expect(total <= WildcardQuotas.default.totalCapacity, "\(total) numbers exceed the shipped extensions")
     }
 
+    @Test func embeddedOverseasPackCoversEachTerritoryInBothForms() throws {
+        let url = URL(filePath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Packs/prefixes-FR-DOM.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "fr.arcep.dom")
+        #expect(manifest.enabledByDefault == true)
+        #expect(manifest.title?.isEmpty == false)
+
+        let parser = WildcardParser.live
+        let expander = WildcardExpander.live
+        var totals: [String: Int] = [:]
+        for pattern in manifest.prefixes {
+            let result = withDependencies {
+                $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+            } operation: {
+                parser.parse(pattern, "FR")
+            }
+            guard case .success(let prefix) = result else {
+                Issue.record("\(pattern) rejected: \(result)")
+                continue
+            }
+            let code = String(prefix.fixedDigits.prefix(prefix.fixedDigits.hasPrefix("33") ? 2 : 3))
+            #expect(String(prefix.fixedDigits.dropFirst(code.count)).hasPrefix("947"))
+            totals[code, default: 0] += expander.count(prefix)
+        }
+        // Every block appears once under its territory code and once under +33.
+        #expect(Set(totals.keys) == ["33", "262", "590", "594", "596"])
+        #expect(totals["33"] == totals.filter { $0.key != "33" }.values.reduce(0, +))
+    }
+
+    @Test func embeddedGermanPackListsExactNumbers() throws {
+        let url = URL(filePath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Packs/prefixes-DE.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "de.bnetza")
+        #expect(manifest.action == .identify)
+        #expect(manifest.label == "Spam signalé")
+        #expect(manifest.prefixes.count > 1_000)
+        // Variable-length national numbers: a `*` would pad each one to the
+        // longest German length and flag thousands of innocent numbers.
+        #expect(manifest.prefixes.allSatisfy { !$0.contains("*") })
+        #expect(manifest.prefixes.allSatisfy { PackLoader.exactNumber($0) != nil })
+    }
+
+    @Test func embeddedPeruPackCoversTheWhole500Series() throws {
+        let url = URL(filePath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Packs/prefixes-PE.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "pe.mtc")
+        #expect(manifest.enabledByDefault == false)
+        #expect(manifest.prefixes == ["+51500*"])
+
+        let result = withDependencies {
+            $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+        } operation: {
+            WildcardParser.live.parse("+51500*", "PE")
+        }
+        guard case .success(let prefix) = result else {
+            Issue.record("+51500* rejected: \(result)")
+            return
+        }
+        // Peruvian numbers are 9 digits: 500 + 6 free digits.
+        #expect(WildcardExpander.live.count(prefix) == 1_000_000)
+    }
+
+    @Test func decodesActionAndLabel() throws {
+        let json = """
+        {"id":"x","version":"2026-10-18","country":"US","kind":"prefixes","action":"identify","label":"Spam signalé","prefixes":["+12025550143*"]}
+        """.data(using: .utf8)!
+        let manifest = try JSONDecoder().decode(PackManifest.self, from: json)
+        #expect(manifest.action == .identify)
+        #expect(manifest.label == "Spam signalé")
+    }
+
     @Test func decodesEnabledByDefault() throws {
         let json = """
         {"id":"x","version":"2026-09-02","country":"FR","kind":"prefixes","enabledByDefault":false,"prefixes":["+33162*"]}

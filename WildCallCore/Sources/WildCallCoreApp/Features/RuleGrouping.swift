@@ -104,18 +104,25 @@ public enum RuleGrouping {
     /// from the E.164 digits by trying the known 1-3 digit codes of the
     /// rule's country. Falls back to the first 2 digits.
     static func root(of digits: String, countryCode: String) -> String {
-        let callingCodeLength = Self.callingCodeLength(for: countryCode)
+        let callingCodeLength = Self.callingCodeLength(for: countryCode, digits: digits)
         let end = min(digits.count, callingCodeLength + rootNationalDigits)
         return String(digits.prefix(end))
     }
 
-    static func callingCodeLength(for countryCode: String) -> Int {
+    static func callingCodeLength(for countryCode: String, digits: String) -> Int {
+        // French overseas departments have their own 3-digit codes but
+        // ship in packs tagged "FR" (fr.arcep.dom).
+        if countryCode == "FR", Self.frenchOverseasCodes.contains(where: digits.hasPrefix) {
+            return 3
+        }
         switch countryCode {
         case "US", "CA": return 1
         case "FR", "BE", "CH", "GB", "DE", "ES", "IT", "PT", "NL", "LU", "AT", "SE", "NO", "DK", "PL", "IE": return 2
         default: return 3
         }
     }
+
+    static let frenchOverseasCodes = ["262", "590", "594", "596"]
 
     static func sortKey(_ rule: BlockRule) -> String {
         switch rule.kind {

@@ -88,6 +88,27 @@ extension PackLoader {
             var rules: [BlockRule] = []
             rules.reserveCapacity(manifest.prefixes.count)
             for pattern in manifest.prefixes {
+                // A pattern without `*` names one number: needed where the
+                // national length varies (Germany), since a trailing `*`
+                // would pad it to the longest possible length.
+                if !pattern.contains("*") {
+                    guard let e164 = Self.exactNumber(pattern) else {
+                        reportIssue("Pack \(manifest.id): skipped malformed number '\(pattern)'")
+                        continue
+                    }
+                    rules.append(
+                        BlockRule(
+                            id: uuid(),
+                            kind: .exact(e164),
+                            source: .pack(packId: manifest.id),
+                            action: manifest.action ?? .block,
+                            countryCode: manifest.country,
+                            label: manifest.label,
+                            createdAt: now
+                        )
+                    )
+                    continue
+                }
                 switch parser.parse(pattern, manifest.country) {
                 case .success(let prefix):
                     rules.append(
@@ -95,9 +116,9 @@ extension PackLoader {
                             id: uuid(),
                             kind: .prefix(prefix),
                             source: .pack(packId: manifest.id),
-                            action: .block,
+                            action: manifest.action ?? .block,
                             countryCode: manifest.country,
-                            label: nil,
+                            label: manifest.label,
                             createdAt: now
                         )
                     )
@@ -107,6 +128,19 @@ extension PackLoader {
             }
             return rules
         }
+    }
+}
+
+extension PackLoader {
+    /// `+<country code><national number>`, 8 to 15 digits (E.164).
+    static func exactNumber(_ raw: String) -> E164? {
+        guard raw.hasPrefix("+") else { return nil }
+        let digits = raw.dropFirst()
+        guard (8...15).contains(digits.count),
+              digits.allSatisfy({ $0.isASCII && $0.isNumber }),
+              let value = Int64(digits)
+        else { return nil }
+        return E164(value)
     }
 }
 

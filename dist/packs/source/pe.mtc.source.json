@@ -1,0 +1,13 @@
+{
+  "id": "pe.mtc",
+  "version": "2026-10-18",
+  "country": "PE",
+  "kind": "prefixes",
+  "title": "Appels commerciaux (série 500, MTC)",
+  "license": "public domain (Decreto Supremo 018-2026-MTC, plan de numérotation péruvien)",
+  "notes": "Série non géographique 500 réservée par le MTC aux appels et SMS commerciaux ou publicitaires (Decreto Supremo 018-2026-MTC, El Peruano du 15/09/2026). Toute la série est bloquée : 1 000 000 de numéros (+51 500 XXX XXX). Les opérateurs ont jusqu'à mars 2027 environ pour la mettre en service.",
+  "enabledByDefault": false,
+  "prefixes": [
+    "+51500*"
+  ]
+}

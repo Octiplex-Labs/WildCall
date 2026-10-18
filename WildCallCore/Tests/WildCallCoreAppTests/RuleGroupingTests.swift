@@ -38,6 +38,8 @@ import WildCallCoreShared
         #expect(RuleGrouping.root(of: "33162040", countryCode: "FR") == "33162")
         #expect(RuleGrouping.root(of: "1800555", countryCode: "US") == "1800")
         #expect(RuleGrouping.root(of: "3316", countryCode: "FR") == "3316")
+        #expect(RuleGrouping.root(of: "590947500", countryCode: "FR") == "590947")
+        #expect(RuleGrouping.root(of: "262947900", countryCode: "FR") == "262947")
     }
 
     @Test func rulesInsideARootAreSortedByDigits() {

@@ -4,6 +4,7 @@ import Foundation
 import Testing
 import IssueReporting
 @testable import WildCallCoreApp
+import WildCallCoreShared
 
 @Suite struct PackLoaderTests {
     let loader = PackLoader.live
@@ -37,6 +38,65 @@ import IssueReporting
                 }
             }
         }
+    }
+
+    @Test func identifyPackLoadsExactNumbersWithItsLabel() {
+        let manifest = PackManifest(
+            id: "us.complaints",
+            version: "2026-10-18",
+            country: "US",
+            kind: .prefixes,
+            action: .identify,
+            label: "Spam signalé",
+            prefixes: ["+12025550143*"]
+        )
+
+        withDependencies {
+            $0.uuid = .incrementing
+            $0.wildcardParser = .live
+        } operation: {
+            let rules = loader.load(manifest, now)
+            #expect(rules.count == 1)
+            #expect(rules.first?.action == .identify)
+            #expect(rules.first?.label == "Spam signalé")
+            if case .prefix(let prefix) = rules.first?.kind {
+                #expect(prefix.fixedDigits == "12025550143")
+                #expect(prefix.wildcardLength == 0)
+            } else {
+                Issue.record("expected .prefix rule")
+            }
+        }
+    }
+
+    @Test func patternWithoutWildcardIsAnExactNumber() {
+        let manifest = PackManifest(
+            id: "de.bnetza",
+            version: "2026-10-18",
+            country: "DE",
+            kind: .prefixes,
+            action: .identify,
+            label: "Spam signalé",
+            prefixes: ["+493030015309", "+4915239604411"]
+        )
+
+        withDependencies {
+            $0.uuid = .incrementing
+            $0.wildcardParser = .live
+        } operation: {
+            let rules = loader.load(manifest, now)
+            #expect(rules.map(\.kind) == [
+                .exact(E164(493030015309)!),
+                .exact(E164(4915239604411)!),
+            ])
+            #expect(rules.allSatisfy { $0.action == .identify })
+        }
+    }
+
+    @Test func rejectsMalformedExactNumbers() {
+        #expect(PackLoader.exactNumber("+493030015309") != nil)
+        #expect(PackLoader.exactNumber("493030015309") == nil)
+        #expect(PackLoader.exactNumber("+4930") == nil)
+        #expect(PackLoader.exactNumber("+49 30 300") == nil)
     }
 
     @Test func skipsMalformedPatternsAndReportsThem() {

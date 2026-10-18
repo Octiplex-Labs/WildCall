@@ -22,6 +22,12 @@ public struct PackManifest: Codable, Hashable, Sendable {
     /// Whether a fresh install enables the pack. Defaults to true. Packs
     /// that would push the list past the extension ceiling ship disabled.
     public let enabledByDefault: Bool?
+    /// What iOS does with the pack's numbers. Defaults to `.block`.
+    /// Crowd-sourced packs (complaint data) use `.identify` so a false
+    /// positive still rings, with `label` shown as the caller name.
+    public let action: RuleAction?
+    /// Caller name shown for `.identify` packs.
+    public let label: String?
     public let prefixes: [String]
 
     public init(
@@ -35,6 +41,8 @@ public struct PackManifest: Codable, Hashable, Sendable {
         publisherKey: String? = nil,
         supersedes: [String]? = nil,
         enabledByDefault: Bool? = nil,
+        action: RuleAction? = nil,
+        label: String? = nil,
         prefixes: [String]
     ) {
         self.id = id
@@ -47,6 +55,8 @@ public struct PackManifest: Codable, Hashable, Sendable {
         self.publisherKey = publisherKey
         self.supersedes = supersedes
         self.enabledByDefault = enabledByDefault
+        self.action = action
+        self.label = label
         self.prefixes = prefixes
     }
 }
