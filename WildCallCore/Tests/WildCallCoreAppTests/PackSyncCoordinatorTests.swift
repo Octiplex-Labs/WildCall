@@ -20,15 +20,19 @@ import Testing
     func makeSignedArchive(
         id: String = "fr.arcep",
         version: String = "v1",
+        country: String = "FR",
         prefixes: [String] = ["+33162*"],
+        enabledByDefault: Bool? = nil,
         key: Curve25519.Signing.PrivateKey
     ) throws -> Data {
+        let enabledField = enabledByDefault.map { "\"enabledByDefault\": \($0)," } ?? ""
         let manifest = """
         {
           "id": "\(id)",
           "version": "\(version)",
-          "country": "FR",
+          "country": "\(country)",
           "kind": "prefixes",
+          \(enabledField)
           "prefixes": \(prefixes.map { "\"\($0)\"" }.joined(separator: ", ").prepending("[").appending("]"))
         }
         """
@@ -99,6 +103,52 @@ import Testing
         let installed = try await packsRepo.fetch("fr.arcep")
         #expect(installed?.version == "v1")
         #expect(installed?.enabled == true)
+    }
+
+    @Test func syncInstallsPackShippedDisabledAsDisabled() async throws {
+        let key = testKey()
+        let archive = try makeSignedArchive(
+            id: "es.cnmc", version: "2026-10-18", country: "ES",
+            prefixes: ["+34400*"], enabledByDefault: false, key: key
+        )
+        let entry = PackIndexEntry(
+            id: "es.cnmc", version: "2026-10-18", country: "ES", kind: .prefixes,
+            url: URL(string: "https://example.com/es.cnmc-2026-10-18.wildcallpack")!
+        )
+        let index = PackIndex(version: 1, updatedAt: "2026-10-18", packs: [entry])
+        let (rulesRepo, packsRepo) = makeRepositories()
+
+        let summary = try await withDependencies {
+            $0.packIndexFetcher = PackIndexFetcher { index }
+            $0.packFetcher = PackFetcher { _ in archive }
+            $0.packLoader = PackLoader(
+                load: { _, _ in [] },
+                loadFromArchive: { data, _, now in
+                    PackLoader.live.loadFromArchive(data, key.publicKey.rawRepresentation, now)
+                }
+            )
+            $0.rulesRepository = rulesRepo
+            $0.packsRepository = packsRepo
+            $0.storeOrchestrator = StoreOrchestrator(
+                rebuildAndReload: {
+                    RebuildSummary(
+                        blockCount: 0, identCount: 0,
+                        block: .init(count: 0, bytesWritten: 0, sha256: ""),
+                        ident: .init(count: 0, bytesWritten: 0, sha256: "")
+                    )
+                }
+            )
+            $0.wildcardParser = .live
+            $0.date = .constant(Date(timeIntervalSince1970: 1_700_000_000))
+            $0.uuid = .incrementing
+        } operation: {
+            try await PackSyncCoordinator.live.sync()
+        }
+
+        #expect(summary.added == ["es.cnmc"])
+        let installed = try await packsRepo.fetch("es.cnmc")
+        #expect(installed?.enabled == false)
+        #expect(installed?.country == "ES")
     }
 
     @Test func sameVersionIsUnchanged() async throws {

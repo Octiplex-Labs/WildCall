@@ -99,7 +99,10 @@ extension PackSyncCoordinator {
                 continue
             }
 
-            let previouslyEnabled = installed?.enabled ?? true
+            // A fresh install honours the manifest like PackBootstrap does, so
+            // a pack shipped disabled (es.cnmc) cannot push a synced user past
+            // the slot capacity.
+            let previouslyEnabled = installed?.enabled ?? loaded.manifest.enabledByDefault ?? true
             if installed != nil {
                 let allRules = try await rulesRepo.fetchAll()
                 for rule in allRules where rule.source == .pack(packId: entry.id) {

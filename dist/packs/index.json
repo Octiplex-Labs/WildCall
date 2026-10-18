@@ -1,5 +1,13 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01T00:00:00Z",
-  "packs": []
+  "updatedAt": "2026-10-18T00:00:00Z",
+  "packs": [
+    {
+      "id": "es.cnmc",
+      "version": "2026-10-18",
+      "country": "ES",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/es.cnmc-2026-10-18.wildcallpack"
+    }
+  ]
 }
