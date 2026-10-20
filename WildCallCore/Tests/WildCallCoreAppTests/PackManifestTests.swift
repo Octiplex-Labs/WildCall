@@ -208,6 +208,33 @@ import CustomDump
         #expect(totals["33"] == totals.filter { $0.key != "33" }.values.reduce(0, +))
     }
 
+    @Test func embeddedUSPackIdentifiesExactNumbers() throws {
+        let url = URL(filePath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Packs/prefixes-US.source.json")
+        let manifest = try PackManifest.load(from: url)
+        #expect(manifest.id == "us.complaints")
+        #expect(manifest.action == .identify)
+        #expect(manifest.label == "Spam signalé")
+        #expect(!manifest.prefixes.isEmpty)
+
+        let parser = WildcardParser.live
+        for pattern in manifest.prefixes {
+            let result = withDependencies {
+                $0.wildcardQuotas = WildcardQuotas(perPattern: .max, totalUser: .max, minFixedDigits: 1)
+            } operation: {
+                parser.parse(pattern, "US")
+            }
+            guard case .success(let prefix) = result else {
+                Issue.record("\(pattern) rejected: \(result)")
+                continue
+            }
+            #expect(prefix.fixedDigits.hasPrefix("1"))
+            #expect(prefix.wildcardLength == 0, "\(pattern) must name a single number")
+        }
+    }
+
     @Test func embeddedGermanPackListsExactNumbers() throws {
         let url = URL(filePath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
