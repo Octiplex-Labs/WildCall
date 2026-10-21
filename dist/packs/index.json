@@ -1,13 +1,48 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T00:00:00Z",
+  "updatedAt": "2026-10-21T18:09:58Z",
   "packs": [
+    {
+      "id": "de.bnetza",
+      "version": "2026-10-18",
+      "country": "DE",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/de.bnetza-2026-10-18.wildcallpack"
+    },
     {
       "id": "es.cnmc",
       "version": "2026-10-18",
       "country": "ES",
       "kind": "prefixes",
       "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/es.cnmc-2026-10-18.wildcallpack"
+    },
+    {
+      "id": "fr.arcep.dom",
+      "version": "2026-10-18",
+      "country": "FR",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/fr.arcep.dom-2026-10-18.wildcallpack"
+    },
+    {
+      "id": "fr.arcep",
+      "version": "2026-10-18",
+      "country": "FR",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/fr.arcep-2026-10-18.wildcallpack"
+    },
+    {
+      "id": "pe.mtc",
+      "version": "2026-10-18",
+      "country": "PE",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/pe.mtc-2026-10-18.wildcallpack"
+    },
+    {
+      "id": "us.complaints",
+      "version": "2026-10-20",
+      "country": "US",
+      "kind": "prefixes",
+      "url": "https://raw.githubusercontent.com/Octiplex-Labs/WildCall/main/dist/packs/us.complaints-2026-10-20.wildcallpack"
     }
   ]
 }
