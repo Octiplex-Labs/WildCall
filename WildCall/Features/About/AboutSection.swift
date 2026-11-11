@@ -9,15 +9,14 @@ struct AboutSection: View {
             NavigationLink {
                 TipJarView()
             } label: {
-                Label("Soutenir WildCall", systemImage: "heart.fill")
-                    .foregroundStyle(.indigo)
+                Label("Soutenir WildCall", systemImage: "heart")
             }
             .accessibilityHint(Text("Ouvre la page des pourboires optionnels."))
 
             Button {
                 hasSeenOnboarding = false
             } label: {
-                Label("Revoir l'introduction", systemImage: "play.rectangle.fill")
+                Label("Revoir l'introduction", systemImage: "play.rectangle")
             }
             .accessibilityHint(Text("Affiche à nouveau l'introduction au prochain retour à l'écran principal."))
 
@@ -91,7 +90,6 @@ struct AboutView: View {
                 Text("Composants tiers")
             } footer: {
                 Text("WildCall ne collecte aucune donnée d'usage. Toutes les règles, packs et signatures sont traités localement sur votre appareil ; le seul appel réseau est la synchronisation des packs depuis le catalogue Octiplex.")
-                    .font(.caption)
             }
         }
         .navigationTitle("À propos")

@@ -12,16 +12,16 @@ struct FilterStatusBanner: View {
     var body: some View {
         switch store.storeStatus {
         case .building:
-            card(tint: .indigo) {
-                HStack(spacing: 10) {
+            StatusCard {
+                HStack(spacing: 12) {
                     ProgressView()
                     Text("Préparation du filtre…")
                         .font(.subheadline)
                 }
             }
         case .reloading(let numbers, let slot):
-            card(tint: .indigo) {
-                HStack(alignment: .top, spacing: 10) {
+            StatusCard {
+                HStack(alignment: .top, spacing: 12) {
                     ProgressView()
                     VStack(alignment: .leading, spacing: 2) {
                         Text("iOS charge \(FilterStatusFormatting.count(numbers)) numéros (extension \(slot) sur \(ExtensionSlot.count))")
@@ -33,18 +33,22 @@ struct FilterStatusBanner: View {
                 }
             }
         case .failed(let failure, _, _, let slot):
-            card(tint: .orange) {
+            StatusCard {
                 VStack(alignment: .leading, spacing: 8) {
-                    Label(FilterStatusFormatting.title(for: failure, slot: slot), systemImage: "exclamationmark.triangle.fill")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.orange)
+                    Label {
+                        Text(FilterStatusFormatting.title(for: failure, slot: slot))
+                            .font(.subheadline.weight(.medium))
+                    } icon: {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.orange)
+                    }
                     Text(FilterStatusFormatting.detail(for: failure))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Button {
                         store.send(.rebuildButtonTapped)
                     } label: {
-                        Label("Réessayer", systemImage: "arrow.clockwise")
+                        Text("Réessayer")
                     }
                     .buttonStyle(.bordered)
                     .accessibilityHint(Text("Reconstruit le filtre et le renvoie à iOS."))
@@ -55,17 +59,6 @@ struct FilterStatusBanner: View {
         }
     }
 
-    private func card<Content: View>(tint: Color, @ViewBuilder content: () -> Content) -> some View {
-        content()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(tint.opacity(0.08), in: .rect(cornerRadius: 12))
-            .overlay {
-                RoundedRectangle(cornerRadius: 12)
-                    .strokeBorder(tint.opacity(0.25), lineWidth: 1)
-            }
-            .padding(.horizontal)
-    }
 }
 
 /// Réglages section : what iOS currently holds, when it was loaded, and a
@@ -99,11 +92,7 @@ struct FilterStatusSection: View {
             Button {
                 store.send(.rebuildButtonTapped)
             } label: {
-                HStack {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                    Text("Reconstruire le filtre")
-                    Spacer()
-                }
+                Label("Reconstruire le filtre", systemImage: "arrow.triangle.2.circlepath")
             }
             .disabled(store.storeStatus.isBusy)
             .accessibilityHint(Text("Régénère la liste et demande à iOS de la recharger."))
@@ -135,17 +124,26 @@ struct FilterStatusSection: View {
             .accessibilityElement(children: .combine)
         case .ready(let numbers, let date):
             VStack(alignment: .leading, spacing: 2) {
-                Label("\(FilterStatusFormatting.count(numbers)) numéros actifs", systemImage: "checkmark.seal.fill")
-                    .foregroundStyle(.green)
+                Label {
+                    Text("\(FilterStatusFormatting.count(numbers)) numéros actifs")
+                } icon: {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                }
                 Text("Chargé \(date, style: .relative)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("status.ready")
         case .failed(let failure, let numbers, let date, let slot):
             VStack(alignment: .leading, spacing: 2) {
-                Label(FilterStatusFormatting.title(for: failure, slot: slot), systemImage: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.orange)
+                Label {
+                    Text(FilterStatusFormatting.title(for: failure, slot: slot))
+                } icon: {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                }
                 Text(FilterStatusFormatting.detail(for: failure))
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -170,11 +168,10 @@ struct FilterStatusSection: View {
 }
 
 enum FilterStatusFormatting {
+    /// One number format for the whole app, grouped the way the user's
+    /// region writes it (7 351 000 in French, 7,351,000 in English).
     static func count(_ value: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "\u{202F}"
-        return formatter.string(from: NSNumber(value: value)) ?? String(value)
+        value.formatted(.number)
     }
 
     static func count(_ value: Int64) -> String {

@@ -1,6 +1,5 @@
 import ComposableArchitecture
 import SwiftUI
-import UIKit
 import WildCallCoreApp
 import WildCallCoreShared
 
@@ -12,64 +11,62 @@ struct OnboardingBanner: View {
 
     var body: some View {
         if store.extensionStatus != .enabled {
-            VStack(alignment: .leading, spacing: 12) {
-                Label {
-                    Text(title).font(.headline)
-                } icon: {
-                    Image(systemName: icon)
-                        .foregroundStyle(tint)
-                }
-                .accessibilityElement(children: .combine)
-                .accessibilityAddTraits(.isHeader)
-                Text(detail)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                slotIndicators
-                HStack {
-                    Button {
-                        openCallBlockingSettings()
-                    } label: {
-                        Label("Ouvrir Réglages", systemImage: "gear")
+            StatusCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    Label {
+                        Text(title).font(.headline)
+                    } icon: {
+                        Image(systemName: icon)
+                            .foregroundStyle(tint)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .accessibilityHint(Text("Ouvre l'app Réglages pour activer WildCall."))
-
-                    Button {
-                        store.send(.refreshStatusButtonTapped)
-                    } label: {
-                        if store.isCheckingStatus {
-                            ProgressView()
-                        } else {
-                            Label("Vérifier", systemImage: "arrow.clockwise")
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isHeader)
+                    Text(detail)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    slotIndicators
+                    HStack(spacing: 12) {
+                        Button {
+                            CallBlockingSettings.open()
+                        } label: {
+                            Text("Ouvrir Réglages")
+                                .foregroundStyle(Color.onAccent)
                         }
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityHint(Text("Ouvre l'app Réglages pour activer WildCall."))
+
+                        Button {
+                            store.send(.refreshStatusButtonTapped)
+                        } label: {
+                            if store.isCheckingStatus {
+                                ProgressView()
+                            } else {
+                                Text("Vérifier")
+                            }
+                        }
+                        .buttonStyle(.bordered)
+                        .disabled(store.isCheckingStatus)
+                        .accessibilityLabel(Text(store.isCheckingStatus ? "Vérification en cours" : "Vérifier le statut"))
+                        .accessibilityHint(Text("Demande à iOS si les extensions sont activées."))
                     }
-                    .buttonStyle(.bordered)
-                    .disabled(store.isCheckingStatus)
-                    .accessibilityLabel(Text(store.isCheckingStatus ? "Vérification en cours" : "Vérifier le statut"))
-                    .accessibilityHint(Text("Demande à iOS si les extensions sont activées."))
                 }
             }
-            .padding()
-            .background(tint.opacity(0.08), in: .rect(cornerRadius: 12))
-            .overlay {
-                RoundedRectangle(cornerRadius: 12)
-                    .strokeBorder(tint.opacity(0.25), lineWidth: 1)
-            }
-            .padding(.horizontal)
         }
     }
 
     private var slotIndicators: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 12) {
             ForEach(ExtensionSlot.all) { slot in
                 let status = store.extensionStatuses[slot.index] ?? .unknown
                 Label {
-                    Text(slot.displayName)
+                    Text(verbatim: "\(slot.index)")
                 } icon: {
                     Image(systemName: status == .enabled ? "checkmark.circle.fill" : "circle")
+                        .foregroundStyle(status == .enabled ? Color.green : Color.secondary)
                 }
-                .font(.caption.weight(.medium))
-                .foregroundStyle(status == .enabled ? Color.green : Color.secondary)
+                .font(.footnote.monospacedDigit())
+                .foregroundStyle(.secondary)
+                .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text("\(slot.displayName), \(status == .enabled ? String(localized: "activée") : String(localized: "à activer"))"))
             }
         }
@@ -83,7 +80,7 @@ struct OnboardingBanner: View {
             let missing = store.disabledSlots.count
             return missing == ExtensionSlot.count
                 ? String(localized: "Activez WildCall dans Réglages")
-                : String(localized: "\(missing) extension(s) WildCall à activer")
+                : String(localized: "\(missing) extensions WildCall à activer")
         case .unknown:
             return String(localized: "Statut des extensions inconnu")
         }
@@ -112,20 +109,7 @@ struct OnboardingBanner: View {
         switch store.extensionStatus {
         case .enabled: .green
         case .disabled: .orange
-        case .unknown: .gray
-        }
-    }
-
-    private func openCallBlockingSettings() {
-        // The dedicated path is undocumented and may break. We try it first,
-        // then fall back to the generic app-settings URL.
-        let preferredURL = URL(string: "App-prefs:Phone&path=CALL_BLOCKING")
-        let fallbackURL = URL(string: UIApplication.openSettingsURLString)
-
-        if let url = preferredURL, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        } else if let url = fallbackURL {
-            UIApplication.shared.open(url)
+        case .unknown: .secondary
         }
     }
 }

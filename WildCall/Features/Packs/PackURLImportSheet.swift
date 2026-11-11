@@ -70,7 +70,7 @@ struct PackURLImportSheet: View {
                 .keyboardType(.URL)
                 .padding(12)
                 .background(Color(.secondarySystemGroupedBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .clipShape(RoundedRectangle(cornerRadius: Metrics.cardRadius))
                 .accessibilityLabel(Text("URL du pack à télécharger"))
 
             Text("Le pack doit être signé. Vous verrez l'empreinte du publisher avant d'accepter.")
@@ -83,10 +83,10 @@ struct PackURLImportSheet: View {
                 store.send(.submitTapped)
             } label: {
                 Text("Vérifier le pack")
+                    .foregroundStyle(Color.onAccent)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .tint(.indigo)
             .controlSize(.large)
             .disabled(store.urlInput.isEmpty)
             .accessibilityHint(Text("Télécharge le pack et affiche son empreinte de signature avant installation."))
@@ -94,7 +94,7 @@ struct PackURLImportSheet: View {
     }
 
     @ViewBuilder private func trustView(manifest: PackManifest, fingerprint: String) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 16) {
             Text(manifest.title ?? manifest.id)
                 .font(.title3.weight(.semibold))
                 .accessibilityAddTraits(.isHeader)
@@ -109,7 +109,7 @@ struct PackURLImportSheet: View {
 
             Divider()
 
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 Label("Publisher non reconnu", systemImage: "questionmark.shield")
                     .foregroundStyle(.orange)
                     .font(.subheadline.weight(.medium))
@@ -128,15 +128,15 @@ struct PackURLImportSheet: View {
 
             Spacer()
 
-            VStack(spacing: 10) {
+            VStack(spacing: 12) {
                 Button {
                     store.send(.trustAcceptTapped)
                 } label: {
                     Text("Faire confiance et installer")
+                        .foregroundStyle(Color.onAccent)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.indigo)
                 .controlSize(.large)
                 .accessibilityHint(Text("Épingle cette empreinte pour ce pack et installe les règles."))
 
@@ -160,7 +160,7 @@ struct PackURLImportSheet: View {
     }
 
     @ViewBuilder private func failureView(error: String) -> some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.largeTitle)
                 .foregroundStyle(.orange)

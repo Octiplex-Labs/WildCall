@@ -1,36 +1,36 @@
 {
   "sourceLanguage": "fr",
   "strings": {
-    "%@ (extension %@)": {
+    "%@ (extension %lld)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ (extension %2$@)"
+            "value": "%1$@ (extension %2$lld)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ (extensión %2$@)"
+            "value": "%1$@ (extensión %2$lld)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ (extension %@)"
+            "value": "%@ (extension %lld)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ (estensione %2$@)"
+            "value": "%1$@ (estensione %2$lld)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ (extensão %2$@)"
+            "value": "%1$@ (extensão %2$lld)"
           }
         }
       }
@@ -65,40 +65,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@ bloqueados, %2$@ identificados"
-          }
-        }
-      }
-    },
-    "%@ extension(s) WildCall à activer": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ WildCall extension(s) to enable"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ extensión(es) WildCall por activar"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ extension(s) WildCall à activer"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ estensione/i WildCall da attivare"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ extensão(ões) WildCall por ativar"
           }
         }
       }
@@ -171,104 +137,138 @@
         }
       }
     },
-    "%@ numéros dans %@ racines": {
+    "%@ numéros dans %lld racines": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numbers in %2$@ roots"
+            "value": "%1$@ numbers in %2$lld roots"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números en %2$@ raíces"
+            "value": "%1$@ números en %2$lld raíces"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ numéros dans %@ racines"
+            "value": "%@ numéros dans %lld racines"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numeri in %2$@ radici"
+            "value": "%1$@ numeri in %2$lld radici"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números em %2$@ raízes"
+            "value": "%1$@ números em %2$lld raízes"
           }
         }
       }
     },
-    "%@ numéros · %@ blocs": {
+    "%@ numéros sur %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numbers · %2$@ blocks"
+            "value": "%1$@ of %2$@ numbers"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números · %2$@ bloques"
+            "value": "%1$@ números de %2$@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ numéros · %@ blocs"
+            "value": "%@ numéros sur %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numeri · %2$@ blocchi"
+            "value": "%1$@ numeri su %2$@"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números · %2$@ blocos"
+            "value": "%1$@ números de %2$@"
           }
         }
       }
     },
-    "%@ numéros · %@ racines": {
+    "%@ numéros · %lld blocs": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numbers · %2$@ roots"
+            "value": "%1$@ numbers · %2$lld blocks"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números · %2$@ raíces"
+            "value": "%1$@ números · %2$lld bloques"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ numéros · %@ racines"
+            "value": "%@ numéros · %lld blocs"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ numeri · %2$@ radici"
+            "value": "%1$@ numeri · %2$lld blocchi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ números · %2$@ raízes"
+            "value": "%1$@ números · %2$lld blocos"
+          }
+        }
+      }
+    },
+    "%@ numéros · %lld racines": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numbers · %2$lld roots"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$lld raíces"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ numéros · %lld racines"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ numeri · %2$lld radici"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ números · %2$lld raízes"
           }
         }
       }
@@ -307,74 +307,6 @@
         }
       }
     },
-    "%@ pack(s) en erreur, voir les logs.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ pack(s) failed, see logs."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ paquete(s) con error, ver registros."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ pack(s) en erreur, voir les logs."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ pack in errore, vedi i log."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ pack(s) com erro, ver os logs."
-          }
-        }
-      }
-    },
-    "%@ · %@ · version %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$@ · version %3$@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$@ · versión %3$@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ · %@ · version %@"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$@ · versione %3$@"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$@ · versão %3$@"
-          }
-        }
-      }
-    },
     "%@ · version %@": {
       "localizations": {
         "en": {
@@ -409,36 +341,36 @@
         }
       }
     },
-    "%@ · version %@ · %@ motifs": {
+    "%@ · version %@ · %lld motifs": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ · version %2$@ · %3$@ patterns"
+            "value": "%1$@ · version %2$@ · %3$lld patterns"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ · versión %2$@ · %3$@ patrones"
+            "value": "%1$@ · versión %2$@ · %3$lld patrones"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ · version %@ · %@ motifs"
+            "value": "%@ · version %@ · %lld motifs"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ · versione %2$@ · %3$@ schemi"
+            "value": "%1$@ · versione %2$@ · %3$lld schemi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ · versão %2$@ · %3$@ padrões"
+            "value": "%1$@ · versão %2$@ · %3$lld padrões"
           }
         }
       }
@@ -579,36 +511,412 @@
         }
       }
     },
-    "+%@ suivi de %@ chiffre%@": {
+    "%lld extensions WildCall à activer": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld WildCall extension to enable"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld WildCall extensions to enable"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extensión de WildCall por activar"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extensiones de WildCall por activar"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extension WildCall à activer"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extensions WildCall à activer"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld estensione WildCall da attivare"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld estensioni WildCall da attivare"
+                }
+              }
+            }
+          }
+        },
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extensão WildCall por ativar"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld extensões WildCall por ativar"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld packs ajoutés": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack added"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs added"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack añadido"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs añadidos"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack ajouté"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs ajoutés"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack aggiunto"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack aggiunti"
+                }
+              }
+            }
+          }
+        },
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack adicionado"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs adicionados"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld packs en erreur, voir les logs": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack failed, see the logs"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs failed, see the logs"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack con error, consulta los registros"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs con error, consulta los registros"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack en erreur, voir les logs"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs en erreur, voir les logs"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack in errore, vedi i log"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack in errore, vedi i log"
+                }
+              }
+            }
+          }
+        },
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack com erro, consulte os registos"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs com erro, consulte os registos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld packs mis à jour": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack updated"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs updated"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack actualizado"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs actualizados"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack mis à jour"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs mis à jour"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack aggiornato"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack aggiornati"
+                }
+              }
+            }
+          }
+        },
+        "pt": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld pack atualizado"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld packs atualizados"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "01 62, tranche réservée au démarchage en France": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%1$@ followed by %2$@ digit%3$@"
+            "value": "01 62, a range reserved for telemarketing in France"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%1$@ seguido de %2$@ dígito%3$@"
+            "value": "01 62, rango reservado a las llamadas comerciales en Francia"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%1$@ suivi de %2$@ chiffre%3$@"
+            "value": "01 62, tranche réservée au démarchage en France"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%1$@ seguito da %2$@ cifra%3$@"
+            "value": "01 62, intervallo riservato al telemarketing in Francia"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%1$@ seguido de %2$@ dígito%3$@"
+            "value": "01 62, intervalo reservado ao telemarketing em França"
           }
         }
       }
@@ -647,36 +955,70 @@
         }
       }
     },
-    "0843, 0844 démarchage": {
+    "400, tranche des appels commerciaux en Espagne": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "0843, 0844 telemarketing"
+            "value": "400, the range for commercial calls in Spain"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "0843, 0844 telemarketing"
+            "value": "400, rango de las llamadas comerciales en España"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "0843, 0844 démarchage"
+            "value": "400, tranche des appels commerciaux en Espagne"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "0843, 0844 telemarketing"
+            "value": "400, intervallo delle chiamate commerciali in Spagna"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "0843, 0844 telemarketing"
+            "value": "400, intervalo das chamadas comerciais em Espanha"
+          }
+        }
+      }
+    },
+    "Abus signalés (Bundesnetzagentur)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reported abuse (Bundesnetzagentur)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abusos denunciados (Bundesnetzagentur)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abus signalés (Bundesnetzagentur)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abusi segnalati (Bundesnetzagentur)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abusos denunciados (Bundesnetzagentur)"
           }
         }
       }
@@ -750,40 +1092,6 @@
         }
       }
     },
-    "Activer WildCall": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable WildCall"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activar WildCall"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activer WildCall"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Attiva WildCall"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar o WildCall"
-          }
-        }
-      }
-    },
     "Activer dans Réglages": {
       "localizations": {
         "en": {
@@ -849,6 +1157,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ative o WildCall em Ajustes"
+          }
+        }
+      }
+    },
+    "Activez les %lld lignes WildCall": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable all %lld WildCall lines"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa las %lld líneas de WildCall"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez les %lld lignes WildCall"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva le %lld righe WildCall"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative as %lld linhas do WildCall"
           }
         }
       }
@@ -1334,6 +1676,40 @@
         }
       }
     },
+    "Appels commerciaux (série 500, MTC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commercial calls (500 series, MTC)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamadas comerciales (serie 500, MTC)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appels commerciaux (série 500, MTC)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiamate commerciali (serie 500, MTC)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chamadas comerciais (série 500, MTC)"
+          }
+        }
+      }
+    },
     "Application en cours": {
       "localizations": {
         "en": {
@@ -1609,6 +1985,40 @@
         }
       }
     },
+    "Autres pays": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other countries"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otros países"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autres pays"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altri paesi"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outros países"
+          }
+        }
+      }
+    },
     "Balayez vers la gauche pour supprimer ou vers la droite pour changer l'action.": {
       "localizations": {
         "en": {
@@ -1639,40 +2049,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deslize para a esquerda para eliminar ou para a direita para mudar a ação."
-          }
-        }
-      }
-    },
-    "Bienvenue dans WildCall": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Welcome to WildCall"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bienvenido a WildCall"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bienvenue dans WildCall"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Benvenuto in WildCall"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bem-vindo ao WildCall"
           }
         }
       }
@@ -1711,36 +2087,36 @@
         }
       }
     },
-    "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés.": {
+    "Bloquez des familles entières de numéros": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Block unwanted calls before they even ring. Telemarketing, spam, fake numbers, AI calls… silently filtered."
+            "value": "Block whole families of numbers"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloquea las llamadas no deseadas antes incluso de que suenen. Telemarketing, spam, números falsos, llamadas con IA… filtradas en silencio."
+            "value": "Bloquea familias enteras de números"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés."
+            "value": "Bloquez des familles entières de numéros"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blocca le chiamate indesiderate prima ancora che squillino. Telemarketing, spam, numeri falsi, chiamate con IA… filtrati silenziosamente."
+            "value": "Blocca intere famiglie di numeri"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloqueie chamadas indesejadas antes mesmo de tocarem. Telemarketing, spam, números falsos, chamadas com IA… filtrados silenciosamente."
+            "value": "Bloqueie famílias inteiras de números"
           }
         }
       }
@@ -2363,6 +2739,40 @@
         }
       }
     },
+    "Des listes tenues par les régulateurs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lists kept by the regulators"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas mantenidas por los reguladores"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des listes tenues par les régulateurs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elenchi tenuti dalle autorità di regolazione"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listas mantidas pelos reguladores"
+          }
+        }
+      }
+    },
     "Données": {
       "localizations": {
         "en": {
@@ -2431,36 +2841,104 @@
         }
       }
     },
-    "Démarchage FR": {
+    "Démarchage téléphonique (ARCEP)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "FR telemarketing"
+            "value": "Telemarketing (ARCEP)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telemarketing FR"
+            "value": "Llamadas comerciales (ARCEP)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarchage FR"
+            "value": "Démarchage téléphonique (ARCEP)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telemarketing FR"
+            "value": "Telemarketing (ARCEP)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telemarketing FR"
+            "value": "Telemarketing (ARCEP)"
+          }
+        }
+      }
+    },
+    "Démarchage téléphonique Outre-mer (ARCEP)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing, French overseas territories (ARCEP)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamadas comerciales, ultramar francés (ARCEP)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarchage téléphonique Outre-mer (ARCEP)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing, territori francesi d'oltremare (ARCEP)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing, territórios ultramarinos franceses (ARCEP)"
+          }
+        }
+      }
+    },
+    "Démarchage téléphonique en Espagne (CNMC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing in Spain (CNMC)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamadas comerciales en España (CNMC)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarchage téléphonique en Espagne (CNMC)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing in Spagna (CNMC)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telemarketing em Espanha (CNMC)"
           }
         }
       }
@@ -3046,6 +3524,40 @@
         }
       }
     },
+    "Impossible de joindre l'App Store (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't reach the App Store (%@)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo contactar con el App Store (%@)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de joindre l'App Store (%@)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile contattare l'App Store (%@)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não foi possível contactar a App Store (%@)"
+          }
+        }
+      }
+    },
     "Installation…": {
       "localizations": {
         "en": {
@@ -3594,6 +4106,40 @@
         }
       }
     },
+    "Les packs reprennent les tranches et les numéros publiés par les autorités de chaque pays. Seuls ceux de votre pays sont activés au départ.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs carry the ranges and numbers published by each country's authorities. Only your country's packs are enabled at first."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los packs recogen los rangos y números publicados por las autoridades de cada país. Al principio solo se activan los de tu país."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les packs reprennent les tranches et les numéros publiés par les autorités de chaque pays. Seuls ceux de votre pays sont activés au départ."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I pack riprendono gli intervalli e i numeri pubblicati dalle autorità di ogni paese. All'inizio sono attivi solo quelli del tuo paese."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os packs reúnem os intervalos e números publicados pelas autoridades de cada país. No início só estão ativos os do seu país."
+          }
+        }
+      }
+    },
     "Les pourboires apparaîtront ici une fois la configuration App Store finalisée.": {
       "localizations": {
         "en": {
@@ -3801,37 +4347,36 @@
         }
       }
     },
-    "Merci 💜": {
-      "extractionState": "stale",
+    "Merci pour votre soutien": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thanks 💜"
+            "value": "Thank you for your support"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gracias 💜"
+            "value": "Gracias por tu apoyo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Merci 💜"
+            "value": "Merci pour votre soutien"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grazie 💜"
+            "value": "Grazie per il tuo sostegno"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obrigado 💜"
+            "value": "Obrigado pelo seu apoio"
           }
         }
       }
@@ -4141,40 +4686,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Número válido + %@"
-          }
-        }
-      }
-    },
-    "Numéros gratuits 1-800-555-*": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toll-free 1-800-555-*"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gratuitos 1-800-555-*"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Numéros gratuits 1-800-555-*"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Numeri verdi 1-800-555-*"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gratuitos 1-800-555-*"
           }
         }
       }
@@ -4520,36 +5031,70 @@
         }
       }
     },
-    "Pack %@, %@, %@ numéros, %@ racines": {
+    "Pack %@, %@, %@ numéros, %lld racines": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack %1$@, %2$@, %3$@ numbers, %4$@ roots"
+            "value": "Pack %1$@, %2$@, %3$@ numbers, %4$lld roots"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack %1$@, %2$@, %3$@ números, %4$@ raíces"
+            "value": "Pack %1$@, %2$@, %3$@ números, %4$lld raíces"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack %@, %@, %@ numéros, %@ racines"
+            "value": "Pack %@, %@, %@ numéros, %lld racines"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack %1$@, %2$@, %3$@ numeri, %4$@ radici"
+            "value": "Pack %1$@, %2$@, %3$@ numeri, %4$lld radici"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack %1$@, %2$@, %3$@ números, %4$@ raízes"
+            "value": "Pack %1$@, %2$@, %3$@ números, %4$lld raízes"
+          }
+        }
+      }
+    },
+    "Pack %@, %@, version %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, version %3$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versión %3$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %@, %@, version %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versione %3$@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack %1$@, %2$@, versão %3$@"
           }
         }
       }
@@ -4656,36 +5201,36 @@
         }
       }
     },
-    "Packs communautaires": {
+    "Packs activés": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Community packs"
+            "value": "Enabled packs"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paquetes comunitarios"
+            "value": "Packs activados"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Packs communautaires"
+            "value": "Packs activés"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pack della community"
+            "value": "Pack attivi"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Packs comunitários"
+            "value": "Packs ativados"
           }
         }
       }
@@ -4720,6 +5265,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "Packs instalados"
+          }
+        }
+      }
+    },
+    "Packs pour votre pays": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs for your country"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs para tu país"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs pour votre pays"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pack per il tuo paese"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Packs para o seu país"
           }
         }
       }
@@ -4862,40 +5441,6 @@
         }
       }
     },
-    "Plages ARCEP 0162-0165, 0568-0569": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ARCEP ranges 0162-0165, 0568-0569"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rangos ARCEP 0162-0165, 0568-0569"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plages ARCEP 0162-0165, 0568-0569"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intervalli ARCEP 0162-0165, 0568-0569"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faixas ARCEP 0162-0165, 0568-0569"
-          }
-        }
-      }
-    },
     "Plus tard": {
       "extractionState": "stale",
       "localizations": {
@@ -4962,40 +5507,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gorjeta"
-          }
-        }
-      }
-    },
-    "Premium-rate UK": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UK premium-rate"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premium-rate UK"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premium-rate UK"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Premium-rate UK"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tarifa premium do UK"
           }
         }
       }
@@ -5310,6 +5821,40 @@
         }
       }
     },
+    "Règles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reglas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Règles"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regole"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regras"
+          }
+        }
+      }
+    },
     "Règles déclarées": {
       "extractionState": "stale",
       "localizations": {
@@ -5341,40 +5886,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Regras declaradas"
-          }
-        }
-      }
-    },
-    "Récupère les listes Octiplex de numéros connus.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fetches the Octiplex lists of known numbers."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descarga las listas de Octiplex de números conocidos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Récupère les listes Octiplex de numéros connus."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recupera gli elenchi Octiplex di numeri noti."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Busca as listas Octiplex de números conhecidos."
           }
         }
       }
@@ -5551,36 +6062,36 @@
         }
       }
     },
-    "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %@.": {
+    "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %lld.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Settings → Apps → Phone → Call Blocking & Identification → tick every WildCall row. iOS caps each extension at 2 million numbers, so WildCall ships %@ of them."
+            "value": "Settings → Apps → Phone → Call Blocking & Identification → tick every WildCall row. iOS caps each extension at 2 million numbers, so WildCall ships %lld of them."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → marca cada línea WildCall. iOS limita cada extensión a 2 millones de números, por eso WildCall incluye %@."
+            "value": "Ajustes → Apps → Teléfono → Bloqueo e identificación de llamadas → marca cada línea WildCall. iOS limita cada extensión a 2 millones de números, por eso WildCall incluye %lld."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %@."
+            "value": "Réglages → Apps → Téléphone → Blocage et identification d'appel → cochez chaque ligne WildCall. iOS limite chaque extension à 2 millions de numéros, WildCall en embarque donc %lld."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Impostazioni → App → Telefono → Blocco e identificazione chiamate → spunta ogni riga WildCall. iOS limita ogni estensione a 2 milioni di numeri, per questo WildCall ne include %@."
+            "value": "Impostazioni → App → Telefono → Blocco e identificazione chiamate → spunta ogni riga WildCall. iOS limita ogni estensione a 2 milioni di numeri, per questo WildCall ne include %lld."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Definições → Apps → Telefone → Bloqueio e identificação de chamadas → marque cada linha WildCall. O iOS limita cada extensão a 2 milhões de números, por isso o WildCall inclui %@."
+            "value": "Definições → Apps → Telefone → Bloqueio e identificação de chamadas → marque cada linha WildCall. O iOS limita cada extensão a 2 milhões de números, por isso o WildCall inclui %lld."
           }
         }
       }
@@ -5615,40 +6126,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Regenera a lista e pede ao iOS que a recarregue."
-          }
-        }
-      }
-    },
-    "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Type a pattern like `+33162*` to block a whole family of numbers in a single rule. No need to add each number manually."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe un patrón como `+33162*` para bloquear toda una familia de números en una sola regla. No hace falta añadir cada número manualmente."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inserisci un motivo come `+33162*` per bloccare un'intera famiglia di numeri con una sola regola. Non serve aggiungere ogni numero manualmente."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Digite um padrão como `+33162*` para bloquear uma família inteira de números em uma única regra. Sem precisar adicionar cada número manualmente."
           }
         }
       }
@@ -5861,36 +6338,36 @@
         }
       }
     },
-    "Spam US": {
+    "Spam signalé (FTC, FCC)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "US spam"
+            "value": "Reported spam (FTC, FCC)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spam de EE. UU."
+            "value": "Spam denunciado (FTC, FCC)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spam US"
+            "value": "Spam signalé (FTC, FCC)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spam US"
+            "value": "Spam segnalato (FTC, FCC)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spam dos EUA"
+            "value": "Spam denunciado (FTC, FCC)"
           }
         }
       }
@@ -6271,71 +6748,105 @@
         }
       }
     },
-    "Tout est à jour.": {
+    "Terminez un numéro par `*` pour couvrir tous ceux qui commencent pareil.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Everything is up to date."
+            "value": "End a number with `*` to cover every number that starts the same way."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todo está actualizado."
+            "value": "Termina un número con `*` para cubrir todos los que empiezan igual."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tout est à jour."
+            "value": "Terminez un numéro par `*` pour couvrir tous ceux qui commencent pareil."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tutto è aggiornato."
+            "value": "Termina un numero con `*` per coprire tutti quelli che iniziano allo stesso modo."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tudo está atualizado."
+            "value": "Termine um número com `*` para cobrir todos os que começam da mesma forma."
           }
         }
       }
     },
-    "Trop de chiffres : maximum %@ pour ce pays.": {
+    "Tout est à jour": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything is up to date"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo está al día"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout est à jour"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto è aggiornato"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Está tudo atualizado"
+          }
+        }
+      }
+    },
+    "Trop de chiffres : maximum %lld pour ce pays.": {
       "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too many digits: maximum %@ for this country."
+            "value": "Too many digits: maximum %lld for this country."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demasiados dígitos: máximo %@ para este país."
+            "value": "Demasiados dígitos: máximo %lld para este país."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trop de chiffres : maximum %@ pour ce pays."
+            "value": "Trop de chiffres : maximum %lld pour ce pays."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Troppe cifre: massimo %@ per questo paese."
+            "value": "Troppe cifre: massimo %lld per questo paese."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dígitos em excesso: máximo %@ para este país."
+            "value": "Dígitos em excesso: máximo %lld para este país."
           }
         }
       }
@@ -6614,36 +7125,70 @@
         }
       }
     },
-    "Une règle : des milliers de numéros": {
+    "Une règle WildCall couvre une tranche complète : le démarchage est refusé avant que le téléphone sonne.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "One rule: thousands of numbers"
+            "value": "One WildCall rule covers a whole number range: telemarketing calls are refused before the phone rings."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una regla: miles de números"
+            "value": "Una regla de WildCall cubre un rango completo: las llamadas comerciales se rechazan antes de que suene el teléfono."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Une règle : des milliers de numéros"
+            "value": "Une règle WildCall couvre une tranche complète : le démarchage est refusé avant que le téléphone sonne."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una regola: migliaia di numeri"
+            "value": "Una regola WildCall copre un intero intervallo: il telemarketing viene rifiutato prima che il telefono squilli."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma regra: milhares de números"
+            "value": "Uma regra do WildCall cobre um intervalo completo: o telemarketing é recusado antes de o telefone tocar."
+          }
+        }
+      }
+    },
+    "Une règle, jusqu'à un million de numéros": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One rule, up to a million numbers"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una regla, hasta un millón de números"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une règle, jusqu'à un million de numéros"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una regola, fino a un milione di numeri"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma regra, até um milhão de números"
           }
         }
       }
@@ -6752,36 +7297,36 @@
         }
       }
     },
-    "WildCall embarque %@ extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés.": {
+    "WildCall embarque %lld extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "WildCall ships %@ extensions because iOS caps each one at 2 million numbers; ranges are spread automatically. In Recents, a blocked call keeps the name of the app that blocked it at the time: calls that predate enabling WildCall stay credited to the other app. Numbers in your contacts are never filtered."
+            "value": "WildCall ships %lld extensions because iOS caps each one at 2 million numbers; ranges are spread automatically. In Recents, a blocked call keeps the name of the app that blocked it at the time: calls that predate enabling WildCall stay credited to the other app. Numbers in your contacts are never filtered."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "WildCall incluye %@ extensiones porque iOS limita cada una a 2 millones de números; los rangos se reparten automáticamente. En Recientes, una llamada bloqueada conserva el nombre de la app que la bloqueó en ese momento: las llamadas anteriores a la activación de WildCall siguen atribuidas a la otra app. Los números de tus contactos nunca se filtran."
+            "value": "WildCall incluye %lld extensiones porque iOS limita cada una a 2 millones de números; los rangos se reparten automáticamente. En Recientes, una llamada bloqueada conserva el nombre de la app que la bloqueó en ese momento: las llamadas anteriores a la activación de WildCall siguen atribuidas a la otra app. Los números de tus contactos nunca se filtran."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "WildCall embarque %@ extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés."
+            "value": "WildCall embarque %lld extensions car iOS limite chacune à 2 millions de numéros ; les plages sont réparties automatiquement. Dans Récents, un appel bloqué garde le nom de l'app qui l'a bloqué à ce moment-là : les appels antérieurs à l'activation de WildCall restent attribués à l'autre app. Les numéros présents dans vos contacts ne sont jamais filtrés."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "WildCall include %@ estensioni perché iOS limita ciascuna a 2 milioni di numeri; gli intervalli vengono distribuiti automaticamente. In Recenti, una chiamata bloccata conserva il nome dell'app che l'ha bloccata in quel momento: le chiamate precedenti all'attivazione di WildCall restano attribuite all'altra app. I numeri presenti nei tuoi contatti non vengono mai filtrati."
+            "value": "WildCall include %lld estensioni perché iOS limita ciascuna a 2 milioni di numeri; gli intervalli vengono distribuiti automaticamente. In Recenti, una chiamata bloccata conserva il nome dell'app che l'ha bloccata in quel momento: le chiamate precedenti all'attivazione di WildCall restano attribuite all'altra app. I numeri presenti nei tuoi contatti non vengono mai filtrati."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O WildCall inclui %@ extensões porque o iOS limita cada uma a 2 milhões de números; os intervalos são distribuídos automaticamente. Em Recentes, uma chamada bloqueada mantém o nome da app que a bloqueou nesse momento: as chamadas anteriores à ativação do WildCall continuam atribuídas à outra app. Os números dos seus contactos nunca são filtrados."
+            "value": "O WildCall inclui %lld extensões porque o iOS limita cada uma a 2 milhões de números; os intervalos são distribuídos automaticamente. Em Recentes, uma chamada bloqueada mantém o nome da app que a bloqueou nesse momento: as chamadas anteriores à ativação do WildCall continuam atribuídas à outra app. Os números dos seus contactos nunca são filtrados."
           }
         }
       }
@@ -6820,40 +7365,6 @@
         }
       }
     },
-    "WildCall est gratuit. Les pourboires sont optionnels mais appréciés.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall is free. Tips are optional but appreciated."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall es gratis. Las propinas son opcionales pero se agradecen."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall est gratuit. Les pourboires sont optionnels mais appréciés."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall è gratuita. Le mance sono facoltative ma apprezzate."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O WildCall é gratuito. As gorjetas são opcionais mas apreciadas."
-          }
-        }
-      }
-    },
     "WildCall filtre les appels.": {
       "extractionState": "stale",
       "localizations": {
@@ -6885,40 +7396,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "O WildCall está filtrando chamadas."
-          }
-        }
-      }
-    },
-    "WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall maintains lists of known prefixes : ARCEP in France, US toll-free, UK premium-rate. Daily background sync."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall mantiene listas de prefijos conocidos : ARCEP en Francia, gratuitos de EE. UU., premium-rate del Reino Unido. Sincronización diaria en segundo plano."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall mantiene elenchi di prefissi noti : ARCEP in Francia, numeri verdi US, premium-rate UK. Sincronizzazione quotidiana in background."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O WildCall mantém listas de prefixos conhecidos : ARCEP na França, gratuitos dos EUA, premium-rate do Reino Unido. Sincronização diária em segundo plano."
           }
         }
       }
@@ -6987,40 +7464,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "O WildCall não coleta nenhum dado de uso. Todas as regras, packs e assinaturas são processados localmente no seu dispositivo; a única chamada de rede é a sincronização dos packs a partir do catálogo Octiplex."
-          }
-        }
-      }
-    },
-    "WildCall peut envoyer %@ numéros à iOS (%@ actuellement via les packs). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall can send %1$@ numbers to iOS (%2$@ right now through packs). Disabled packs no longer contribute to the block list. Your own rules are not affected."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall puede enviar %1$@ números a iOS (%2$@ ahora mediante los packs). Los packs desactivados ya no contribuyen a la lista de bloqueo. Tus propias reglas no se ven afectadas."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall peut envoyer %@ numéros à iOS (%@ actuellement via les packs). Les packs désactivés ne contribuent plus à la liste de blocage. Vos propres règles ne sont pas affectées."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "WildCall può inviare %1$@ numeri a iOS (%2$@ al momento tramite i pack). I pack disattivati non contribuiscono più alla lista di blocco. Le tue regole non sono interessate."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O WildCall pode enviar %1$@ números ao iOS (%2$@ neste momento através dos packs). Os packs desativados deixam de contribuir para a lista de bloqueio. As suas próprias regras não são afetadas."
           }
         }
       }
@@ -7161,70 +7604,104 @@
         }
       }
     },
-    "iOS charge %@ numéros (extension %@ sur %@)": {
+    "iOS accepte un nombre limité de numéros par app. Seuls les packs de votre pays sont activés au départ ; chaque pack activé en plus réduit la place restante pour vos propres règles.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS is loading %1$@ numbers (extension %2$@ of %3$@)"
+            "value": "iOS accepts a limited count of numbers per app. Only your country's packs are enabled at first; each extra pack you enable leaves less room for your own rules."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS está cargando %1$@ números (extensión %2$@ de %3$@)"
+            "value": "iOS acepta una cantidad limitada de números por app. Al principio solo se activan los packs de tu país; cada pack adicional que actives deja menos espacio para tus propias reglas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS charge %@ numéros (extension %@ sur %@)"
+            "value": "iOS accepte un nombre limité de numéros par app. Seuls les packs de votre pays sont activés au départ ; chaque pack activé en plus réduit la place restante pour vos propres règles."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS sta caricando %1$@ numeri (estensione %2$@ di %3$@)"
+            "value": "iOS accetta una quantità limitata di numeri per app. All'inizio sono attivi solo i pack del tuo paese; ogni pack in più che attivi lascia meno spazio alle tue regole."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS está a carregar %1$@ números (extensão %2$@ de %3$@)"
+            "value": "O iOS aceita uma quantidade limitada de números por app. No início só estão ativos os packs do seu país; cada pack adicional que ativar deixa menos espaço para as suas próprias regras."
           }
         }
       }
     },
-    "iOS charge %@ numéros… (extension %@ sur %@)": {
+    "iOS charge %@ numéros (extension %lld sur %lld)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS is loading %1$@ numbers… (extension %2$@ of %3$@)"
+            "value": "iOS is loading %1$@ numbers (extension %2$lld of %3$lld)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS está cargando %1$@ números… (extensión %2$@ de %3$@)"
+            "value": "iOS está cargando %1$@ números (extensión %2$lld de %3$lld)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS charge %@ numéros… (extension %@ sur %@)"
+            "value": "iOS charge %@ numéros (extension %lld sur %lld)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS sta caricando %1$@ numeri… (estensione %2$@ di %3$@)"
+            "value": "iOS sta caricando %1$@ numeri (estensione %2$lld di %3$lld)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS está a carregar %1$@ números… (extensão %2$@ de %3$@)"
+            "value": "O iOS está a carregar %1$@ números (extensão %2$lld de %3$lld)"
+          }
+        }
+      }
+    },
+    "iOS charge %@ numéros… (extension %lld sur %lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS is loading %1$@ numbers… (extension %2$lld of %3$lld)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS está cargando %1$@ números… (extensión %2$lld de %3$lld)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS charge %@ numéros… (extension %lld sur %lld)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS sta caricando %1$@ numeri… (estensione %2$lld di %3$lld)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O iOS está a carregar %1$@ números… (extensão %2$lld de %3$lld)"
           }
         }
       }
@@ -7263,36 +7740,36 @@
         }
       }
     },
-    "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages.": {
+    "iOS limite chaque extension de blocage à 2 millions de numéros. WildCall en embarque %lld : cochez-les toutes dans Réglages.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS asks for your permission so the app can filter calls. It takes 10 seconds in Settings."
+            "value": "iOS limits each call-blocking extension to 2 million numbers. WildCall ships %lld: turn them all on in Settings."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS pide tu permiso para que la app pueda filtrar las llamadas. Lleva 10 segundos en Ajustes."
+            "value": "iOS limita cada extensión de bloqueo a 2 millones de números. WildCall incluye %lld: actívalas todas en Ajustes."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages."
+            "value": "iOS limite chaque extension de blocage à 2 millions de numéros. WildCall en embarque %lld : cochez-les toutes dans Réglages."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iOS richiede la tua autorizzazione perché l'app possa filtrare le chiamate. Bastano 10 secondi nelle Impostazioni."
+            "value": "iOS limita ogni estensione di blocco a 2 milioni di numeri. WildCall ne include %lld: attivale tutte in Impostazioni."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O iOS pede sua permissão para que o app possa filtrar chamadas. Leva 10 segundos em Ajustes."
+            "value": "O iOS limita cada extensão de bloqueio a 2 milhões de números. O WildCall inclui %lld: ative-as todas em Definições."
           }
         }
       }
@@ -7635,389 +8112,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "por ativar"
-          }
-        }
-      }
-    },
-    "≈ 1 000 000 numéros démarchage Paris": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 1,000,000 Paris telemarketing numbers"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 1.000.000 de números de telemarketing de París"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 1 000 000 numéros démarchage Paris"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 1.000.000 di numeri di telemarketing di Parigi"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 1.000.000 de números de telemarketing de Paris"
-          }
-        }
-      }
-    },
-    "≈ 10 000 numéros gratuits US": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 10,000 US toll-free numbers"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 10.000 números gratuitos de EE. UU."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 10 000 numéros gratuits US"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 10.000 numeri verdi US"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "≈ 10.000 números gratuitos dos EUA"
-          }
-        }
-      }
-    },
-    "🇧🇪 Belgique": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇧🇪 Belgium"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇧🇪 Bélgica"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇧🇪 Belgique"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇧🇪 Belgio"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇧🇪 Bélgica"
-          }
-        }
-      }
-    },
-    "🇨🇦 Canada": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇦 Canada"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇦 Canadá"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇦 Canada"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇦 Canada"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇦 Canadá"
-          }
-        }
-      }
-    },
-    "🇨🇭 Suisse": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇭 Switzerland"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇭 Suiza"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇭 Suisse"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇭 Svizzera"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇨🇭 Suíça"
-          }
-        }
-      }
-    },
-    "🇩🇪 Allemagne": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇩🇪 Germany"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇩🇪 Alemania"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇩🇪 Allemagne"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇩🇪 Germania"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇩🇪 Alemanha"
-          }
-        }
-      }
-    },
-    "🇪🇸 Espagne": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇪🇸 Spain"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇪🇸 España"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇪🇸 Espagne"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇪🇸 Spagna"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇪🇸 Espanha"
-          }
-        }
-      }
-    },
-    "🇫🇷 France": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇫🇷 France"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇫🇷 Francia"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇫🇷 France"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇫🇷 Francia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇫🇷 França"
-          }
-        }
-      }
-    },
-    "🇬🇧 Royaume-Uni": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇬🇧 United Kingdom"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇬🇧 Reino Unido"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇬🇧 Royaume-Uni"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇬🇧 Regno Unito"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇬🇧 Reino Unido"
-          }
-        }
-      }
-    },
-    "🇮🇹 Italie": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇮🇹 Italy"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇮🇹 Italia"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇮🇹 Italie"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇮🇹 Italia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇮🇹 Itália"
-          }
-        }
-      }
-    },
-    "🇺🇸 États-Unis": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇺🇸 United States"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇺🇸 Estados Unidos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇺🇸 États-Unis"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇺🇸 Stati Uniti"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🇺🇸 Estados Unidos"
           }
         }
       }

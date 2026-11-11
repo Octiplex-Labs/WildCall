@@ -20,7 +20,7 @@ struct RootView: View {
                 .background(Color(.systemGroupedBackground))
             }
             .tabItem {
-                Label("Filtres", systemImage: "phone.down.fill")
+                Label("Filtres", systemImage: "phone.down")
             }
 
             PacksView(store: store.scope(state: \.packs, action: \.packs), appStore: store)
@@ -28,7 +28,6 @@ struct RootView: View {
                     Label("Réglages", systemImage: "gearshape")
                 }
         }
-        .tint(.indigo)
         .task { await store.send(.task).finish() }
         .onAppear {
             if !hasSeenOnboarding {

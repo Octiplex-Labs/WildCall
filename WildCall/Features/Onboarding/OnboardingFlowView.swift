@@ -1,5 +1,6 @@
 import SwiftUI
-import UIKit
+import WildCallCoreApp
+import WildCallCoreShared
 
 struct OnboardingFlowView: View {
     @Binding var isPresented: Bool
@@ -9,7 +10,6 @@ struct OnboardingFlowView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Skip button top-right (idle until the last panel)
             HStack {
                 Spacer()
                 if index < totalPanels - 1 {
@@ -18,8 +18,7 @@ struct OnboardingFlowView: View {
                         .accessibilityHint(Text("Ferme l'introduction et passe directement à l'app."))
                 }
             }
-            .padding(.horizontal)
-            .padding(.top, 8)
+            .padding(.horizontal, Metrics.pageMargin)
             .frame(height: 44)
 
             TabView(selection: $index) {
@@ -32,27 +31,26 @@ struct OnboardingFlowView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             .accessibilityValue(Text("Page \(index + 1) sur \(totalPanels)"))
 
-            // Bottom action zone
-            VStack(spacing: 12) {
-                if index < totalPanels - 1 {
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.25)) {
-                            index = min(index + 1, totalPanels - 1)
-                        }
-                    } label: {
-                        Text("Suivant")
-                            .frame(maxWidth: .infinity)
+            // The last panel carries its own actions.
+            if index < totalPanels - 1 {
+                Button {
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        index = min(index + 1, totalPanels - 1)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.indigo)
-                    .controlSize(.large)
-                    .accessibilityHint(Text("Affiche la prochaine page de l'introduction."))
+                } label: {
+                    Text("Suivant")
+                        .foregroundStyle(Color.onAccent)
+                        .frame(maxWidth: .infinity)
                 }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
+                .accessibilityIdentifier("onboarding.next")
+                .accessibilityHint(Text("Affiche la prochaine page de l'introduction."))
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
         }
-        .background(Color(.systemBackground))
+        .background(Color(.systemGroupedBackground))
     }
 
     private func dismiss() {
@@ -65,18 +63,15 @@ struct OnboardingFlowView: View {
 private struct WelcomePanel: View {
     var body: some View {
         OnboardingPanelLayout(
-            icon: "shield.lefthalf.filled",
-            iconTint: .indigo,
-            title: Text("Bienvenue dans WildCall"),
-            body: Text("Bloquez les appels indésirables avant même qu'ils ne sonnent. Démarchage, spam, faux numéros, appels IA… silencieusement filtrés."),
-            footnote: Text("Aucune donnée n'est collectée. Tout reste sur votre iPhone.")
+            title: Text("Bloquez des familles entières de numéros"),
+            body: Text("Une règle WildCall couvre une tranche complète : le démarchage est refusé avant que le téléphone sonne.")
         ) {
-            Text("WildCall est gratuit. Les pourboires sont optionnels mais appréciés.")
-                .font(.callout)
+            HashMark()
+                .frame(width: 72, height: 72)
+        } detail: {
+            Text("Aucune donnée n'est collectée. Tout reste sur votre iPhone.")
+                .font(.footnote)
                 .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.top, 12)
-                .padding(.horizontal, 24)
         }
     }
 }
@@ -84,65 +79,69 @@ private struct WelcomePanel: View {
 private struct WildcardsPanel: View {
     var body: some View {
         OnboardingPanelLayout(
-            icon: "asterisk.circle.fill",
-            iconTint: .indigo,
-            title: Text("Une règle : des milliers de numéros"),
-            body: Text("Saisissez un motif comme `+33162*` pour bloquer toute une famille de numéros en une seule règle. Pas besoin d'ajouter chaque numéro manuellement.")
+            title: Text("Une règle, jusqu'à un million de numéros"),
+            body: Text("Terminez un numéro par `*` pour couvrir tous ceux qui commencent pareil.")
         ) {
-            VStack(alignment: .leading, spacing: 8) {
-                wildcardExample("+33162*", subtitle: Text("≈ 1 000 000 numéros démarchage Paris"))
-                wildcardExample("+1800555*", subtitle: Text("≈ 10 000 numéros gratuits US"))
+            EmptyView()
+        } detail: {
+            VStack(spacing: 0) {
+                example(fixedDigits: "33162", wildcardLength: 6, caption: Text("01 62, tranche réservée au démarchage en France"))
+                Divider().padding(.leading, Metrics.cardPadding)
+                example(fixedDigits: "34400", wildcardLength: 6, caption: Text("400, tranche des appels commerciaux en Espagne"))
             }
-            .padding(.top, 12)
+            .background(Color(.secondarySystemGroupedBackground), in: .rect(cornerRadius: Metrics.cardRadius))
         }
     }
 
-    private func wildcardExample(_ pattern: String, subtitle: Text) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: pattern)
-                    .font(.body.monospaced().weight(.semibold))
-                    .foregroundStyle(.indigo)
-                subtitle
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
+    private func example(fixedDigits: String, wildcardLength: Int, caption: Text) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            PatternText(fixedDigits: fixedDigits, wildcardLength: wildcardLength, font: .title3.monospaced())
+            caption
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
-        .padding(12)
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Metrics.cardPadding)
         .accessibilityElement(children: .combine)
     }
 }
 
 private struct PacksPanel: View {
+    /// The lists the app ships, by source. Country names come from the system.
+    private static let sources: [(country: String, source: String)] = [
+        ("FR", "ARCEP"),
+        ("DE", "Bundesnetzagentur"),
+        ("ES", "CNMC"),
+        ("US", "FTC, FCC"),
+        ("PE", "MTC"),
+    ]
+
     var body: some View {
         OnboardingPanelLayout(
-            icon: "shippingbox.fill",
-            iconTint: .indigo,
-            title: Text("Packs communautaires"),
-            body: Text("WildCall maintient des listes de préfixes connus : ARCEP en France, numéros gratuits US, premium-rate UK. Synchronisation quotidienne en arrière-plan.")
+            title: Text("Des listes tenues par les régulateurs"),
+            body: Text("Les packs reprennent les tranches et les numéros publiés par les autorités de chaque pays. Seuls ceux de votre pays sont activés au départ.")
         ) {
-            VStack(alignment: .leading, spacing: 10) {
-                packBullet("🇫🇷", title: Text("Démarchage FR"), subtitle: Text("Plages ARCEP 0162-0165, 0568-0569"))
-                packBullet("🇺🇸", title: Text("Spam US"), subtitle: Text("Numéros gratuits 1-800-555-*"))
-                packBullet("🇬🇧", title: Text("Premium-rate UK"), subtitle: Text("0843, 0844 démarchage"))
+            EmptyView()
+        } detail: {
+            VStack(spacing: 0) {
+                ForEach(Array(Self.sources.enumerated()), id: \.offset) { offset, entry in
+                    if offset > 0 {
+                        Divider().padding(.leading, Metrics.cardPadding)
+                    }
+                    HStack {
+                        Text(verbatim: CountryName.localized(entry.country))
+                        Spacer()
+                        Text(verbatim: entry.source)
+                            .font(.callout.monospaced())
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.horizontal, Metrics.cardPadding)
+                    .padding(.vertical, 12)
+                    .accessibilityElement(children: .combine)
+                }
             }
-            .padding(.top, 12)
+            .background(Color(.secondarySystemGroupedBackground), in: .rect(cornerRadius: Metrics.cardRadius))
         }
-    }
-
-    private func packBullet(_ flag: String, title: Text, subtitle: Text) -> some View {
-        HStack(spacing: 12) {
-            Text(verbatim: flag).font(.title2)
-            VStack(alignment: .leading, spacing: 1) {
-                title.font(.subheadline.weight(.medium))
-                subtitle.font(.caption).foregroundStyle(.secondary)
-            }
-            Spacer()
-        }
-        .accessibilityElement(children: .combine)
     }
 }
 
@@ -151,123 +150,78 @@ private struct ActivationPanel: View {
 
     var body: some View {
         OnboardingPanelLayout(
-            icon: "checkmark.shield.fill",
-            iconTint: .indigo,
-            title: Text("Activer WildCall"),
-            body: Text("iOS demande votre autorisation pour que l'app puisse filtrer les appels. Cela prend 10 secondes dans Réglages.")
+            title: Text("Activez les \(ExtensionSlot.count) lignes WildCall"),
+            body: Text("iOS limite chaque extension de blocage à 2 millions de numéros. WildCall en embarque \(ExtensionSlot.count) : cochez-les toutes dans Réglages.")
         ) {
-            VStack(spacing: 12) {
+            EmptyView()
+        } detail: {
+            VStack(spacing: 16) {
                 Button {
-                    openCallBlockingSettings()
+                    CallBlockingSettings.open()
                     dismiss()
                 } label: {
-                    Label {
-                        Text("Activer dans Réglages")
-                    } icon: {
-                        Image(systemName: "arrow.up.right.square.fill")
-                    }
-                    .frame(maxWidth: .infinity)
+                    Text("Activer dans Réglages")
+                        .foregroundStyle(Color.onAccent)
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.indigo)
                 .controlSize(.large)
                 .accessibilityHint(Text("Ouvre l'app Réglages sur la page Blocage et identification d'appel."))
 
                 Button("Plus tard") { dismiss() }
-                    .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .accessibilityHint(Text("Ferme l'introduction sans ouvrir Réglages."))
             }
-            .padding(.top, 24)
-        }
-    }
-
-    private func openCallBlockingSettings() {
-        let preferred = URL(string: "App-prefs:Phone&path=CALL_BLOCKING")
-        let fallback = URL(string: UIApplication.openSettingsURLString)
-        if let url = preferred, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        } else if let url = fallback {
-            UIApplication.shared.open(url)
         }
     }
 }
 
 // MARK: - Shared layout
 
-private struct OnboardingPanelLayout<Bottom: View>: View {
-    let icon: String
-    let iconTint: Color
-    let title: Text
-    let descriptionText: Text
-    var footnote: Text? = nil
-    let bottom: Bottom
+/// Left-aligned panel : an optional mark, the title, one paragraph, then
+/// the panel's own content. Scrolls when Dynamic Type makes it taller
+/// than the screen.
+private struct OnboardingPanelLayout<Mark: View, Detail: View>: View {
+    private let title: Text
+    private let descriptionText: Text
+    private let mark: Mark
+    private let detail: Detail
 
     init(
-        icon: String,
-        iconTint: Color,
         title: Text,
         body: Text,
-        footnote: Text? = nil,
-        @ViewBuilder bottom: () -> Bottom = { EmptyView() }
+        @ViewBuilder mark: () -> Mark,
+        @ViewBuilder detail: () -> Detail
     ) {
-        self.icon = icon
-        self.iconTint = iconTint
         self.title = title
         self.descriptionText = body
-        self.footnote = footnote
-        self.bottom = bottom()
+        self.mark = mark()
+        self.detail = detail()
     }
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer(minLength: 12)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                mark
+                    .padding(.bottom, 8)
 
-            Image(systemName: icon)
-                .font(.system(size: 80))
-                .foregroundStyle(iconTint)
-                .padding(.bottom, 8)
-                .accessibilityHidden(true)
+                title
+                    .font(.title.weight(.semibold))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityAddTraits(.isHeader)
 
-            title
-                .font(.largeTitle.weight(.bold))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-                .accessibilityAddTraits(.isHeader)
+                descriptionText
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
 
-            descriptionText
-                .font(.body)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, 32)
-
-            bottom
-                .padding(.horizontal, 24)
-
-            if let footnote {
-                footnote
-                    .font(.footnote)
-                    .foregroundStyle(.tertiary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
+                detail
                     .padding(.top, 8)
             }
-
-            Spacer(minLength: 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 24)
+            .padding(.top, 32)
+            .padding(.bottom, 64)
         }
-    }
-}
-
-// Convenience initializer when there's no bottom builder.
-extension OnboardingPanelLayout where Bottom == EmptyView {
-    init(
-        icon: String,
-        iconTint: Color,
-        title: Text,
-        body: Text,
-        footnote: Text? = nil
-    ) {
-        self.init(icon: icon, iconTint: iconTint, title: title, body: body, footnote: footnote, bottom: { EmptyView() })
+        .scrollBounceBehavior(.basedOnSize)
     }
 }

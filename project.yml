@@ -94,6 +94,8 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.octiplex.wildcall
         TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         SUPPORTS_MACCATALYST: NO
 
   # iOS caps a Call Directory extension at 1 999 999 entries (measured).
@@ -219,7 +221,37 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         SUPPORTS_MACCATALYST: NO
 
+  # App Store screenshots, driven by Tools/screenshots/capture.sh.
+  WildCallUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: WildCallUITests
+    dependencies:
+      - target: WildCall
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.octiplex.wildcall.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        SWIFT_STRICT_CONCURRENCY: minimal
+        TEST_TARGET_NAME: WildCall
+
 schemes:
+  WildCallScreenshots:
+    build:
+      targets:
+        WildCall: all
+        WildCallExtension: all
+        WildCallExtension2: all
+        WildCallExtension3: all
+        WildCallExtension4: all
+        WildCallUITests: [test]
+    test:
+      config: Debug
+      targets:
+        - WildCallUITests
   WildCall:
     build:
       targets:

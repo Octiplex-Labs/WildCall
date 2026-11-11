@@ -58,7 +58,7 @@ struct PackImportSheet: View {
 
     @ViewBuilder
     private func confirmationView(_ loaded: LoadedPack) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(loaded.manifest.title ?? loaded.manifest.id)
                     .font(.title3.weight(.semibold))
@@ -90,7 +90,7 @@ struct PackImportSheet: View {
                 systemImage: "checkmark.seal.fill"
             )
                 .font(.caption)
-                .foregroundStyle(.indigo)
+                .foregroundStyle(.secondary)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(
                     Text("Signé par Octiplex. Empreinte \(AccessibilityFormatting.readableFingerprint(OctiplexTrust.fingerprint(of: OctiplexTrust.publicKey))).")
@@ -102,10 +102,10 @@ struct PackImportSheet: View {
                 store.send(.confirmTapped)
             } label: {
                 Text("Installer")
+                    .foregroundStyle(Color.onAccent)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .tint(.indigo)
             .controlSize(.large)
             .accessibilityHint(Text("Installe le pack et reconstruit votre liste de blocage."))
         }
@@ -123,7 +123,7 @@ struct PackImportSheet: View {
 
     @ViewBuilder
     private func failureView(error: String) -> some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.largeTitle)
                 .foregroundStyle(.orange)

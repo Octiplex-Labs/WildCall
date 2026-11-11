@@ -11,9 +11,18 @@ struct WildCallApp: App {
     let store: StoreOf<AppFeature>
 
     init() {
+        #if DEBUG
+        let isScreenshotRun = ScreenshotFixtures.isActive
+        #else
+        let isScreenshotRun = false
+        #endif
+
         let container: ModelContainer
         do {
-            container = try ModelContainer(for: BlockRuleRecord.self, PackRecord.self, TrustedKeyRecord.self)
+            container = try ModelContainer(
+                for: BlockRuleRecord.self, PackRecord.self, TrustedKeyRecord.self,
+                configurations: ModelConfiguration(isStoredInMemoryOnly: isScreenshotRun)
+            )
         } catch {
             fatalError("Failed to create persistent ModelContainer: \(error)")
         }
@@ -25,7 +34,17 @@ struct WildCallApp: App {
             $0.rulesRepository = .live(container: container)
             $0.packsRepository = .live(container: container)
             $0.trustedKeyStore = .live(container: container)
+            #if DEBUG
+            if isScreenshotRun { ScreenshotFixtures.apply(to: &$0) }
+            #endif
         }
+
+        #if DEBUG
+        if isScreenshotRun {
+            let rules = RulesRepository.live(container: container)
+            Task { await ScreenshotFixtures.seed(rules) }
+        }
+        #endif
 
         self.store = Store(initialState: AppFeature.State()) {
             AppFeature()

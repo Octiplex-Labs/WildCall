@@ -7,27 +7,16 @@ struct AddRuleSheet: View {
     @Bindable var store: StoreOf<AddRuleFeature>
     @FocusState private var numberFieldFocused: Bool
 
-    private static var countries: [(code: String, label: String)] {
-        [
-            ("FR", String(localized: "🇫🇷 France")),
-            ("BE", String(localized: "🇧🇪 Belgique")),
-            ("CH", String(localized: "🇨🇭 Suisse")),
-            ("CA", String(localized: "🇨🇦 Canada")),
-            ("US", String(localized: "🇺🇸 États-Unis")),
-            ("GB", String(localized: "🇬🇧 Royaume-Uni")),
-            ("DE", String(localized: "🇩🇪 Allemagne")),
-            ("ES", String(localized: "🇪🇸 Espagne")),
-            ("IT", String(localized: "🇮🇹 Italie")),
-        ]
-    }
+    /// Country names come from the system, in the user's language.
+    private static let countryCodes = ["FR", "BE", "CH", "CA", "US", "GB", "DE", "ES", "IT"]
 
     var body: some View {
         NavigationStack {
             Form {
                 Section {
                     Picker("Pays", selection: $store.countryCode) {
-                        ForEach(Self.countries, id: \.code) { country in
-                            Text(country.label).tag(country.code)
+                        ForEach(Self.countryCodes, id: \.self) { code in
+                            Text(verbatim: CountryName.localized(code)).tag(code)
                         }
                     }
 
@@ -36,6 +25,7 @@ struct AddRuleSheet: View {
                         .textContentType(.telephoneNumber)
                         .focused($numberFieldFocused)
                         .accessibilityLabel(Text("Numéro ou motif"))
+                        .accessibilityIdentifier("addRule.number")
                         .accessibilityHint(Text("Terminez par une étoile pour bloquer une famille de numéros."))
 
                     validationFooter
@@ -43,7 +33,6 @@ struct AddRuleSheet: View {
                     Text("Numéro ou motif")
                 } footer: {
                     Text("Terminez par `*` pour bloquer une famille de numéros : `0162*` couvre tous les numéros commençant par 01 62 (jusqu'à 1 000 000 de numéros par motif).")
-                        .font(.caption)
                 }
 
                 Section("Action") {
@@ -65,6 +54,7 @@ struct AddRuleSheet: View {
                     Button("Annuler") {
                         store.send(.delegate(.cancelled))
                     }
+                    .accessibilityIdentifier("addRule.cancel")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Enregistrer") {
@@ -96,9 +86,12 @@ struct AddRuleSheet: View {
                 .accessibilityAddTraits(.isStaticText)
 
         case .exactValid(let e164):
-            Label("+\(e164.value)", systemImage: "checkmark.seal.fill")
-                .font(.caption.monospacedDigit())
-                .foregroundStyle(.green)
+            Label {
+                PatternText(fixedDigits: String(e164.value), font: .footnote.monospaced())
+            } icon: {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+            }
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(Text("Numéro valide + \(AccessibilityFormatting.spelledOut(String(e164.value)))"))
 
@@ -110,12 +103,14 @@ struct AddRuleSheet: View {
                 .accessibilityAddTraits(.isStaticText)
 
         case .wildcardValid(let prefix, let count):
-            VStack(alignment: .leading, spacing: 2) {
-                Label("Couvre \(Self.formatted(count)) numéros", systemImage: "scope")
+            VStack(alignment: .leading, spacing: 4) {
+                PatternText(
+                    fixedDigits: prefix.fixedDigits,
+                    wildcardLength: prefix.wildcardLength,
+                    font: .footnote.monospaced()
+                )
+                Text("Couvre \(Self.formatted(count)) numéros")
                     .font(.caption.monospacedDigit())
-                    .foregroundStyle(.indigo)
-                Text("+\(prefix.fixedDigits) suivi de \(prefix.wildcardLength) chiffre\(prefix.wildcardLength > 1 ? "s" : "")")
-                    .font(.caption2.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
             .accessibilityElement(children: .ignore)
@@ -147,9 +142,6 @@ struct AddRuleSheet: View {
     }
 
     private static func formatted(_ count: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "\u{202F}"  // narrow no-break space, French convention
-        return formatter.string(from: NSNumber(value: count)) ?? String(count)
+        FilterStatusFormatting.count(count)
     }
 }

@@ -24,6 +24,7 @@ struct RulesListView: View {
                                     PackGroupRow(group: group)
                                 }
                                 .accessibilityLabel(Self.accessibilityLabel(for: group))
+                                .accessibilityIdentifier("rules.pack.\(group.pack.id)")
                                 .accessibilityHint(Text("Affiche les plages de numéros de ce pack."))
                             }
                         } header: {
@@ -55,7 +56,7 @@ struct RulesListView: View {
                                             Label("Bloquer", systemImage: "phone.down")
                                         }
                                     }
-                                    .tint(.indigo)
+                                    .tint(Color.accentColor)
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
@@ -79,6 +80,7 @@ struct RulesListView: View {
                 } label: {
                     Label("Ajouter", systemImage: "plus")
                 }
+                .accessibilityIdentifier("rules.add")
             }
         }
         .task { await store.send(.task).finish() }
@@ -89,35 +91,27 @@ struct RulesListView: View {
 
     private var emptyState: some View {
         ContentUnavailableView {
-            Label("Aucune règle", systemImage: "shield.lefthalf.filled")
-                .foregroundStyle(.indigo)
+            Label("Aucune règle", systemImage: "asterisk")
         } description: {
             Text("Ajoutez un motif avec des jokers pour bloquer toute une famille de numéros indésirables en une fois.")
         } actions: {
-            VStack(spacing: 14) {
+            VStack(spacing: 16) {
                 Button {
                     store.send(.addButtonTapped)
                 } label: {
-                    Label("Nouvelle règle", systemImage: "plus")
+                    Text("Nouvelle règle")
+                        .foregroundStyle(Color.onAccent)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.indigo)
                 .controlSize(.large)
                 .accessibilityHint(Text("Ouvre le formulaire pour saisir un numéro ou un motif."))
 
                 Button {
                     store.send(.syncFromEmptyStateTapped)
                 } label: {
-                    VStack(spacing: 2) {
-                        Text("Synchroniser les packs")
-                            .font(.subheadline.weight(.medium))
-                        Text("Récupère les listes Octiplex de numéros connus.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text("Synchroniser les packs")
                 }
-                .foregroundStyle(.indigo)
                 .accessibilityElement(children: .combine)
                 .accessibilityHint(Text("Télécharge les derniers packs publiés par Octiplex."))
             }
@@ -127,7 +121,7 @@ struct RulesListView: View {
 
     private static func accessibilityLabel(for group: PackGroup) -> Text {
         let state = group.pack.enabled ? String(localized: "activé") : String(localized: "désactivé")
-        return Text("Pack \(group.pack.displayTitle), \(state), \(FilterStatusFormatting.count(group.numberCount)) numéros, \(group.roots.count) racines")
+        return Text("Pack \(PackTitle.localized(group.pack.displayTitle)), \(state), \(FilterStatusFormatting.count(group.numberCount)) numéros, \(group.roots.count) racines")
     }
 
     private static func accessibilityLabel(for rule: BlockRule) -> Text {
@@ -159,15 +153,14 @@ private struct PackGroupRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: "shippingbox.fill")
-                .foregroundStyle(group.pack.enabled ? Color.indigo : Color.secondary)
-                .font(.title3)
-                .frame(width: 32)
+            Image(systemName: "shippingbox")
+                .foregroundStyle(.secondary)
+                .frame(width: Metrics.iconColumn)
                 .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(group.pack.displayTitle)
-                    .font(.body.weight(.medium))
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: PackTitle.localized(group.pack.displayTitle))
+                    .foregroundStyle(group.pack.enabled ? Color.primary : Color.secondary)
                 Text("\(FilterStatusFormatting.count(group.numberCount)) numéros · \(group.roots.count) racines")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
@@ -177,13 +170,11 @@ private struct PackGroupRow: View {
 
             if !group.pack.enabled {
                 Text("Désactivé")
-                    .font(.caption2.weight(.semibold))
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(.quaternary, in: .capsule)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, 4)
     }
 }
 
@@ -214,7 +205,7 @@ struct PackDetailView: View {
                 Text("\(group.pack.id) · version \(group.pack.version) · \(group.ruleCount) motifs")
             }
         }
-        .navigationTitle(group.pack.displayTitle)
+        .navigationTitle(PackTitle.localized(group.pack.displayTitle))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -224,7 +215,7 @@ private struct RootRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(RuleDisplay.rootLabel(root))
                     .font(.body.monospaced())
                 Text("\(FilterStatusFormatting.count(root.numberCount)) numéros · \(root.rules.count) blocs")
@@ -255,13 +246,11 @@ private struct RuleRow: View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
             Image(systemName: actionIcon)
                 .foregroundStyle(actionTint)
-                .font(.title3)
-                .frame(width: 32)
+                .frame(width: Metrics.iconColumn)
                 .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(displayNumber)
-                    .font(.body.monospaced())
+            VStack(alignment: .leading, spacing: 4) {
+                number
                 if let label = rule.label, !label.isEmpty {
                     Text(label)
                         .font(.caption)
@@ -269,7 +258,7 @@ private struct RuleRow: View {
                 }
                 if dynamicTypeSize.isAccessibilitySize {
                     Text(rule.countryCode)
-                        .font(.caption2.weight(.semibold))
+                        .font(.caption.monospaced())
                         .foregroundStyle(.secondary)
                 }
             }
@@ -278,36 +267,36 @@ private struct RuleRow: View {
 
             if !dynamicTypeSize.isAccessibilitySize {
                 Text(rule.countryCode)
-                    .font(.caption2.weight(.semibold))
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(.quaternary, in: .capsule)
+                    .font(.caption.monospaced())
+                    .foregroundStyle(.secondary)
                     .accessibilityHidden(true)
             }
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, 4)
     }
 
-    private var displayNumber: String {
+    private var number: PatternText {
         switch rule.kind {
         case .exact(let e164):
-            return "+\(e164.value)"
+            PatternText(fixedDigits: String(e164.value))
         case .prefix(let prefix):
-            return "+\(prefix.fixedDigits)\(String(repeating: "*", count: prefix.wildcardLength))"
+            PatternText(fixedDigits: prefix.fixedDigits, wildcardLength: prefix.wildcardLength)
         }
     }
 
     private var actionIcon: String {
         switch rule.action {
-        case .block: "phone.down.fill"
-        case .identify: "tag.fill"
+        case .block: "phone.down"
+        case .identify: "tag"
         }
     }
 
+    /// Red means a call is refused. Identified calls still ring, so their
+    /// icon stays in the secondary text colour.
     private var actionTint: Color {
         switch rule.action {
         case .block: .red
-        case .identify: .indigo
+        case .identify: .secondary
         }
     }
 }

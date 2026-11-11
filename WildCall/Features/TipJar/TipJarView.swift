@@ -49,13 +49,16 @@ struct TipJarView: View {
                 Text("Soutenir WildCall")
             } footer: {
                 Text("WildCall est gratuit et sans publicité. Si l'app vous est utile, vous pouvez laisser un pourboire : c'est totalement optionnel.")
-                    .font(.caption)
             }
 
             if lastPurchaseThanks {
                 Section {
-                    Label("Merci 💜", systemImage: "checkmark.seal.fill")
-                        .foregroundStyle(.indigo)
+                    Label {
+                        Text("Merci pour votre soutien")
+                    } icon: {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                    }
                 }
             }
         }
@@ -75,7 +78,7 @@ struct TipJarView: View {
             }
         } catch {
             await MainActor.run {
-                self.loadError = "Impossible de joindre l'App Store (\(error.localizedDescription))."
+                self.loadError = String(localized: "Impossible de joindre l'App Store (\(error.localizedDescription))")
                 self.isLoading = false
             }
         }
@@ -127,7 +130,7 @@ private struct TipRow: View {
                 } else {
                     Text(product.displayPrice)
                         .font(.callout.monospacedDigit())
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(Color.accentColor)
                 }
             }
         }
