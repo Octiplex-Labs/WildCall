@@ -258,7 +258,8 @@ import CustomDump
             .appendingPathComponent("Packs/prefixes-PE.source.json")
         let manifest = try PackManifest.load(from: url)
         #expect(manifest.id == "pe.mtc")
-        #expect(manifest.enabledByDefault == false)
+        // On by default, which DefaultPackPolicy limits to devices set to Peru.
+        #expect(manifest.enabledByDefault == true)
         #expect(manifest.prefixes == ["+51500*"])
 
         let result = withDependencies {

@@ -47,10 +47,8 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: unit-results
-          path: |
-            build/results
-            build/logs
+          name: unit-logs
+          path: build/logs
 
   screenshots:
     name: App Store screenshots
@@ -80,7 +78,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot-results
-          path: |
-            build/results
-            build/logs
+          name: screenshot-logs
+          path: build/logs
