@@ -130,7 +130,7 @@ struct PacksView: View {
             Section {
                 ForEach(others) { pack in row(for: pack) }
             } header: {
-                Text(home.isEmpty ? "Packs installés" : "Autres pays")
+                home.isEmpty ? Text("Packs installés") : Text("Autres pays")
             }
         }
 

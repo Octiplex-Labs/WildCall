@@ -1,0 +1,22 @@
+WildCall blocks or identifies whole families of phone numbers, not just numbers one at a time.
+
+ONE RULE, UP TO A MILLION NUMBERS
+End a number with * to cover every number that starts the same way. In France, 0162* refuses every call from the 01 62 range. For each rule you choose to block the call or to identify it: an identified call still rings, with the label you picked on screen.
+
+RANGES PUBLISHED BY REGULATORS
+WildCall ships packs built from public data:
+• France: blocks allocated in the ranges reserved for telemarketing (ARCEP), mainland and overseas
+• Spain: the 400 range for commercial calls
+• Peru: the 500 series for commercial calls
+• Germany: numbers the Bundesnetzagentur acted against
+• United States: numbers reported to the FTC and the FCC
+Only your country's packs are enabled at first. You turn the others on or off in Settings. Packs update from Octiplex's public catalogue, and every pack is signed.
+
+NO DATA COLLECTED
+Your rules stay on your iPhone. WildCall sees neither your calls nor your contacts: the app hands a list of numbers to iOS, and iOS does the filtering. The only network access is downloading packs. iOS never filters numbers that are in your contacts.
+
+GOOD TO KNOW
+• After installing, turn on the 4 WildCall lines in Settings > Apps > Phone > Call Blocking & Identification. iOS limits each extension to fewer than 2 million numbers, so WildCall uses four.
+• You can export your rules to a JSON file.
+• The app is free and has no ads. An optional tip is offered in Settings.
+• The source code is public: github.com/Octiplex-Labs/WildCall

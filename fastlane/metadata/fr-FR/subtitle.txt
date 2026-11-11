@@ -1,0 +1,1 @@
+Bloque le démarchage par plage

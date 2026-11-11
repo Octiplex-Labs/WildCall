@@ -1,0 +1,22 @@
+WildCall bloque ou identifie des familles entières de numéros, pas seulement des numéros un par un.
+
+UNE RÈGLE, JUSQU'À UN MILLION DE NUMÉROS
+Terminez un numéro par * pour couvrir tous ceux qui commencent pareil. 0162* refuse tous les appels venant de la tranche 01 62. Pour chaque règle, vous choisissez de bloquer l'appel ou de l'identifier : un appel identifié sonne, avec l'étiquette de votre choix à l'écran.
+
+LES TRANCHES PUBLIÉES PAR LES RÉGULATEURS
+WildCall embarque des packs construits à partir de données publiques :
+• France : les blocs attribués dans les tranches réservées au démarchage téléphonique (ARCEP), métropole et Outre-mer
+• Espagne : la tranche 400 des appels commerciaux
+• Pérou : la série 500 des appels commerciaux
+• Allemagne : les numéros visés par une mesure de la Bundesnetzagentur
+• États-Unis : les numéros signalés à la FTC et à la FCC
+Seuls les packs de votre pays sont activés au départ. Vous activez ou désactivez les autres dans Réglages. Les packs se mettent à jour depuis le catalogue public d'Octiplex, et chaque pack est signé.
+
+AUCUNE DONNÉE COLLECTÉE
+Vos règles restent sur votre iPhone. WildCall ne voit ni vos appels ni vos contacts : l'app remet une liste de numéros à iOS, et c'est iOS qui filtre. Le seul accès réseau est le téléchargement des packs. Les numéros de vos contacts ne sont jamais filtrés par iOS.
+
+À SAVOIR
+• Après l'installation, activez les 4 lignes WildCall dans Réglages > Apps > Téléphone > Blocage et identification d'appel. iOS limite chaque extension à moins de 2 millions de numéros, WildCall en utilise donc quatre.
+• Vous pouvez exporter vos règles dans un fichier JSON.
+• L'app est gratuite et sans publicité. Un pourboire optionnel est proposé dans Réglages.
+• Le code source est public : github.com/Octiplex-Labs/WildCall
