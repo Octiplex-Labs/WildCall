@@ -103,7 +103,7 @@ enum CallBlockingSettings {
             let opened = await requestOpen()
             guard !opened else { return }
             if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(url)
+                _ = await UIApplication.shared.open(url)
             }
         }
     }
