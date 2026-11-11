@@ -39,13 +39,26 @@ fi
 UDID="$(xcrun simctl list devices available | grep -F "$DEVICE (" | tail -1 | grep -oE '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}')"
 echo "simulator: $DEVICE ($UDID)"
 
+# xcodebuild is verbose : keep its output in a log and print the lines
+# that matter when a step fails.
+LOGS="$ROOT/build/logs"
+mkdir -p "$LOGS"
+quiet() {
+    local log="$LOGS/$1.log"; shift
+    if ! "$@" > "$log" 2>&1; then
+        grep -E "error:|: error|XCTAssert|failed|Failing tests|\*\* " "$log" | sort -u | head -60 || true
+        echo "full log: $log" >&2
+        exit 1
+    fi
+}
+
 xcodegen generate --quiet
 xcrun simctl boot "$UDID" 2>/dev/null || true
 xcrun simctl bootstatus "$UDID" -b
 xcrun simctl status_bar "$UDID" override --time "9:41" --batteryState charged --batteryLevel 100 \
     --cellularMode active --cellularBars 4 --wifiBars 3 --operatorName ""
 
-xcodebuild build-for-testing \
+quiet build xcodebuild build-for-testing \
     -project WildCall.xcodeproj -scheme WildCallScreenshots \
     -destination "id=$UDID" -derivedDataPath "$DERIVED" \
     -skipMacroValidation -skipPackagePluginValidation
@@ -57,7 +70,7 @@ for language in "${LANGUAGES[@]}"; do
     TEST_RUNNER_SCREENSHOT_DIR="$OUT/$language" \
     TEST_RUNNER_SCREENSHOT_LANGUAGE="$language" \
     TEST_RUNNER_SCREENSHOT_REGION="$region" \
-    xcodebuild test-without-building \
+    quiet "test-$language" xcodebuild test-without-building \
         -project WildCall.xcodeproj -scheme WildCallScreenshots \
         -destination "id=$UDID" -derivedDataPath "$DERIVED" \
         -resultBundlePath "$ROOT/build/results/screenshots-$language.xcresult"

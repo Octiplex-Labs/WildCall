@@ -32,7 +32,7 @@ enum ScreenshotFixtures {
     /// real subscriber : 01 99 00 in France, 555-01xx in the United States.
     static func seed(_ rules: RulesRepository) async {
         let now = Date()
-        let samples: [BlockRule?] = [
+        let samples: [BlockRule] = [
             BlockRule(
                 kind: .prefix(E164Prefix(fixedDigits: "3319900", wildcardLength: 4)),
                 source: .user, action: .block, countryCode: "FR",
@@ -50,7 +50,7 @@ enum ScreenshotFixtures {
                     label: "Assurance", createdAt: now.addingTimeInterval(-120)
                 )
             },
-        ].compactMap(\.self)
+        ].compactMap { $0 }
         for rule in samples {
             try? await rules.insert(rule)
         }
