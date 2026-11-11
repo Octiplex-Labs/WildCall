@@ -4,7 +4,8 @@ import WildCallCoreShared
 
 /// Idempotent installer for embedded packs. Runs at every launch with the
 /// manifests bundled in the .app :
-/// - missing pack → installed, enabled;
+/// - missing pack → installed, enabled only when it belongs to the
+///   device's country (`DefaultPackPolicy`);
 /// - installed at an older version → replaced (user enable/disable kept);
 /// - installed at the same or a newer version (a remote sync may be ahead
 ///   of the bundle) → untouched;
@@ -46,7 +47,9 @@ extension PackBootstrap {
         @Dependency(\.packsRepository) var packsRepo
         @Dependency(\.rulesRepository) var rulesRepo
         @Dependency(\.date.now) var now
+        @Dependency(\.deviceRegion) var deviceRegion
 
+        let region = deviceRegion.code()
         var installed: [String] = []
         var upgraded: [String] = []
         var unchanged: [String] = []
@@ -60,7 +63,7 @@ extension PackBootstrap {
             }
 
             let existing = try await packsRepo.fetch(manifest.id)
-            var enabled = manifest.enabledByDefault ?? true
+            var enabled = DefaultPackPolicy.enablesOnFreshInstall(manifest, region: region)
 
             if let existing {
                 guard Self.isNewer(manifest.version, than: existing.version) else {

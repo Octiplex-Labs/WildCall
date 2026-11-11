@@ -62,3 +62,7 @@ ExportOptions.plist
 # Once a curated README is ready, it can be force-added via `git add -f README.md`,
 # or the rule below can be flipped to `*.md\n!README.md`.
 *.md
+
+# Python
+__pycache__/
+*.pyc

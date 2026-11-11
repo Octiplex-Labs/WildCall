@@ -89,7 +89,8 @@ public struct PacksFeature: Sendable {
                     version: state.packs[index].version,
                     country: state.packs[index].country,
                     enabled: enabled,
-                    installedAt: state.packs[index].installedAt
+                    installedAt: state.packs[index].installedAt,
+                    title: state.packs[index].title
                 )
                 state.togglingId = id
                 return .run { [packsRepository = packsRepository, orchestrator = orchestrator] send in

@@ -19,8 +19,10 @@ public struct PackManifest: Codable, Hashable, Sendable {
     /// Ids of packs this one replaces. Installing it removes them (rules
     /// included) so the user does not end up with two overlapping packs.
     public let supersedes: [String]?
-    /// Whether a fresh install enables the pack. Defaults to true. Packs
-    /// that would push the list past the extension ceiling ship disabled.
+    /// Whether a fresh install may enable the pack. Defaults to true, and
+    /// even then only on devices set to the pack's country
+    /// (`DefaultPackPolicy`). False keeps it off everywhere until the user
+    /// switches it on.
     public let enabledByDefault: Bool?
     /// What iOS does with the pack's numbers. Defaults to `.block`.
     /// Crowd-sourced packs (complaint data) use `.identify` so a false

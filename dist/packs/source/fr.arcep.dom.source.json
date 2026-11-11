@@ -1,11 +1,11 @@
 {
   "id": "fr.arcep.dom",
-  "version": "2026-10-18",
+  "version": "2026-11-11",
   "country": "FR",
   "kind": "prefixes",
   "title": "Démarchage téléphonique Outre-mer (ARCEP)",
   "license": "public domain (ARCEP MAJNUM, régulation publique)",
-  "notes": "Blocs de numéros attribués aux opérateurs dans les tranches 09 475 à 09 479 réservées au démarchage téléphonique en Guadeloupe, Saint-Martin, Saint-Barthélemy, Guyane, Martinique, Mayotte et à La Réunion (décision ARCEP 2022-1583), extraits de MAJNUM.csv le 2026-10-18. Chaque bloc est présent sous l'indicatif du territoire (+590, +594, +596, +262) et sous +33. 36000 numéros, 36 motifs.",
+  "notes": "Blocs de numéros attribués aux opérateurs dans les tranches 09 475 à 09 479 réservées au démarchage téléphonique en Guadeloupe, Saint-Martin, Saint-Barthélemy, Guyane, Martinique, Mayotte et à La Réunion (décision ARCEP 2022-1583), extraits de MAJNUM.csv le 2026-11-11. Chaque bloc est présent sous l'indicatif du territoire (+590, +594, +596, +262) et sous +33. 36000 numéros, 36 motifs.",
   "enabledByDefault": true,
   "prefixes": [
     "+262947800*",

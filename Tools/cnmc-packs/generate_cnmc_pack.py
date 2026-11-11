@@ -44,7 +44,7 @@ def main():
         "notes": (f"Tranche 400 réservée aux appels commerciaux en Espagne depuis le 17 octobre 2026 "
                   f"(Ley 10/2025, article 16.3, BOE-A-2026-8409). Le registre de la CNMC ne publie encore "
                   f"aucun bloc attribué : le pack couvre toute la tranche. {total} numéros, {len(pats)} motif."),
-        "enabledByDefault": False,
+        "enabledByDefault": True,
         "prefixes": pats,
     }
     dist_source = os.path.join(ROOT, "dist", "packs", "source")

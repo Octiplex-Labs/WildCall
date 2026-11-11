@@ -54,7 +54,9 @@ extension PackSyncCoordinator {
         @Dependency(\.rulesRepository) var rulesRepo
         @Dependency(\.storeOrchestrator) var orchestrator
         @Dependency(\.date.now) var now
+        @Dependency(\.deviceRegion) var deviceRegion
 
+        let region = deviceRegion.code()
         let index: PackIndex
         do {
             index = try await indexFetcher.fetch()
@@ -69,7 +71,10 @@ extension PackSyncCoordinator {
 
         for entry in index.packs {
             let installed = try? await packsRepo.fetch(entry.id)
-            if installed?.version == entry.version {
+            // Only move forward : the bundle may carry a pack newer than
+            // the published index, and replacing it would downgrade the
+            // user at every sync.
+            if let installed, !PackBootstrap.isNewer(entry.version, than: installed.version) {
                 unchanged.append(entry.id)
                 continue
             }
@@ -99,10 +104,11 @@ extension PackSyncCoordinator {
                 continue
             }
 
-            // A fresh install honours the manifest like PackBootstrap does, so
-            // a pack shipped disabled (es.cnmc) cannot push a synced user past
-            // the slot capacity.
-            let previouslyEnabled = installed?.enabled ?? loaded.manifest.enabledByDefault ?? true
+            // A fresh install follows the same policy as PackBootstrap : only
+            // the packs of the device's country start enabled, so a synced
+            // pack cannot push the user past the slot capacity.
+            let previouslyEnabled = installed?.enabled
+                ?? DefaultPackPolicy.enablesOnFreshInstall(loaded.manifest, region: region)
             if installed != nil {
                 let allRules = try await rulesRepo.fetchAll()
                 for rule in allRules where rule.source == .pack(packId: entry.id) {

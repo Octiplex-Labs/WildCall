@@ -24,7 +24,7 @@ import Testing
         #expect(manifest.id == "es.cnmc")
         #expect(manifest.country == "ES")
         #expect(manifest.kind == .prefixes)
-        #expect(manifest.enabledByDefault == false)
+        #expect(manifest.enabledByDefault == true)
         #expect(manifest.prefixes == ["+34400*"])
         #expect(manifest.supersedes == nil)
         #expect(manifest.publisherKey == nil)
@@ -40,14 +40,16 @@ import Testing
         #expect(try Data(contentsOf: Self.distURL) == Data(contentsOf: Self.embeddedURL))
     }
 
-    @Test func indexListsThePackAtTheEmbeddedVersion() throws {
+    @Test func indexNeverListsANewerVersionThanTheBundle() throws {
+        // The index only moves when the packs are signed and published, so
+        // it may trail the embedded source. It must never be ahead of it.
         let manifest = try PackManifest.load(from: Self.embeddedURL)
         let index = try JSONDecoder().decode(PackIndex.self, from: Data(contentsOf: Self.indexURL))
         let entry = try #require(index.packs.first { $0.id == "es.cnmc" })
-        #expect(entry.version == manifest.version)
+        #expect(!PackBootstrap.isNewer(entry.version, than: manifest.version))
         #expect(entry.country == "ES")
         #expect(entry.kind == .prefixes)
-        #expect(entry.url.lastPathComponent == "es.cnmc-\(manifest.version).wildcallpack")
+        #expect(entry.url.lastPathComponent == "es.cnmc-\(entry.version).wildcallpack")
     }
 
     @Test func loadsAsOneMillionNumbersUnderTheExtensionCeiling() throws {
@@ -96,7 +98,7 @@ import Testing
         #expect(group.roots.map(\.root) == ["34400"])
     }
 
-    @Test func bootstrapInstallsItDisabled() async throws {
+    @Test func bootstrapInstallsItDisabledOutsideSpain() async throws {
         let container = try ModelContainer(
             for: BlockRuleRecord.self, PackRecord.self,
             configurations: .init(isStoredInMemoryOnly: true)
@@ -120,5 +122,27 @@ import Testing
         #expect(pack.enabled == false)
         #expect(pack.title == manifest.title)
         #expect(try await rulesRepo.fetchAll().count == 1)
+    }
+
+    @Test func bootstrapEnablesItInSpain() async throws {
+        let container = try ModelContainer(
+            for: BlockRuleRecord.self, PackRecord.self,
+            configurations: .init(isStoredInMemoryOnly: true)
+        )
+        let packsRepo = PacksRepository.live(container: container)
+        let manifest = try PackManifest.load(from: Self.embeddedURL)
+
+        _ = try await withDependencies {
+            $0.rulesRepository = .live(container: container)
+            $0.packsRepository = packsRepo
+            $0.packLoader = .live
+            $0.wildcardParser = .live
+            $0.date = .constant(now)
+            $0.uuid = .incrementing
+            $0.deviceRegion = DeviceRegion { "ES" }
+        } operation: {
+            try await PackBootstrap.live.run([manifest])
+        }
+        #expect(try await packsRepo.fetch("es.cnmc")?.enabled == true)
     }
 }

@@ -1,12 +1,12 @@
 {
   "id": "es.cnmc",
-  "version": "2026-10-18",
+  "version": "2026-11-11",
   "country": "ES",
   "kind": "prefixes",
   "title": "Démarchage téléphonique en Espagne (CNMC)",
   "license": "public domain (plan national de numérotation espagnol, BOE-A-2026-8409)",
   "notes": "Tranche 400 réservée aux appels commerciaux en Espagne depuis le 17 octobre 2026 (Ley 10/2025, article 16.3, BOE-A-2026-8409). Le registre de la CNMC ne publie encore aucun bloc attribué : le pack couvre toute la tranche. 1000000 numéros, 1 motif.",
-  "enabledByDefault": false,
+  "enabledByDefault": true,
   "prefixes": [
     "+34400*"
   ]

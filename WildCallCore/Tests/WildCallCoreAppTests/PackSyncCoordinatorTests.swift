@@ -249,6 +249,44 @@ import Testing
         #expect(installed?.enabled == false)  // user's choice preserved
     }
 
+    @Test func olderIndexVersionDoesNotDowngradeTheBundledPack() async throws {
+        // The app ships fr.arcep newer than the published index : the sync
+        // must leave it alone, without even downloading the archive.
+        let entry = PackIndexEntry(
+            id: "fr.arcep", version: "2026-10-18", country: "FR", kind: .prefixes,
+            url: URL(string: "https://example.com/fr.arcep-2026-10-18.wildcallpack")!
+        )
+        let index = PackIndex(version: 1, updatedAt: "", packs: [entry])
+        let (rulesRepo, packsRepo) = makeRepositories()
+        try await packsRepo.insert(InstalledPack(
+            id: "fr.arcep", version: "2026-11-11", country: "FR", enabled: true,
+            installedAt: Date(timeIntervalSince1970: 1_700_000_000)
+        ))
+        let fetches = LockIsolated(0)
+
+        let summary = try await withDependencies {
+            $0.packIndexFetcher = PackIndexFetcher { index }
+            $0.packFetcher = PackFetcher { _ in
+                fetches.withValue { $0 += 1 }
+                throw URLError(.badServerResponse)
+            }
+            $0.packLoader = .live
+            $0.rulesRepository = rulesRepo
+            $0.packsRepository = packsRepo
+            $0.storeOrchestrator = .testValue
+            $0.wildcardParser = .live
+            $0.date = .constant(Date(timeIntervalSince1970: 1_800_000_000))
+            $0.uuid = .incrementing
+        } operation: {
+            try await PackSyncCoordinator.live.sync()
+        }
+
+        #expect(summary.unchanged == ["fr.arcep"])
+        #expect(summary.failed.isEmpty)
+        #expect(fetches.value == 0)
+        #expect(try await packsRepo.fetch("fr.arcep")?.version == "2026-11-11")
+    }
+
     @Test func indexFetchFailureThrows() async {
         await #expect(throws: SyncError.self) {
             try await withDependencies {
