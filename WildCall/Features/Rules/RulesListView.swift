@@ -14,10 +14,12 @@ struct RulesListView: View {
             } else {
                 List {
                     let grouped = RuleGrouping.group(rules: Array(store.rules), packs: store.packs, count: expander.count)
+                    // Enabled packs first : they are what the filter is doing now.
+                    let packGroups = grouped.packs.filter(\.pack.enabled) + grouped.packs.filter { !$0.pack.enabled }
 
-                    if !grouped.packs.isEmpty {
+                    if !packGroups.isEmpty {
                         Section {
-                            ForEach(grouped.packs) { group in
+                            ForEach(packGroups) { group in
                                 NavigationLink {
                                     PackDetailView(group: group)
                                 } label: {
@@ -161,7 +163,7 @@ private struct PackGroupRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(verbatim: PackTitle.localized(group.pack.displayTitle))
                     .foregroundStyle(group.pack.enabled ? Color.primary : Color.secondary)
-                Text("\(FilterStatusFormatting.count(group.numberCount)) numéros · \(group.roots.count) racines")
+                Text(verbatim: RuleDisplay.summary(numbers: group.numberCount, String(localized: "\(group.roots.count) racines")))
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
@@ -200,7 +202,7 @@ struct PackDetailView: View {
                     }
                 }
             } header: {
-                Text("\(FilterStatusFormatting.count(group.numberCount)) numéros dans \(group.roots.count) racines")
+                Text(verbatim: RuleDisplay.summary(numbers: group.numberCount, String(localized: "\(group.roots.count) racines")))
             } footer: {
                 Text("\(group.pack.id) · version \(group.pack.version) · \(group.ruleCount) motifs")
             }
@@ -218,7 +220,7 @@ private struct RootRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(RuleDisplay.rootLabel(root))
                     .font(.body.monospaced())
-                Text("\(FilterStatusFormatting.count(root.numberCount)) numéros · \(root.rules.count) blocs")
+                Text(verbatim: RuleDisplay.summary(numbers: root.numberCount, String(localized: "\(root.rules.count) blocs")))
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
@@ -229,6 +231,12 @@ private struct RootRow: View {
 }
 
 enum RuleDisplay {
+    /// "7 351 000 numéros · 12 racines" : the count, then a counted detail
+    /// that carries its own plural.
+    static func summary(numbers: Int, _ detail: String) -> String {
+        String(localized: "\(FilterStatusFormatting.count(numbers)) numéros") + " · " + detail
+    }
+
     /// "33162" → "+33 162 …" so the root reads like a dialling prefix.
     static func rootLabel(_ root: RootGroup) -> String {
         let callingCodeLength = root.root.count - RuleGrouping.rootNationalDigits
